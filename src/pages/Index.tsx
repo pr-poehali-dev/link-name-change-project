@@ -10,17 +10,35 @@ function AutoSlider({ images }: { images: string[] }) {
   }, [images.length]);
 
   return (
-    <div className="relative w-full overflow-hidden mb-16" style={{ height: 340, maxWidth: 860, margin: '0 auto 4rem' }}>
+    <div className="relative w-full mb-16" style={{ maxWidth: 860, margin: '0 auto 4rem' }}>
       {images.map((src, i) => (
         <div
           key={src}
-          className="absolute inset-0 transition-opacity duration-1000"
-          style={{ opacity: i === idx ? 1 : 0 }}
+          className="transition-opacity duration-1000 flex items-center justify-center"
+          style={{ opacity: i === idx ? 1 : 0, position: i === 0 ? 'relative' : 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
         >
-          <img src={src} alt="" className="w-full h-full object-cover" style={{ borderRadius: 20 }} />
+          <img
+            src={src}
+            alt=""
+            style={{
+              display: 'block',
+              maxWidth: '100%',
+              maxHeight: 400,
+              width: 'auto',
+              height: 'auto',
+              borderRadius: 20,
+              objectFit: 'contain',
+            }}
+          />
+          {/* боковые прозрачные виньетки */}
           <div className="absolute inset-0 pointer-events-none" style={{
+            background: 'linear-gradient(to right, rgba(10,13,20,0.9) 0%, transparent 18%, transparent 82%, rgba(10,13,20,0.9) 100%)',
             borderRadius: 20,
-            background: 'radial-gradient(ellipse at center, transparent 30%, rgba(10,13,20,0.85) 100%)',
+          }} />
+          {/* верх/низ виньетка */}
+          <div className="absolute inset-0 pointer-events-none" style={{
+            background: 'linear-gradient(to bottom, rgba(10,13,20,0.55) 0%, transparent 20%, transparent 80%, rgba(10,13,20,0.55) 100%)',
+            borderRadius: 20,
           }} />
         </div>
       ))}
