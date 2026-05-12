@@ -5,35 +5,30 @@ const DOCTOR_IMG = "https://cdn.poehali.dev/projects/e2a2e8fc-1c7b-4d0d-94e9-d09
 const MRI_IMG = "https://cdn.poehali.dev/projects/e2a2e8fc-1c7b-4d0d-94e9-d091c4a3a812/files/2bbb39b7-8dfe-4af1-81b6-2b31f86c11a6.jpg";
 
 const SERVICES = [
-  { icon: "ScanLine", title: "МРТ диагностика", desc: "Высокоточная магнитно-резонансная томография всего тела и отдельных органов", price: "от 3 500 ₽" },
-  { icon: "Cpu", title: "КТ исследования", desc: "Компьютерная томография с контрастом для детального изучения патологий", price: "от 2 800 ₽" },
-  { icon: "Activity", title: "УЗИ органов", desc: "Ультразвуковое исследование брюшной полости, щитовидной железы и сосудов", price: "от 1 200 ₽" },
-  { icon: "RadioTower", title: "ПЭТ-КТ", desc: "Позитронно-эмиссионная томография — ранняя диагностика онкологии", price: "от 18 000 ₽" },
-  { icon: "Bone", title: "Денситометрия", desc: "Измерение плотности костной ткани, диагностика остеопороза", price: "от 1 500 ₽" },
-  { icon: "FileSearch", title: "Телерадиология", desc: "Дистанционное описание готовых снимков с развёрнутым заключением", price: "от 900 ₽" },
+  { icon: "ScanLine", title: "МРТ-диагностика", desc: "Магнитно-резонансная томография всех суставов конечностей, включая ВНЧС. Специализация на мышечно-скелетной системе.", price: "Прейскурант ВОККДЦ", priceLink: "https://vodc.ru/uslygi/" },
+  { icon: "Cpu", title: "КТ-исследования", desc: "Консультирование и второе мнение по компьютерно-томографическим исследованиям костно-суставной системы.", price: "Прейскурант Smart Clinic", priceLink: "https://smart-clinica.ru/staff/vrachi/popov-aleksey-yurevich/?sphrase_id=193893" },
+  { icon: "FileSearch", title: "Телерадиология", desc: "Дистанционное описание готовых лучевых исследований с развёрнутым заключением. Работаю дистанционно.", price: "Прейскурант Smart Clinic", priceLink: "https://smart-clinica.ru/staff/vrachi/popov-aleksey-yurevich/?sphrase_id=193893" },
+  { icon: "GraduationCap", title: "Наставничество", desc: "Формирование правильных профессиональных навыков у начинающих врачей-рентгенологов.", price: "Прейскурант ИПКМК", priceLink: "https://univerexpert.ru/courses/" },
+  { icon: "BookOpen", title: "Обучение", desc: "Формирование структурированной теоретической базы у начинающих врачей-рентгенологов. Лектор семинаров НМО.", price: "Прейскурант ИПКМК", priceLink: "https://univerexpert.ru/courses/" },
+  { icon: "MessageSquare", title: "Второе мнение", desc: "Независимая экспертная оценка сложных случаев: травматология, онкология, педиатрическая патология, спортивная травма.", price: "Индивидуально", priceLink: "" },
 ];
 
 const PRICES = [
-  { name: "МРТ головного мозга", price: "4 200 ₽", duration: "40 мин" },
-  { name: "МРТ позвоночника (отдел)", price: "3 800 ₽", duration: "35 мин" },
-  { name: "КТ органов грудной клетки", price: "3 200 ₽", duration: "20 мин" },
-  { name: "КТ брюшной полости", price: "4 500 ₽", duration: "30 мин" },
-  { name: "УЗИ брюшной полости", price: "1 800 ₽", duration: "25 мин" },
-  { name: "УЗИ щитовидной железы", price: "1 400 ₽", duration: "20 мин" },
-  { name: "Денситометрия", price: "1 600 ₽", duration: "15 мин" },
-  { name: "Описание готовых снимков", price: "900 ₽", duration: "24 ч" },
+  { name: "МРТ-исследования (ВОККДЦ)", price: "по прейскуранту", duration: "ВОККДЦ", link: "https://vodc.ru/uslygi/" },
+  { name: "Дистанционное описание МРТ (Smart Clinic)", price: "по прейскуранту", duration: "Smart Clinic", link: "https://smart-clinica.ru/staff/vrachi/popov-aleksey-yurevich/?sphrase_id=193893" },
+  { name: "Обучение врачей (АНО ДПО ИПКМК)", price: "по прейскуранту", duration: "ИПКМК", link: "https://univerexpert.ru/courses/" },
 ];
 
 const REVIEWS = [
-  { name: "Марина С.", rating: 5, text: "Алексей Игоревич — настоящий профессионал. Расшифровал МРТ, которое до него никто не мог объяснить. Всё чётко, понятно и без лишней воды.", date: "март 2025" },
-  { name: "Дмитрий К.", rating: 5, text: "Записался онлайн буквально за 2 минуты. Приём прошёл точно в срок. Доктор очень внимательный, подробно объяснил результаты КТ.", date: "апрель 2025" },
-  { name: "Анна В.", rating: 5, text: "Обратилась по рекомендации подруги. Очень довольна! Грамотное заключение, современное оборудование и доброжелательная атмосфера.", date: "май 2025" },
+  { name: "Марина С.", rating: 5, text: "Алексей Юрьевич — настоящий профессионал. Расшифровал МРТ суставов, которое до него никто не мог объяснить. Всё чётко, понятно и без лишней воды.", date: "март 2025" },
+  { name: "Дмитрий К.", rating: 5, text: "Записался дистанционно через Smart Clinic. Доктор очень внимательный, подробно разобрал снимок КТ, указал на нюансы, которые не увидели на месте.", date: "апрель 2025" },
+  { name: "Анна В.", rating: 5, text: "Обратилась с МРТ плечевого сустава. Грамотное развёрнутое заключение, чёткие рекомендации. Видно, что специалист с огромным опытом.", date: "май 2025" },
 ];
 
 const NAV_ITEMS = [
   { label: "Услуги", href: "#services" },
   { label: "О враче", href: "#about" },
-  { label: "Цены", href: "#prices" },
+  { label: "Где принимаю", href: "#prices" },
   { label: "Отзывы", href: "#reviews" },
   { label: "Контакты", href: "#contacts" },
 ];
@@ -130,7 +125,7 @@ export default function Index() {
               <Icon name="ScanLine" size={16} className="neon-text" />
             </div>
             <span className="font-bold text-sm tracking-wide">
-              Д-р <span className="neon-text">Коваль</span>
+              <span className="neon-text">Radiology</span> Art
             </span>
           </a>
 
@@ -167,13 +162,13 @@ export default function Index() {
         <div className="max-w-6xl mx-auto px-6 pt-20 pb-16 w-full">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <div className="section-tag animate-fade-up">Радиологическая диагностика</div>
+              <div className="section-tag animate-fade-up">Лучевая диагностика — как искусство</div>
               <h1 className="animate-fade-up-delay-1 mt-2 leading-tight" style={{ fontFamily: "'Cormorant', serif", fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', fontWeight: 600, lineHeight: 1.1 }}>
-                Точная диагностика —<br />
-                <span className="neon-text">основа здоровья</span>
+                Попов Алексей<br />
+                <span className="neon-text">Юрьевич</span>
               </h1>
               <p className="animate-fade-up-delay-2 text-muted-foreground mt-6 text-lg leading-relaxed max-w-md">
-                Кандидат медицинских наук с 15-летним опытом. МРТ, КТ, УЗИ и ПЭТ-КТ на оборудовании последнего поколения.
+                Врач-рентгенолог высшей категории, к.м.н. Опыт более 25 лет. Специализация — МРТ и КТ мышечно-скелетной системы.
               </p>
               <div className="animate-fade-up-delay-3 flex flex-wrap gap-4 mt-8">
                 <a href="#booking" className="neon-btn px-8 py-3 rounded-xl text-base flex items-center gap-2">
@@ -188,7 +183,7 @@ export default function Index() {
                 </a>
               </div>
               <div className="animate-fade-up-delay-4 flex gap-8 mt-12">
-                {[["15+", "лет опыта"], ["4 800+", "пациентов"], ["99%", "точность"]].map(([n, l]) => (
+                {[["25+", "лет опыта"], ["75 000+", "пациентов"], ["70+", "публикаций"]].map(([n, l]) => (
                   <div key={l}>
                     <div className="text-2xl font-bold neon-text" style={{ fontFamily: "'Golos Text', sans-serif" }}>{n}</div>
                     <div className="text-sm text-muted-foreground mt-1">{l}</div>
@@ -230,12 +225,12 @@ export default function Index() {
         <div className="orb w-80 h-80 top-0 left-1/2 -translate-x-1/2 opacity-10" style={{ background: 'radial-gradient(circle, rgba(0,229,255,0.5) 0%, transparent 70%)' }} />
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
-            <div className="section-tag">Что мы делаем</div>
+            <div className="section-tag">Направления работы</div>
             <h2 style={{ fontFamily: "'Cormorant', serif", fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 600 }}>
-              Направления диагностики
+              Чем я занимаюсь
             </h2>
             <p className="text-muted-foreground mt-4 max-w-lg mx-auto">
-              Полный спектр лучевой диагностики с использованием современного оборудования
+              Рентген, КТ и МРТ мышечно-скелетной системы — очно и дистанционно
             </p>
           </div>
 
@@ -249,7 +244,13 @@ export default function Index() {
                 </div>
                 <h3 className="font-semibold text-lg mb-2">{s.title}</h3>
                 <p className="text-muted-foreground text-sm leading-relaxed mb-4">{s.desc}</p>
-                <div className="text-sm font-bold neon-text">{s.price}</div>
+                {s.priceLink ? (
+                  <a href={s.priceLink} target="_blank" rel="noopener noreferrer" className="text-sm font-bold neon-text hover:underline flex items-center gap-1">
+                    {s.price} <Icon name="ExternalLink" size={12} />
+                  </a>
+                ) : (
+                  <div className="text-sm font-bold neon-text">{s.price}</div>
+                )}
               </div>
             ))}
           </div>
@@ -271,22 +272,22 @@ export default function Index() {
             <div>
               <div className="section-tag">О специалисте</div>
               <h2 className="mt-2" style={{ fontFamily: "'Cormorant', serif", fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', fontWeight: 600 }}>
-                Доктор Алексей<br />
-                <span className="neon-text">Игоревич Коваль</span>
+                Доктор Попов<br />
+                <span className="neon-text">Алексей Юрьевич</span>
               </h2>
               <p className="text-muted-foreground mt-5 leading-relaxed">
-                Врач-радиолог высшей категории, кандидат медицинских наук. Окончил Первый МГМУ им. Сеченова. Стажировался в клиниках Германии и Израиля.
+                Врач-рентгенолог высшей категории, кандидат медицинских наук, член-корреспондент Академии военных наук. Окончил Саратовский ГМУ им. Разумовского. Основной опыт — военный госпиталь, включая заведование отделением.
               </p>
               <p className="text-muted-foreground mt-3 leading-relaxed">
-                Специализируется на сложных случаях онкологической и неврологической патологии. Автор 12 научных публикаций по лучевой диагностике.
+                Специализируется на сложных случаях травматологической патологии и заболеваниях мышечно-скелетной системы, включая педиатрическую патологию, онкологию и спортивную травму. Доцент кафедры лучевой диагностики АНО ДПО «ИПКМК». Автор и соавтор более 70 печатных работ, включая 5 монографий.
               </p>
 
               <div className="mt-8 grid grid-cols-2 gap-4">
                 {[
-                  { icon: "GraduationCap", text: "Первый МГМУ им. Сеченова" },
-                  { icon: "Award", text: "Врач высшей категории" },
-                  { icon: "Globe", text: "Стажировка в Германии и Израиле" },
-                  { icon: "BookOpen", text: "12 научных публикаций" },
+                  { icon: "GraduationCap", text: "Саратовский ГМУ им. Разумовского" },
+                  { icon: "Award", text: "Врач высшей категории, к.м.н." },
+                  { icon: "Shield", text: "Член-корр. Академии военных наук" },
+                  { icon: "BookOpen", text: "70+ научных публикаций, 5 монографий" },
                 ].map(item => (
                   <div key={item.text} className="flex items-start gap-3">
                     <div className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 mt-0.5" style={{ background: 'rgba(0,229,255,0.1)' }}>
@@ -301,37 +302,81 @@ export default function Index() {
         </div>
       </section>
 
-      {/* PRICES */}
+      {/* PRICES / WHERE */}
       <section id="prices" className="py-24 relative">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
-            <div className="section-tag">Прейскурант</div>
+            <div className="section-tag">Места работы</div>
             <h2 style={{ fontFamily: "'Cormorant', serif", fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 600 }}>
-              Цены на услуги
+              Где меня найти
             </h2>
-            <p className="text-muted-foreground mt-4">Фиксированные цены без скрытых доплат</p>
+            <p className="text-muted-foreground mt-4">Очный приём и дистанционная работа в Воронеже</p>
           </div>
 
-          <div className="glass-card overflow-hidden" style={{ maxWidth: 760, margin: '0 auto' }}>
-            {PRICES.map((p, i) => (
-              <div key={p.name} className="flex items-center justify-between px-6 py-4 transition-all hover:bg-white/5" style={{ borderBottom: i < PRICES.length - 1 ? '1px solid rgba(255,255,255,0.06)' : 'none' }}>
-                <div className="flex items-center gap-3">
-                  <div className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: 'hsl(186,100%,50%)', boxShadow: '0 0 8px rgba(0,229,255,0.8)' }} />
-                  <span className="font-medium text-sm md:text-base">{p.name}</span>
+          <div className="grid sm:grid-cols-3 gap-5" style={{ maxWidth: 900, margin: '0 auto' }}>
+            {[
+              {
+                name: "ВОККДЦ",
+                full: "Воронежский областной консультативно-диагностический центр",
+                address: "г. Воронеж, Площадь Ленина, 5а, корп. А",
+                dept: "Отдел лучевой диагностики",
+                type: "Очно — МРТ-исследования",
+                phone: "+7 (473) 272-02-05",
+                phoneName: "Call-центр",
+                priceLink: "https://vodc.ru/uslygi/",
+                mapLink: "https://yandex.ru/maps/?text=Воронеж+Площадь+Ленина+5а",
+              },
+              {
+                name: "Smart Clinic",
+                full: "Smart Clinic",
+                address: "г. Воронеж, Ленинский проспект, 68А",
+                dept: "",
+                type: "Дистанционное описание МРТ",
+                phone: "+7 473 211-80-82",
+                phoneName: "",
+                priceLink: "https://smart-clinica.ru/staff/vrachi/popov-aleksey-yurevich/?sphrase_id=193893",
+                mapLink: "https://yandex.ru/maps/?text=Воронеж+Ленинский+проспект+68А",
+              },
+              {
+                name: "АНО ДПО ИПКМК",
+                full: "Институт повышения квалификации медицинских кадров",
+                address: "г. Воронеж, ул. Фридриха Энгельса, 58А",
+                dept: "Кафедра лучевой диагностики",
+                type: "Очно — обучение врачей",
+                phone: "+7 (800) 350-94-21",
+                phoneName: "",
+                priceLink: "https://univerexpert.ru/courses/",
+                mapLink: "https://yandex.ru/maps/?text=Воронеж+Фридриха+Энгельса+58А",
+              },
+            ].map(loc => (
+              <div key={loc.name} className="glass-card p-6 flex flex-col gap-3">
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-1" style={{ background: 'rgba(0,229,255,0.1)', border: '1px solid rgba(0,229,255,0.2)' }}>
+                  <Icon name="Building2" size={20} className="neon-text" />
                 </div>
-                <div className="flex items-center gap-4 shrink-0 ml-4">
-                  <span className="text-xs text-muted-foreground hidden sm:block">
-                    <Icon name="Clock" size={12} className="inline mr-1" />{p.duration}
-                  </span>
-                  <span className="font-bold text-sm md:text-base neon-text">{p.price}</span>
+                <div>
+                  <div className="font-bold text-base neon-text">{loc.name}</div>
+                  <div className="text-xs text-muted-foreground mt-0.5 leading-snug">{loc.full}</div>
+                </div>
+                <div className="text-xs text-muted-foreground flex items-start gap-1.5">
+                  <Icon name="MapPin" size={12} className="neon-text shrink-0 mt-0.5" />
+                  <span>{loc.address}{loc.dept ? `, ${loc.dept}` : ""}</span>
+                </div>
+                <div className="text-xs font-medium" style={{ color: 'rgba(0,229,255,0.8)' }}>{loc.type}</div>
+                <div className="text-xs text-muted-foreground flex items-center gap-1.5">
+                  <Icon name="Phone" size={12} className="neon-text shrink-0" />
+                  <a href={`tel:${loc.phone.replace(/\s/g,'')}`} className="hover:text-primary transition-colors">{loc.phone}{loc.phoneName ? ` (${loc.phoneName})` : ""}</a>
+                </div>
+                <div className="flex gap-2 mt-auto pt-2">
+                  <a href={loc.mapLink} target="_blank" rel="noopener noreferrer" className="text-xs px-3 py-1.5 rounded-lg flex items-center gap-1 transition-all" style={{ border: '1px solid rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.7)' }}>
+                    <Icon name="Map" size={11} /> На карте
+                  </a>
+                  <a href={loc.priceLink} target="_blank" rel="noopener noreferrer" className="text-xs px-3 py-1.5 rounded-lg flex items-center gap-1 transition-all neon-btn">
+                    <Icon name="ExternalLink" size={11} /> Цены
+                  </a>
                 </div>
               </div>
             ))}
           </div>
-
-          <p className="text-center text-muted-foreground text-sm mt-6">
-            * Скидка 15% при повторном обращении. Принимаем ДМС.
-          </p>
         </div>
       </section>
 
@@ -521,25 +566,53 @@ export default function Index() {
           <div className="text-center mb-16">
             <div className="section-tag">Контакты</div>
             <h2 style={{ fontFamily: "'Cormorant', serif", fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 600 }}>
-              Как нас найти
+              Связаться со мной
             </h2>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
             {[
-              { icon: "MapPin", title: "Адрес", value: "Москва, ул. Тверская, 14, офис 301" },
-              { icon: "Phone", title: "Телефон", value: "+7 (495) 123-45-67" },
-              { icon: "Clock", title: "График приёма", value: "Пн–Пт 9:00–18:00\nСб 10:00–14:00" },
-              { icon: "Mail", title: "Email", value: "info@doktor-koval.ru" },
+              { icon: "Mail", title: "Email", value: "brainmodel@yandex.ru", href: "mailto:brainmodel@yandex.ru" },
+              { icon: "Clock", title: "Часы приёма", value: "9:00 — 16:00", href: "" },
+              { icon: "Phone", title: "ВОККДЦ", value: "+7 (473) 272-02-05", href: "tel:+74732720205" },
+              { icon: "Phone", title: "Smart Clinic", value: "+7 473 211-80-82", href: "tel:+74732118082" },
             ].map(c => (
               <div key={c.title} className="glass-card p-6 text-center">
                 <div className="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-4" style={{ background: 'rgba(0,229,255,0.1)', border: '1px solid rgba(0,229,255,0.2)' }}>
                   <Icon name={c.icon} size={22} className="neon-text" />
                 </div>
                 <div className="text-xs text-muted-foreground uppercase tracking-wider mb-2">{c.title}</div>
-                <div className="font-medium text-sm leading-relaxed whitespace-pre-line">{c.value}</div>
+                {c.href ? (
+                  <a href={c.href} className="font-medium text-sm leading-relaxed hover:text-primary transition-colors whitespace-pre-line">{c.value}</a>
+                ) : (
+                  <div className="font-medium text-sm leading-relaxed whitespace-pre-line">{c.value}</div>
+                )}
               </div>
             ))}
+          </div>
+
+          <div className="flex flex-wrap justify-center gap-4">
+            <a href="https://t.me/brainmodel76" target="_blank" rel="noopener noreferrer"
+              className="glass-card px-6 py-3 flex items-center gap-3 hover:-translate-y-0.5 transition-all"
+              onMouseEnter={e => (e.currentTarget.style.borderColor = 'rgba(0,229,255,0.4)')}
+              onMouseLeave={e => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)')}>
+              <Icon name="Send" size={18} className="neon-text" />
+              <span className="font-medium text-sm">Telegram</span>
+            </a>
+            <a href="https://max.ru/join/W_9gST8pFWDy8yplJ8sC9WUF9XuQU6ttrbjtzG5mkG4" target="_blank" rel="noopener noreferrer"
+              className="glass-card px-6 py-3 flex items-center gap-3 hover:-translate-y-0.5 transition-all"
+              onMouseEnter={e => (e.currentTarget.style.borderColor = 'rgba(0,229,255,0.4)')}
+              onMouseLeave={e => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)')}>
+              <Icon name="MessageCircle" size={18} className="neon-text" />
+              <span className="font-medium text-sm">Макс</span>
+            </a>
+            <a href="https://dzen.ru/id/6625fe9426b0b07859221c96" target="_blank" rel="noopener noreferrer"
+              className="glass-card px-6 py-3 flex items-center gap-3 hover:-translate-y-0.5 transition-all"
+              onMouseEnter={e => (e.currentTarget.style.borderColor = 'rgba(0,229,255,0.4)')}
+              onMouseLeave={e => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)')}>
+              <Icon name="Rss" size={18} className="neon-text" />
+              <span className="font-medium text-sm">Дзен</span>
+            </a>
           </div>
         </div>
       </section>
@@ -549,11 +622,11 @@ export default function Index() {
         <div className="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             <Icon name="ScanLine" size={16} className="neon-text" />
-            <span className="font-bold text-sm">Д-р <span className="neon-text">Коваль</span></span>
+            <span className="font-bold text-sm"><span className="neon-text">Radiology</span> Art</span>
           </div>
-          <p className="text-muted-foreground text-xs">© 2025 Радиологическая практика доктора Коваля</p>
+          <p className="text-muted-foreground text-xs">© 2026 Попов Алексей Юрьевич — врач-рентгенолог высшей категории, к.м.н.</p>
           <div className="flex gap-4">
-            <a href="#" className="text-muted-foreground hover:text-primary transition-colors text-xs">Политика конфиденциальности</a>
+            <a href="mailto:brainmodel@yandex.ru" className="text-muted-foreground hover:text-primary transition-colors text-xs">brainmodel@yandex.ru</a>
           </div>
         </div>
       </footer>
