@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Icon from "@/components/ui/icon";
 
-const DOCTOR_IMG = "https://cdn.poehali.dev/projects/e2a2e8fc-1c7b-4d0d-94e9-d091c4a3a812/files/55ed8f36-63df-475b-8ded-b41a359fca7b.jpg";
+const DOCTOR_IMG = "https://cdn.poehali.dev/projects/e2a2e8fc-1c7b-4d0d-94e9-d091c4a3a812/bucket/c52651cd-309a-488f-88f4-ec92811ed6a6.png";
 const MRI_IMG = "https://cdn.poehali.dev/projects/e2a2e8fc-1c7b-4d0d-94e9-d091c4a3a812/files/2bbb39b7-8dfe-4af1-81b6-2b31f86c11a6.jpg";
 
 const SERVICES = [
@@ -198,11 +198,15 @@ export default function Index() {
             </div>
 
             <div className="relative flex justify-center animate-float">
-              <div className="relative rounded-2xl overflow-hidden scan-container" style={{ width: '100%', maxWidth: 420, aspectRatio: '4/5' }}>
-                <img src={DOCTOR_IMG} alt="Доктор Коваль" className="w-full h-full object-cover" />
-                <div className="scan-line" />
-                <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(10,13,20,0.6) 0%, transparent 50%)' }} />
-                <div className="absolute bottom-0 left-0 right-0 p-6">
+              <div className="relative" style={{ width: '100%', maxWidth: 420 }}>
+                <div className="absolute inset-0 rounded-3xl" style={{ background: 'radial-gradient(ellipse at center, rgba(0,229,255,0.12) 0%, transparent 70%)', transform: 'scale(1.1)' }} />
+                <img
+                  src={DOCTOR_IMG}
+                  alt="Доктор Попов"
+                  className="relative w-full object-contain drop-shadow-2xl"
+                  style={{ filter: 'drop-shadow(0 20px 60px rgba(0,229,255,0.15))' }}
+                />
+                <div className="absolute bottom-8 left-4 right-4">
                   <div className="glass-card-neon p-4">
                     <div className="text-xs text-muted-foreground mb-1">Ближайший приём</div>
                     <div className="font-semibold flex items-center gap-2">
