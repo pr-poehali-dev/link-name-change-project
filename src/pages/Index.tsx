@@ -257,7 +257,7 @@ export default function Index() {
       <nav className="fixed top-0 left-0 right-0 z-50" style={{ background: 'rgba(10,13,20,0.85)', backdropFilter: 'blur(20px)', borderBottom: '1px solid rgba(0,229,255,0.1)' }}>
         <div className="max-w-6xl mx-auto px-6 flex items-center justify-between h-16">
           <a href="#" className="flex items-center gap-2">
-            <img src="https://cdn.poehali.dev/projects/e2a2e8fc-1c7b-4d0d-94e9-d091c4a3a812/bucket/d0e47aed-5e28-4114-80c1-baf9a204c911.png" alt="Radiology Art" className="w-8 h-8 rounded-lg object-cover" />
+            <img src="https://cdn.poehali.dev/projects/e2a2e8fc-1c7b-4d0d-94e9-d091c4a3a812/bucket/e1355210-d807-468c-a8b2-a0633f39d81a.png" alt="Radiology Art" className="w-8 h-8 rounded-lg object-cover" />
             <span className="font-bold text-sm tracking-wide">
               <span className="neon-text">Radiology</span> Art
             </span>
@@ -793,7 +793,7 @@ export default function Index() {
           <div className="grid sm:grid-cols-3 gap-8 mb-8">
             <div>
               <div className="flex items-center gap-2 mb-3">
-                <img src="https://cdn.poehali.dev/projects/e2a2e8fc-1c7b-4d0d-94e9-d091c4a3a812/bucket/d0e47aed-5e28-4114-80c1-baf9a204c911.png" alt="Radiology Art" className="w-7 h-7 rounded-md object-cover" />
+                <img src="https://cdn.poehali.dev/projects/e2a2e8fc-1c7b-4d0d-94e9-d091c4a3a812/bucket/e1355210-d807-468c-a8b2-a0633f39d81a.png" alt="Radiology Art" className="w-7 h-7 rounded-md object-cover" />
                 <span className="font-bold text-sm"><span className="neon-text">Radiology</span> Art</span>
               </div>
               <p className="text-xs text-muted-foreground leading-relaxed">
