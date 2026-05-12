@@ -409,6 +409,42 @@ export default function Index() {
               </div>
             ))}
           </div>
+
+          <div className="mt-20">
+            <div className="text-center mb-12">
+              <h3 style={{ fontFamily: "'Cormorant', serif", fontSize: 'clamp(1.6rem, 3vw, 2.4rem)', fontWeight: 600 }}>
+                Что говорят <span className="neon-text">врачи</span>
+              </h3>
+            </div>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[
+                { name: "Альбина А.", rating: 5, date: "май 2023", text: "Выражаю огромную благодарность Алексею Юрьевичу, за такой огромный труд. Его ценность невозможно соизмерить, низкий поклон, буду не раз возвращаться к лекциям при описании! Курс более чем оправдал мои ожидания." },
+                { name: "Екатерина Ш.", rating: 5, date: "май 2023", text: "Прекрасный материал, самый мощный курс который встречала, спасибо за Ваш труд!!!" },
+                { name: "Степан М.", rating: 5, date: "май 2023", text: "Курс в целом отличный, обязательно хотелось бы пройти и другие ваши курсы в будущем." },
+              ].map(r => (
+                <div key={r.name} className="glass-card p-6" style={{ borderColor: 'rgba(179,102,255,0.15)' }}>
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="flex">
+                      {Array.from({ length: r.rating }).map((_, i) => (
+                        <span key={i} className="star text-lg">★</span>
+                      ))}
+                    </div>
+                    <span className="text-xs px-2 py-0.5 rounded-full text-xs font-medium" style={{ background: 'rgba(179,102,255,0.15)', color: 'rgba(179,102,255,0.9)' }}>врач</span>
+                  </div>
+                  <p className="text-sm leading-relaxed text-foreground/80">«{r.text}»</p>
+                  <div className="flex items-center justify-between mt-5">
+                    <div className="flex items-center gap-2">
+                      <div className="w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm" style={{ background: 'rgba(179,102,255,0.15)', color: 'rgba(179,102,255,0.9)' }}>
+                        {r.name[0]}
+                      </div>
+                      <span className="font-medium text-sm">{r.name}</span>
+                    </div>
+                    <span className="text-xs text-muted-foreground">{r.date}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
@@ -616,15 +652,52 @@ export default function Index() {
       </section>
 
       {/* FOOTER */}
-      <footer className="py-8" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-        <div className="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <Icon name="ScanLine" size={16} className="neon-text" />
-            <span className="font-bold text-sm"><span className="neon-text">Radiology</span> Art</span>
+      <footer className="pt-10 pb-6" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid sm:grid-cols-3 gap-8 mb-8">
+            <div>
+              <div className="flex items-center gap-2 mb-3">
+                <img src="https://cdn.poehali.dev/projects/e2a2e8fc-1c7b-4d0d-94e9-d091c4a3a812/bucket/d0e47aed-5e28-4114-80c1-baf9a204c911.png" alt="Radiology Art" className="w-7 h-7 rounded-md object-cover" />
+                <span className="font-bold text-sm"><span className="neon-text">Radiology</span> Art</span>
+              </div>
+              <p className="text-xs text-muted-foreground leading-relaxed">
+                Лучевая диагностика — как искусство.<br />Попов Алексей Юрьевич.<br />Воронеж, 2026.
+              </p>
+            </div>
+
+            <div>
+              <div className="text-xs text-muted-foreground uppercase tracking-wider mb-3 font-medium">Реквизиты</div>
+              <div className="text-xs text-muted-foreground leading-relaxed space-y-1">
+                <div>Самозанятый: Попов Алексей Юрьевич</div>
+                <div>ИНН: 644101988643</div>
+                <div>Плательщик налога на профессиональный доход</div>
+                <div className="mt-2">
+                  <a href="mailto:brainmodel@yandex.ru" className="hover:text-primary transition-colors">brainmodel@yandex.ru</a>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div className="text-xs text-muted-foreground uppercase tracking-wider mb-3 font-medium">Документы</div>
+              <div className="flex flex-col gap-2">
+                {[
+                  { label: "Договор оферты", icon: "FileText" },
+                  { label: "Политика конфиденциальности", icon: "Shield" },
+                  { label: "Обработка персональных данных", icon: "Lock" },
+                ].map(doc => (
+                  <button key={doc.label} onClick={() => alert(`Документ "${doc.label}" в разработке. По запросу направляется на email.`)}
+                    className="flex items-center gap-2 text-xs text-muted-foreground hover:text-primary transition-colors text-left">
+                    <Icon name={doc.icon} size={12} className="neon-text shrink-0" />
+                    {doc.label}
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
-          <p className="text-muted-foreground text-xs">© 2026 Попов Алексей Юрьевич — врач-рентгенолог высшей категории, к.м.н.</p>
-          <div className="flex gap-4">
-            <a href="mailto:brainmodel@yandex.ru" className="text-muted-foreground hover:text-primary transition-colors text-xs">brainmodel@yandex.ru</a>
+
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-6" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+            <p className="text-muted-foreground text-xs">© 2026 Попов Алексей Юрьевич — врач-рентгенолог высшей категории, к.м.н.</p>
+            <p className="text-muted-foreground text-xs">ИНН 644101988643 · Самозанятый</p>
           </div>
         </div>
       </footer>
