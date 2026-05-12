@@ -121,9 +121,7 @@ export default function Index() {
       <nav className="fixed top-0 left-0 right-0 z-50" style={{ background: 'rgba(10,13,20,0.85)', backdropFilter: 'blur(20px)', borderBottom: '1px solid rgba(0,229,255,0.1)' }}>
         <div className="max-w-6xl mx-auto px-6 flex items-center justify-between h-16">
           <a href="#" className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg flex items-center justify-center animate-pulse-neon" style={{ background: 'rgba(0,229,255,0.15)', border: '1px solid rgba(0,229,255,0.4)' }}>
-              <Icon name="ScanLine" size={16} className="neon-text" />
-            </div>
+            <img src="https://cdn.poehali.dev/projects/e2a2e8fc-1c7b-4d0d-94e9-d091c4a3a812/bucket/d0e47aed-5e28-4114-80c1-baf9a204c911.png" alt="Radiology Art" className="w-8 h-8 rounded-lg object-cover" />
             <span className="font-bold text-sm tracking-wide">
               <span className="neon-text">Radiology</span> Art
             </span>
@@ -164,8 +162,8 @@ export default function Index() {
             <div>
               <div className="section-tag animate-fade-up">Лучевая диагностика — как искусство</div>
               <h1 className="animate-fade-up-delay-1 mt-2 leading-tight" style={{ fontFamily: "'Cormorant', serif", fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', fontWeight: 600, lineHeight: 1.1 }}>
-                Попов Алексей<br />
-                <span className="neon-text">Юрьевич</span>
+                Алексей Юрьевич<br />
+                <span className="neon-text">Попов</span>
               </h1>
               <p className="animate-fade-up-delay-2 text-muted-foreground mt-6 text-lg leading-relaxed max-w-md">
                 Врач-рентгенолог высшей категории, к.м.н. Опыт более 25 лет. Специализация — МРТ и КТ мышечно-скелетной системы.
@@ -272,8 +270,8 @@ export default function Index() {
             <div>
               <div className="section-tag">О специалисте</div>
               <h2 className="mt-2" style={{ fontFamily: "'Cormorant', serif", fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', fontWeight: 600 }}>
-                Доктор Попов<br />
-                <span className="neon-text">Алексей Юрьевич</span>
+                Алексей Юрьевич<br />
+                <span className="neon-text">Попов</span>
               </h2>
               <p className="text-muted-foreground mt-5 leading-relaxed">
                 Врач-рентгенолог высшей категории, кандидат медицинских наук, член-корреспондент Академии военных наук. Окончил Саратовский ГМУ им. Разумовского. Основной опыт — военный госпиталь, включая заведование отделением.
