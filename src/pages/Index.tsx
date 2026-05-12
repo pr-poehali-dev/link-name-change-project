@@ -1,5 +1,50 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Icon from "@/components/ui/icon";
+
+function AutoSlider({ images }: { images: string[] }) {
+  const [idx, setIdx] = useState(0);
+
+  useEffect(() => {
+    const t = setInterval(() => setIdx(i => (i + 1) % images.length), 4000);
+    return () => clearInterval(t);
+  }, [images.length]);
+
+  return (
+    <div className="relative w-full overflow-hidden mb-16" style={{ height: 340, maxWidth: 860, margin: '0 auto 4rem' }}>
+      {images.map((src, i) => (
+        <div
+          key={src}
+          className="absolute inset-0 transition-opacity duration-1000"
+          style={{ opacity: i === idx ? 1 : 0 }}
+        >
+          <img src={src} alt="" className="w-full h-full object-cover" style={{ borderRadius: 20 }} />
+          <div className="absolute inset-0 pointer-events-none" style={{
+            borderRadius: 20,
+            background: 'radial-gradient(ellipse at center, transparent 30%, rgba(10,13,20,0.85) 100%)',
+          }} />
+        </div>
+      ))}
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+        {images.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setIdx(i)}
+            className="transition-all duration-300"
+            style={{
+              width: i === idx ? 24 : 8,
+              height: 8,
+              borderRadius: 4,
+              background: i === idx ? 'hsl(186,100%,50%)' : 'rgba(255,255,255,0.3)',
+              boxShadow: i === idx ? '0 0 8px rgba(0,229,255,0.8)' : 'none',
+              border: 'none',
+              cursor: 'pointer',
+            }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
 
 const DOCS: Record<string, { title: string; content: string }> = {
   offer: {
@@ -524,6 +569,11 @@ export default function Index() {
             </h2>
           </div>
 
+          <AutoSlider images={[
+            "https://cdn.poehali.dev/projects/e2a2e8fc-1c7b-4d0d-94e9-d091c4a3a812/bucket/025fd723-5cb9-4b9f-a8c2-3b44a909983d.png",
+            "https://cdn.poehali.dev/projects/e2a2e8fc-1c7b-4d0d-94e9-d091c4a3a812/bucket/c91ff484-b386-45ad-aabc-0b9dd8e0db74.png",
+          ]} />
+
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {REVIEWS.map(r => (
               <div key={r.name} className="glass-card p-6">
@@ -552,6 +602,12 @@ export default function Index() {
                 Что говорят <span className="neon-text">врачи</span>
               </h3>
             </div>
+
+            <AutoSlider images={[
+              "https://cdn.poehali.dev/projects/e2a2e8fc-1c7b-4d0d-94e9-d091c4a3a812/bucket/938ce920-92f4-4be5-b390-053d93b43261.jpg",
+              "https://cdn.poehali.dev/projects/e2a2e8fc-1c7b-4d0d-94e9-d091c4a3a812/bucket/740b904a-3c19-4d1a-8b55-132fdf2ed7b2.jpg",
+            ]} />
+
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {[
                 { name: "Альбина А.", rating: 5, date: "май 2023", text: "Выражаю огромную благодарность Алексею Юрьевичу, за такой огромный труд. Его ценность невозможно соизмерить, низкий поклон, буду не раз возвращаться к лекциям при описании! Курс более чем оправдал мои ожидания." },
