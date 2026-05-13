@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Icon from "@/components/ui/icon";
+import TeachingSection from "@/components/TeachingSection";
 
 function AutoSlider({ images }: { images: string[] }) {
   const [idx, setIdx] = useState(0);
@@ -524,6 +525,9 @@ export default function Index() {
           </div>
         </div>
       </section>
+
+      {/* TEACHING SLIDER + SECTION */}
+      <TeachingSection />
 
       {/* PRICES / WHERE */}
       <section id="prices" className="py-24 relative">
