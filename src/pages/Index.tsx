@@ -476,7 +476,22 @@ export default function Index() {
                 Врач-рентгенолог высшей категории, кандидат медицинских наук, член-корреспондент Академии военных наук. Окончил Саратовский ГМУ им. Разумовского. Основной опыт — военный госпиталь, включая заведование отделением.
               </p>
               <p className="text-muted-foreground mt-3 leading-relaxed">
-                Специализируется на сложных случаях травматологической патологии и заболеваниях мышечно-скелетной системы, включая педиатрическую патологию, онкологию и спортивную травму. Доцент кафедры лучевой диагностики АНО ДПО «ИПКМК». Автор и соавтор более 70 печатных работ, включая 5 монографий.
+                Специализируется на сложных случаях травматологической патологии и заболеваниях мышечно-скелетной системы, включая педиатрическую патологию, онкологию,{' '}
+                <a href="https://univerexpert.ru/courses/56/" target="_blank" rel="noopener noreferrer" className="neon-text hover:underline">спортивную травму и патологию височно-нижнечелюстных суставов</a>.{' '}
+                Доцент кафедры лучевой диагностики АНО ДПО «ИПКМК». Автор и соавтор более 70 печатных работ, включая 5 монографий.
+              </p>
+              <p className="text-muted-foreground mt-3 leading-relaxed">
+                Член экспертного совета{' '}
+                <a href="https://vrachimrt.ru/" target="_blank" rel="noopener noreferrer" className="neon-text hover:underline">СРО</a>{' '}
+                «Ассоциация врачей МРТ- и КТ-диагностики». Член группы аудита врачей-рентгенологов. Модератор сайта{' '}
+                <a href="https://radiomed.ru/" target="_blank" rel="noopener noreferrer" className="neon-text hover:underline">Radiomed</a>{' '}
+                с 2010 года. Ведущий телеграм+ Макс-канала{' '}
+                <a href="https://max.ru/join/W_9gST8pFWDy8yplJ8sC9WUF9XuQU6ttrbjtzG5mkG4" target="_blank" rel="noopener noreferrer" className="neon-text hover:underline">D2D Trauma Expert</a>.{' '}
+                Модератор (редактор) каналов Школы D2D Expert. Лектор школы{' '}
+                <a href="https://vk.com/practicalradiology" target="_blank" rel="noopener noreferrer" className="neon-text hover:underline">Практическая радиология</a>.{' '}
+                Автор/соавтор 9{' '}
+                <a href="https://univerexpert.ru/courses/" target="_blank" rel="noopener noreferrer" className="neon-text hover:underline">курсов</a>{' '}
+                повышения квалификации для врачей-рентгенологов и курса профессиональной переподготовки по специальности «Рентгенология».
               </p>
 
               <div className="mt-8 grid grid-cols-2 gap-4">
