@@ -183,8 +183,8 @@ const DOCTOR_IMG = "https://cdn.poehali.dev/projects/e2a2e8fc-1c7b-4d0d-94e9-d09
 const MRI_IMG = "https://cdn.poehali.dev/projects/e2a2e8fc-1c7b-4d0d-94e9-d091c4a3a812/files/2bbb39b7-8dfe-4af1-81b6-2b31f86c11a6.jpg";
 
 const SERVICES = [
-  { icon: "ScanLine", title: "МРТ-диагностика", desc: "Магнитно-резонансная томография всех суставов конечностей, включая ВНЧС. Специализация на мышечно-скелетной системе.", links: [{ label: "info", tooltip: "Прейскурант ВОККДЦ", href: "https://vodc.ru/uslygi/" }] },
-  { icon: "Cpu", title: "КТ-исследования", desc: "Консультирование и второе мнение по компьютерно-томографическим исследованиям костно-суставной системы.", links: [{ label: "info", tooltip: "Прейскурант АНО ДПО ИПКМК", href: "https://univerexpert.ru/second-opinion/" }] },
+  { icon: "ScanLine", title: "МРТ-диагностика", desc: "Магнитно-резонансная томография всех суставов конечностей, включая ВНЧС. Специализация на мышечно-скелетной системе.", links: [{ label: "info", tooltip: "Прейскурант ВОККДЦ", href: "https://vodc.ru/34/" }] },
+  { icon: "Cpu", title: "КТ-исследования", desc: "Консультирование и второе мнение по компьютерно-томографическим исследованиям костно-суставной системы.", links: [{ label: "info", tooltip: "Прейскурант АНО ДПО ИПКМК", href: "https://univerexpert.ru/telemedicine/" }] },
   { icon: "FileSearch", title: "Телерадиология", desc: "Дистанционное описание готовых лучевых исследований с развёрнутым заключением. Работаю дистанционно.", links: [{ label: "info", tooltip: "Прейскурант Smart Clinic", href: "https://smart-clinica.ru/staff/vrachi/popov-aleksey-yurevich/?sphrase_id=193893" }, { label: "info", tooltip: "Прейскурант АНО ДПО ИПКМК", href: "https://univerexpert.ru/telemedicine/" }] },
   { icon: "GraduationCap", title: "Наставничество", desc: "Формирование правильных профессиональных навыков у начинающих врачей-рентгенологов.", links: [{ label: "Индивидуально", tooltip: "", href: "mailto:brainmodel@yandex.ru" }] },
   { icon: "BookOpen", title: "Обучение", desc: "Формирование структурированной теоретической базы у начинающих врачей-рентгенологов. Лектор семинаров НМО.", links: [{ label: "info", tooltip: "Прейскурант ИПКМК", href: "https://univerexpert.ru/courses/" }] },
@@ -490,7 +490,8 @@ export default function Index() {
               </p>
               <p className="text-muted-foreground mt-3 leading-relaxed">
                 Специализируется на сложных случаях травматологической патологии и заболеваниях мышечно-скелетной системы, включая педиатрическую патологию, онкологию,{' '}
-                <a href="https://univerexpert.ru/courses/56/" target="_blank" rel="noopener noreferrer" className="neon-text hover:underline">спортивную травму и патологию височно-нижнечелюстных суставов</a>.{' '}
+                спортивную травму и патологию{' '}
+                <a href="https://univerexpert.ru/courses/56/" target="_blank" rel="noopener noreferrer" className="neon-text hover:underline">височно-нижнечелюстных суставов</a>.{' '}
                 Доцент кафедры лучевой диагностики АНО ДПО «ИПКМК». Автор и соавтор более 70 печатных работ, включая 5 монографий.
               </p>
               <p className="text-muted-foreground mt-3 leading-relaxed">

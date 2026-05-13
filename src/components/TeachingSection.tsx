@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Icon from "@/components/ui/icon";
 
 const SLIDES = [
   "https://cdn.poehali.dev/projects/e2a2e8fc-1c7b-4d0d-94e9-d091c4a3a812/bucket/33e2dbc0-9548-4b5b-a106-d184b06c525c.JPG",
@@ -10,8 +11,8 @@ const SLIDES = [
 const COURSES = [
   {
     role: "Соавтор, раздел",
-    title: "Курс профессиональной переподготовки по специальности «Рентгенология»",
-    url: "https://univerexpert.ru/courses/52/",
+    title: "Курс профессиональной переподготовки по специальности «Рентгенология» (очный)",
+    url: "https://univerexpert.ru/groups/2/",
     type: "Переподготовка",
   },
   {
@@ -165,13 +166,13 @@ export default function TeachingSection() {
               >
                 <div className="flex items-start gap-4">
                   <div
-                    className="shrink-0 w-10 h-10 rounded-xl flex items-center justify-center text-xs font-semibold mt-0.5"
+                    className="shrink-0 w-10 h-10 rounded-full flex items-center justify-center mt-0.5"
                     style={{
-                      background: c.role === "Автор" ? "rgba(0,229,255,0.12)" : "rgba(255,255,255,0.07)",
-                      color: c.role === "Автор" ? "var(--neon, #00e5ff)" : "rgba(255,255,255,0.5)",
+                      background: "rgba(0,229,255,0.1)",
+                      boxShadow: "0 0 10px rgba(0,229,255,0.25)",
                     }}
                   >
-                    {c.role === "Автор" ? "АВТ" : "СОА"}
+                    <Icon name="BookOpen" size={18} style={{ color: "var(--neon, #00e5ff)" }} />
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-1 flex-wrap">
