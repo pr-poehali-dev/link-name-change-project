@@ -182,12 +182,12 @@ const DOCTOR_IMG = "https://cdn.poehali.dev/projects/e2a2e8fc-1c7b-4d0d-94e9-d09
 const MRI_IMG = "https://cdn.poehali.dev/projects/e2a2e8fc-1c7b-4d0d-94e9-d091c4a3a812/files/2bbb39b7-8dfe-4af1-81b6-2b31f86c11a6.jpg";
 
 const SERVICES = [
-  { icon: "ScanLine", title: "МРТ-диагностика", desc: "Магнитно-резонансная томография всех суставов конечностей, включая ВНЧС. Специализация на мышечно-скелетной системе.", links: [{ label: "info", href: "https://vodc.ru/uslygi/" }] },
-  { icon: "Cpu", title: "КТ-исследования", desc: "Консультирование и второе мнение по компьютерно-томографическим исследованиям костно-суставной системы.", links: [{ label: "info", href: "https://univerexpert.ru/second-opinion/" }] },
-  { icon: "FileSearch", title: "Телерадиология", desc: "Дистанционное описание готовых лучевых исследований с развёрнутым заключением. Работаю дистанционно.", links: [{ label: "info", href: "https://smart-clinica.ru/staff/vrachi/popov-aleksey-yurevich/?sphrase_id=193893" }, { label: "info", href: "https://univerexpert.ru/telemedicine/" }] },
-  { icon: "GraduationCap", title: "Наставничество", desc: "Формирование правильных профессиональных навыков у начинающих врачей-рентгенологов.", links: [{ label: "Индивидуально", href: "mailto:brainmodel@yandex.ru" }] },
-  { icon: "BookOpen", title: "Обучение", desc: "Формирование структурированной теоретической базы у начинающих врачей-рентгенологов. Лектор семинаров НМО.", links: [{ label: "info", href: "https://univerexpert.ru/courses/" }] },
-  { icon: "MessageSquare", title: "Второе мнение", desc: "Независимая экспертная оценка сложных случаев: травматология, онкология, педиатрическая патология, спортивная травма.", links: [{ label: "info", href: "https://univerexpert.ru/telemedicine/" }] },
+  { icon: "ScanLine", title: "МРТ-диагностика", desc: "Магнитно-резонансная томография всех суставов конечностей, включая ВНЧС. Специализация на мышечно-скелетной системе.", links: [{ label: "info", tooltip: "Прейскурант ВОККДЦ", href: "https://vodc.ru/uslygi/" }] },
+  { icon: "Cpu", title: "КТ-исследования", desc: "Консультирование и второе мнение по компьютерно-томографическим исследованиям костно-суставной системы.", links: [{ label: "info", tooltip: "Прейскурант АНО ДПО ИПКМК", href: "https://univerexpert.ru/second-opinion/" }] },
+  { icon: "FileSearch", title: "Телерадиология", desc: "Дистанционное описание готовых лучевых исследований с развёрнутым заключением. Работаю дистанционно.", links: [{ label: "info", tooltip: "Прейскурант Smart Clinic", href: "https://smart-clinica.ru/staff/vrachi/popov-aleksey-yurevich/?sphrase_id=193893" }, { label: "info", tooltip: "Прейскурант АНО ДПО ИПКМК", href: "https://univerexpert.ru/telemedicine/" }] },
+  { icon: "GraduationCap", title: "Наставничество", desc: "Формирование правильных профессиональных навыков у начинающих врачей-рентгенологов.", links: [{ label: "Индивидуально", tooltip: "", href: "mailto:brainmodel@yandex.ru" }] },
+  { icon: "BookOpen", title: "Обучение", desc: "Формирование структурированной теоретической базы у начинающих врачей-рентгенологов. Лектор семинаров НМО.", links: [{ label: "info", tooltip: "Прейскурант ИПКМК", href: "https://univerexpert.ru/courses/" }] },
+  { icon: "MessageSquare", title: "Второе мнение", desc: "Независимая экспертная оценка сложных случаев: травматология, онкология, педиатрическая патология, спортивная травма.", links: [{ label: "info", tooltip: "Прейскурант АНО ДПО ИПКМК", href: "https://univerexpert.ru/telemedicine/" }] },
 ];
 
 const PRICES = [
@@ -444,9 +444,16 @@ export default function Index() {
                 <div className="flex flex-wrap gap-2">
                   {s.links.map((l, idx) => (
                     l.label === "info"
-                      ? <a key={idx} href={l.href} target="_blank" rel="noopener noreferrer" title="Прейскурант" className="w-7 h-7 rounded-full flex items-center justify-center neon-text transition-opacity hover:opacity-70" style={{ border: '1.5px solid currentColor' }}>
-                          <Icon name="Info" size={14} />
-                        </a>
+                      ? <span key={idx} className="relative group/tip">
+                          <a href={l.href} target="_blank" rel="noopener noreferrer" className="w-7 h-7 rounded-full flex items-center justify-center neon-text transition-opacity hover:opacity-70" style={{ border: '1.5px solid currentColor' }}>
+                            <Icon name="Info" size={14} />
+                          </a>
+                          {l.tooltip && (
+                            <span className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 whitespace-nowrap rounded-lg px-2.5 py-1 text-xs font-medium opacity-0 group-hover/tip:opacity-100 transition-opacity duration-200 z-50" style={{ background: 'rgba(14,18,28,0.97)', border: '1px solid rgba(0,229,255,0.25)', color: 'rgba(0,229,255,0.9)' }}>
+                              {l.tooltip}
+                            </span>
+                          )}
+                        </span>
                       : <a key={l.label} href={l.href} target={l.href.startsWith('mailto') ? undefined : "_blank"} rel="noopener noreferrer" className="text-sm font-bold neon-text hover:underline flex items-center gap-1">
                           {l.label} <Icon name={l.href.startsWith('mailto') ? "Mail" : "ExternalLink"} size={12} />
                         </a>
@@ -586,9 +593,14 @@ export default function Index() {
                   <a href={loc.mapLink} target="_blank" rel="noopener noreferrer" className="text-xs px-3 py-1.5 rounded-lg flex items-center gap-1 transition-all" style={{ border: '1px solid rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.7)' }}>
                     <Icon name="Map" size={11} /> На карте
                   </a>
-                  <a href={loc.priceLink} target="_blank" rel="noopener noreferrer" title="Прейскурант" className="w-8 h-8 rounded-full flex items-center justify-center transition-all neon-btn" style={{ minWidth: '2rem' }}>
-                    <Icon name="Info" size={14} />
-                  </a>
+                  <span className="relative group/tip">
+                    <a href={loc.priceLink} target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full flex items-center justify-center transition-all neon-btn" style={{ minWidth: '2rem' }}>
+                      <Icon name="Info" size={14} />
+                    </a>
+                    <span className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 whitespace-nowrap rounded-lg px-2.5 py-1 text-xs font-medium opacity-0 group-hover/tip:opacity-100 transition-opacity duration-200 z-50" style={{ background: 'rgba(14,18,28,0.97)', border: '1px solid rgba(0,229,255,0.25)', color: 'rgba(0,229,255,0.9)' }}>
+                      Прейскурант {loc.name}
+                    </span>
+                  </span>
                 </div>
               </div>
             ))}
