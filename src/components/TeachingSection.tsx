@@ -130,7 +130,7 @@ export default function TeachingSection() {
       </div>
 
       {/* Teaching block */}
-      <section className="py-24 relative">
+      <section id="teaching" className="py-24 relative">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
             <div className="section-tag">Преподавание</div>
