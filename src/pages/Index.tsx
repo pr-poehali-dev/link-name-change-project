@@ -322,7 +322,7 @@ export default function Index() {
           <a href="#" className="flex items-center gap-2">
             <img src="https://cdn.poehali.dev/projects/e2a2e8fc-1c7b-4d0d-94e9-d091c4a3a812/bucket/e1355210-d807-468c-a8b2-a0633f39d81a.png" alt="Radiology Art" className="w-8 h-8 rounded-lg object-cover" />
             <span className="font-bold text-sm tracking-wide">
-              <span className="neon-text">Radiology</span> Art
+              <span className="neon-text">Radiology</span> Arts
             </span>
           </a>
 
@@ -360,9 +360,9 @@ export default function Index() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <div className="section-tag animate-fade-up">Лучевая диагностика — как искусство</div>
-              <h1 className="animate-fade-up-delay-1 mt-2 leading-tight" style={{ fontFamily: "'Cormorant', serif", fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', fontWeight: 600, lineHeight: 1.1 }}>
-                Алексей Юрьевич<br />
-                <span className="neon-text">Попов</span>
+              <h1 className="animate-fade-up-delay-1 mt-2 leading-tight" style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', fontWeight: 600, lineHeight: 1.1 }}>
+                <span className="neon-text">Попов</span><br />
+                <span style={{ color: 'white' }}>Алексей</span>
               </h1>
               <p className="animate-fade-up-delay-2 text-muted-foreground mt-6 text-lg leading-relaxed max-w-md">
                 Врач-рентгенолог высшей категории, к.м.н. Опыт более 25 лет. Специализация — МРТ и КТ мышечно-скелетной системы.
@@ -423,7 +423,7 @@ export default function Index() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
             <div className="section-tag">Направления работы</div>
-            <h2 style={{ fontFamily: "'Cormorant', serif", fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 600 }}>
+            <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 600 }}>
               Чем я занимаюсь
             </h2>
             <p className="text-muted-foreground mt-4 max-w-lg mx-auto">
@@ -461,16 +461,16 @@ export default function Index() {
             <div className="relative">
               <img src={MRI_IMG} alt="Оборудование" className="rounded-2xl w-full object-cover" style={{ aspectRatio: '4/3' }} />
               <div className="absolute -bottom-6 -right-6 glass-card-neon p-5">
-                <div className="text-3xl font-bold neon-text" style={{ fontFamily: "'Cormorant', serif" }}>к.м.н.</div>
+                <div className="text-3xl font-bold neon-text">к.м.н.</div>
                 <div className="text-sm text-muted-foreground mt-1">кандидат мед. наук</div>
               </div>
             </div>
 
             <div>
               <div className="section-tag">О специалисте</div>
-              <h2 className="mt-2" style={{ fontFamily: "'Cormorant', serif", fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', fontWeight: 600 }}>
-                Алексей Юрьевич<br />
-                <span className="neon-text">Попов</span>
+              <h2 className="mt-2" style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', fontWeight: 600 }}>
+                <span className="neon-text">Попов</span><br />
+                <span style={{ color: 'white' }}>Алексей Юрьевич</span>
               </h2>
               <p className="text-muted-foreground mt-5 leading-relaxed">
                 Врач-рентгенолог высшей категории, кандидат медицинских наук, член-корреспондент Академии военных наук. Окончил Саратовский ГМУ им. Разумовского. Основной опыт — военный госпиталь, включая заведование отделением.
@@ -504,7 +504,7 @@ export default function Index() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
             <div className="section-tag">Места работы</div>
-            <h2 style={{ fontFamily: "'Cormorant', serif", fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 600 }}>
+            <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 600 }}>
               Где меня найти
             </h2>
             <p className="text-muted-foreground mt-4">Очный приём и дистанционная работа в Воронеже</p>
@@ -582,7 +582,7 @@ export default function Index() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
             <div className="section-tag">Отзывы</div>
-            <h2 style={{ fontFamily: "'Cormorant', serif", fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 600 }}>
+            <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 600 }}>
               Что говорят пациенты
             </h2>
           </div>
@@ -616,7 +616,7 @@ export default function Index() {
 
           <div className="mt-20">
             <div className="text-center mb-12">
-              <h3 style={{ fontFamily: "'Cormorant', serif", fontSize: 'clamp(1.6rem, 3vw, 2.4rem)', fontWeight: 600 }}>
+              <h3 style={{ fontSize: 'clamp(1.6rem, 3vw, 2.4rem)', fontWeight: 600 }}>
                 Что говорят <span className="neon-text">врачи</span>
               </h3>
             </div>
@@ -664,7 +664,7 @@ export default function Index() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
             <div className="section-tag">Онлайн-запись</div>
-            <h2 style={{ fontFamily: "'Cormorant', serif", fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 600 }}>
+            <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 600 }}>
               Запись на приём
             </h2>
             <p className="text-muted-foreground mt-4">Выберите удобную дату и время</p>
@@ -809,7 +809,7 @@ export default function Index() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
             <div className="section-tag">Контакты</div>
-            <h2 style={{ fontFamily: "'Cormorant', serif", fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 600 }}>
+            <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 600 }}>
               Связаться со мной
             </h2>
           </div>
@@ -868,7 +868,7 @@ export default function Index() {
             <div>
               <div className="flex items-center gap-2 mb-3">
                 <img src="https://cdn.poehali.dev/projects/e2a2e8fc-1c7b-4d0d-94e9-d091c4a3a812/bucket/e1355210-d807-468c-a8b2-a0633f39d81a.png" alt="Radiology Art" className="w-7 h-7 rounded-md object-cover" />
-                <span className="font-bold text-sm"><span className="neon-text">Radiology</span> Art</span>
+                <span className="font-bold text-sm"><span className="neon-text">Radiology</span> Arts</span>
               </div>
               <p className="text-xs text-muted-foreground leading-relaxed">
                 Лучевая диагностика — как искусство.<br />Попов Алексей Юрьевич.<br />Воронеж, 2026.
