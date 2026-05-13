@@ -184,10 +184,10 @@ const MRI_IMG = "https://cdn.poehali.dev/projects/e2a2e8fc-1c7b-4d0d-94e9-d091c4
 const SERVICES = [
   { icon: "ScanLine", title: "МРТ-диагностика", desc: "Магнитно-резонансная томография всех суставов конечностей, включая ВНЧС. Специализация на мышечно-скелетной системе.", links: [{ label: "Прейскурант ВОККДЦ", href: "https://vodc.ru/uslygi/" }] },
   { icon: "Cpu", title: "КТ-исследования", desc: "Консультирование и второе мнение по компьютерно-томографическим исследованиям костно-суставной системы.", links: [{ label: "Прейскурант АНО ДПО ИПКМК", href: "https://univerexpert.ru/second-opinion/" }] },
-  { icon: "FileSearch", title: "Телерадиология", desc: "Дистанционное описание готовых лучевых исследований с развёрнутым заключением. Работаю дистанционно.", links: [{ label: "Прейскурант Smart Clinic", href: "https://smart-clinica.ru/staff/vrachi/popov-aleksey-yurevich/?sphrase_id=193893" }, { label: "Прейскурант АНО ДПО ИПКМК", href: "https://univerexpert.ru/second-opinion/" }] },
-  { icon: "GraduationCap", title: "Наставничество", desc: "Формирование правильных профессиональных навыков у начинающих врачей-рентгенологов.", links: [{ label: "Прейскурант ИПКМК", href: "https://univerexpert.ru/courses/" }, { label: "Индивидуально", href: "mailto:brainmodel@yandex.ru" }] },
+  { icon: "FileSearch", title: "Телерадиология", desc: "Дистанционное описание готовых лучевых исследований с развёрнутым заключением. Работаю дистанционно.", links: [{ label: "Прейскурант Smart Clinic", href: "https://smart-clinica.ru/staff/vrachi/popov-aleksey-yurevich/?sphrase_id=193893" }, { label: "Прейскурант АНО ДПО ИПКМК", href: "https://univerexpert.ru/telemedicine/" }] },
+  { icon: "GraduationCap", title: "Наставничество", desc: "Формирование правильных профессиональных навыков у начинающих врачей-рентгенологов.", links: [{ label: "Индивидуально", href: "mailto:brainmodel@yandex.ru" }] },
   { icon: "BookOpen", title: "Обучение", desc: "Формирование структурированной теоретической базы у начинающих врачей-рентгенологов. Лектор семинаров НМО.", links: [{ label: "Прейскурант ИПКМК", href: "https://univerexpert.ru/courses/" }] },
-  { icon: "MessageSquare", title: "Второе мнение", desc: "Независимая экспертная оценка сложных случаев: травматология, онкология, педиатрическая патология, спортивная травма.", links: [{ label: "Прейскурант ИПКМК", href: "https://univerexpert.ru/second-opinion/" }] },
+  { icon: "MessageSquare", title: "Второе мнение", desc: "Независимая экспертная оценка сложных случаев: травматология, онкология, педиатрическая патология, спортивная травма.", links: [{ label: "Прейскурант АНО ДПО ИПКМК", href: "https://univerexpert.ru/telemedicine/" }] },
 ];
 
 const PRICES = [
