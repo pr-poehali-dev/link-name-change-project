@@ -182,12 +182,12 @@ const DOCTOR_IMG = "https://cdn.poehali.dev/projects/e2a2e8fc-1c7b-4d0d-94e9-d09
 const MRI_IMG = "https://cdn.poehali.dev/projects/e2a2e8fc-1c7b-4d0d-94e9-d091c4a3a812/files/2bbb39b7-8dfe-4af1-81b6-2b31f86c11a6.jpg";
 
 const SERVICES = [
-  { icon: "ScanLine", title: "МРТ-диагностика", desc: "Магнитно-резонансная томография всех суставов конечностей, включая ВНЧС. Специализация на мышечно-скелетной системе.", price: "Прейскурант ВОККДЦ", priceLink: "https://vodc.ru/uslygi/" },
-  { icon: "Cpu", title: "КТ-исследования", desc: "Консультирование и второе мнение по компьютерно-томографическим исследованиям костно-суставной системы.", price: "Прейскурант Smart Clinic", priceLink: "https://smart-clinica.ru/staff/vrachi/popov-aleksey-yurevich/?sphrase_id=193893" },
-  { icon: "FileSearch", title: "Телерадиология", desc: "Дистанционное описание готовых лучевых исследований с развёрнутым заключением. Работаю дистанционно.", price: "Прейскурант Smart Clinic", priceLink: "https://smart-clinica.ru/staff/vrachi/popov-aleksey-yurevich/?sphrase_id=193893" },
-  { icon: "GraduationCap", title: "Наставничество", desc: "Формирование правильных профессиональных навыков у начинающих врачей-рентгенологов.", price: "Прейскурант ИПКМК", priceLink: "https://univerexpert.ru/courses/" },
-  { icon: "BookOpen", title: "Обучение", desc: "Формирование структурированной теоретической базы у начинающих врачей-рентгенологов. Лектор семинаров НМО.", price: "Прейскурант ИПКМК", priceLink: "https://univerexpert.ru/courses/" },
-  { icon: "MessageSquare", title: "Второе мнение", desc: "Независимая экспертная оценка сложных случаев: травматология, онкология, педиатрическая патология, спортивная травма.", price: "Индивидуально", priceLink: "" },
+  { icon: "ScanLine", title: "МРТ-диагностика", desc: "Магнитно-резонансная томография всех суставов конечностей, включая ВНЧС. Специализация на мышечно-скелетной системе.", links: [{ label: "Прейскурант ВОККДЦ", href: "https://vodc.ru/uslygi/" }] },
+  { icon: "Cpu", title: "КТ-исследования", desc: "Консультирование и второе мнение по компьютерно-томографическим исследованиям костно-суставной системы.", links: [{ label: "Прейскурант АНО ДПО ИПКМК", href: "https://univerexpert.ru/second-opinion/" }] },
+  { icon: "FileSearch", title: "Телерадиология", desc: "Дистанционное описание готовых лучевых исследований с развёрнутым заключением. Работаю дистанционно.", links: [{ label: "Прейскурант Smart Clinic", href: "https://smart-clinica.ru/staff/vrachi/popov-aleksey-yurevich/?sphrase_id=193893" }, { label: "Прейскурант АНО ДПО ИПКМК", href: "https://univerexpert.ru/second-opinion/" }] },
+  { icon: "GraduationCap", title: "Наставничество", desc: "Формирование правильных профессиональных навыков у начинающих врачей-рентгенологов.", links: [{ label: "Прейскурант ИПКМК", href: "https://univerexpert.ru/courses/" }, { label: "Индивидуально", href: "mailto:brainmodel@yandex.ru" }] },
+  { icon: "BookOpen", title: "Обучение", desc: "Формирование структурированной теоретической базы у начинающих врачей-рентгенологов. Лектор семинаров НМО.", links: [{ label: "Прейскурант ИПКМК", href: "https://univerexpert.ru/courses/" }] },
+  { icon: "MessageSquare", title: "Второе мнение", desc: "Независимая экспертная оценка сложных случаев: травматология, онкология, педиатрическая патология, спортивная травма.", links: [{ label: "Прейскурант ИПКМК", href: "https://univerexpert.ru/second-opinion/" }] },
 ];
 
 const PRICES = [
@@ -441,13 +441,13 @@ export default function Index() {
                 </div>
                 <h3 className="font-semibold text-lg mb-2">{s.title}</h3>
                 <p className="text-muted-foreground text-sm leading-relaxed mb-4">{s.desc}</p>
-                {s.priceLink ? (
-                  <a href={s.priceLink} target="_blank" rel="noopener noreferrer" className="text-sm font-bold neon-text hover:underline flex items-center gap-1">
-                    {s.price} <Icon name="ExternalLink" size={12} />
-                  </a>
-                ) : (
-                  <div className="text-sm font-bold neon-text">{s.price}</div>
-                )}
+                <div className="flex flex-col gap-1">
+                  {s.links.map((l) => (
+                    <a key={l.label} href={l.href} target={l.href.startsWith('mailto') ? undefined : "_blank"} rel="noopener noreferrer" className="text-sm font-bold neon-text hover:underline flex items-center gap-1">
+                      {l.label} <Icon name={l.href.startsWith('mailto') ? "Mail" : "ExternalLink"} size={12} />
+                    </a>
+                  ))}
+                </div>
               </div>
             ))}
           </div>
