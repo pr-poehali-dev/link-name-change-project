@@ -177,6 +177,57 @@ E-mail: brainmodel@yandex.ru
 ИНН: 644101988643
 E-mail: brainmodel@yandex.ru`,
   },
+  cookies: {
+    title: "Уведомление об использовании файлов cookie",
+    content: `УВЕДОМЛЕНИЕ ОБ ИСПОЛЬЗОВАНИИ ФАЙЛОВ COOKIE
+
+Сайт radiologyarts.ru (далее — «Сайт») использует файлы cookie и аналогичные технологии для обеспечения корректной работы, анализа посещаемости и улучшения пользовательского опыта.
+
+1. ЧТО ТАКОЕ COOKIE
+Файлы cookie — небольшие текстовые файлы, которые сохраняются в браузере при посещении сайта. Они не содержат персональных данных и не причиняют вреда устройству.
+
+2. КАКИЕ COOKIE МЫ ИСПОЛЬЗУЕМ
+— Технические (необходимые): обеспечивают базовую работу сайта, сохранение предпочтений пользователя.
+— Аналитические: Яндекс.Метрика — сбор обезличенной статистики посещаемости.
+
+3. УПРАВЛЕНИЕ COOKIE
+Вы можете отключить использование cookie в настройках браузера. Обратите внимание: отключение технических cookie может повлиять на работу сайта.
+
+4. СОГЛАСИЕ
+Продолжая использовать сайт после получения настоящего уведомления, вы даёте согласие на обработку cookie в соответствии с данным документом.
+
+Оператор: Попов Алексей Юрьевич
+ИНН: 644101988643
+E-mail: brainmodel@yandex.ru`,
+  },
+  newsletter: {
+    title: "Согласие на получение информационной и маркетинговой рассылки",
+    content: `СОГЛАСИЕ НА ПОЛУЧЕНИЕ ИНФОРМАЦИОННОЙ И МАРКЕТИНГОВОЙ РАССЫЛКИ
+
+Настоящим я, субъект персональных данных, в соответствии с Федеральным законом № 152-ФЗ «О персональных данных», даю согласие Попову Алексею Юрьевичу (ИНН 644101988643, e-mail: brainmodel@yandex.ru), именуемому далее «Оператор», на:
+
+1. ПРЕДМЕТ СОГЛАСИЯ
+Получение на указанный мной адрес электронной почты и/или номер телефона информационных и маркетинговых сообщений, в том числе:
+— уведомлений о новых курсах, вебинарах и образовательных мероприятиях;
+— информации об изменении прейскуранта и условий оказания услуг;
+— полезных материалов по лучевой диагностике.
+
+2. СОСТАВ ДАННЫХ
+Адрес электронной почты; номер телефона.
+
+3. СРОК ДЕЙСТВИЯ СОГЛАСИЯ
+Согласие действует с момента его предоставления до момента отзыва.
+
+4. ОТЗЫВ СОГЛАСИЯ
+Субъект вправе в любое время отказаться от рассылки, направив запрос на e-mail: brainmodel@yandex.ru или воспользовавшись ссылкой «Отписаться» в полученном письме.
+
+5. ПЕРЕДАЧА ДАННЫХ
+Адрес электронной почты и номер телефона не передаются третьим лицам.
+
+Оператор: Попов Алексей Юрьевич
+ИНН: 644101988643
+E-mail: brainmodel@yandex.ru`,
+  },
 };
 
 const DOCTOR_IMG = "https://cdn.poehali.dev/projects/e2a2e8fc-1c7b-4d0d-94e9-d091c4a3a812/bucket/c52651cd-309a-488f-88f4-ec92811ed6a6.png";
@@ -287,6 +338,11 @@ export default function Index() {
   const [form, setForm] = useState({ name: "", phone: "", service: "" });
   const [booked, setBooked] = useState(false);
   const [activeDoc, setActiveDoc] = useState<string | null>(null);
+  const [consentPd, setConsentPd] = useState(false);
+  const [consentNewsletter, setConsentNewsletter] = useState(false);
+  const [cookieDismissed, setCookieDismissed] = useState(() => {
+    try { return localStorage.getItem("cookie_accepted") === "1"; } catch { return false; }
+  });
 
   const handleBook = (e: React.FormEvent) => {
     e.preventDefault();
@@ -296,6 +352,25 @@ export default function Index() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
+
+      {/* COOKIE BANNER */}
+      {!cookieDismissed && (
+        <div className="fixed bottom-0 left-0 right-0 z-[110] p-4 flex justify-center">
+          <div className="w-full max-w-2xl rounded-2xl px-6 py-4 flex flex-col sm:flex-row items-start sm:items-center gap-4"
+            style={{ background: 'rgba(14,18,28,0.97)', border: '1px solid rgba(0,229,255,0.2)', boxShadow: '0 0 30px rgba(0,229,255,0.08)' }}>
+            <p className="text-xs text-muted-foreground flex-1">
+              Сайт использует файлы cookie для корректной работы и аналитики.{' '}
+              <button onClick={() => setActiveDoc('cookies')} className="neon-text hover:underline">Подробнее</button>
+            </p>
+            <button
+              className="neon-btn px-5 py-2 rounded-xl text-xs shrink-0"
+              onClick={() => { localStorage.setItem('cookie_accepted', '1'); setCookieDismissed(true); }}
+            >
+              Принять
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* DOC MODAL */}
       {activeDoc && DOCS[activeDoc] && (
@@ -822,18 +897,32 @@ export default function Index() {
                     </div>
                   )}
 
+                  <label className="flex items-start gap-2 cursor-pointer">
+                    <input type="checkbox" checked={consentPd} onChange={e => setConsentPd(e.target.checked)}
+                      className="mt-0.5 accent-cyan-400 shrink-0" />
+                    <span className="text-xs text-muted-foreground">
+                      Я даю{' '}
+                      <button type="button" onClick={() => setActiveDoc('pd')} className="neon-text hover:underline">согласие на обработку персональных данных</button>
+                    </span>
+                  </label>
+
+                  <label className="flex items-start gap-2 cursor-pointer">
+                    <input type="checkbox" checked={consentNewsletter} onChange={e => setConsentNewsletter(e.target.checked)}
+                      className="mt-0.5 accent-cyan-400 shrink-0" />
+                    <span className="text-xs text-muted-foreground">
+                      Я даю{' '}
+                      <button type="button" onClick={() => setActiveDoc('newsletter')} className="neon-text hover:underline">согласие на получение информационной рассылки</button>
+                    </span>
+                  </label>
+
                   <button
                     type="submit"
-                    disabled={!selectedDate || !selectedTime}
+                    disabled={!selectedDate || !selectedTime || !consentPd}
                     className="neon-btn px-6 py-3.5 rounded-xl text-base mt-2 flex items-center justify-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed disabled:transform-none"
                   >
                     <Icon name="CalendarCheck" size={18} />
                     Подтвердить запись
                   </button>
-
-                  <p className="text-xs text-muted-foreground text-center">
-                    Нажимая кнопку, вы соглашаетесь с обработкой персональных данных
-                  </p>
                 </form>
               </div>
             </div>
@@ -899,17 +988,35 @@ export default function Index() {
       </section>
 
       {/* FOOTER */}
-      <footer className="pt-8 pb-6" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+      <footer className="pt-10 pb-6" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
         <div className="max-w-6xl mx-auto px-6">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-2">
+          <div className="flex flex-col sm:flex-row items-start justify-between gap-8 mb-8">
+            <div className="flex items-center gap-2 shrink-0">
               <img src="https://cdn.poehali.dev/projects/e2a2e8fc-1c7b-4d0d-94e9-d091c4a3a812/bucket/e1355210-d807-468c-a8b2-a0633f39d81a.png" alt="Radiology Art" className="w-6 h-6 rounded-md object-cover" />
               <span className="font-bold text-sm"><span className="neon-text">Radiology</span> Arts</span>
             </div>
-            <p className="text-xs text-muted-foreground text-center sm:text-left">
-              Попов Алексей Юрьевич · Самозанятый · ИНН 644101988643 ·{' '}
-              <a href="mailto:brainmodel@yandex.ru" className="hover:text-primary transition-colors">brainmodel@yandex.ru</a>
+            <div className="flex flex-wrap gap-x-6 gap-y-2">
+              {([
+                { key: 'privacy', label: 'Политика обработки персональных данных' },
+                { key: 'cookies', label: 'Уведомление о cookies' },
+                { key: 'pd', label: 'Согласие на обработку персональных данных' },
+                { key: 'newsletter', label: 'Согласие на рассылку' },
+                { key: 'offer', label: 'Оферта на оказание услуг' },
+              ] as { key: string; label: string }[]).map(doc => (
+                <button key={doc.key} onClick={() => setActiveDoc(doc.key)}
+                  className="text-xs text-muted-foreground hover:text-primary transition-colors text-left">
+                  {doc.label}
+                </button>
+              ))}
+            </div>
+          </div>
+          <div className="pt-5 flex flex-col sm:flex-row items-center justify-between gap-2" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+            <p className="text-xs text-muted-foreground">
+              © 2026 Попов Алексей Юрьевич · Самозанятый · ИНН 644101988643
             </p>
+            <a href="mailto:brainmodel@yandex.ru" className="text-xs text-muted-foreground hover:text-primary transition-colors">
+              brainmodel@yandex.ru
+            </a>
           </div>
         </div>
       </footer>
