@@ -899,52 +899,17 @@ export default function Index() {
       </section>
 
       {/* FOOTER */}
-      <footer className="pt-10 pb-6" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+      <footer className="pt-8 pb-6" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
         <div className="max-w-6xl mx-auto px-6">
-          <div className="grid sm:grid-cols-3 gap-8 mb-8">
-            <div>
-              <div className="flex items-center gap-2 mb-3">
-                <img src="https://cdn.poehali.dev/projects/e2a2e8fc-1c7b-4d0d-94e9-d091c4a3a812/bucket/e1355210-d807-468c-a8b2-a0633f39d81a.png" alt="Radiology Art" className="w-7 h-7 rounded-md object-cover" />
-                <span className="font-bold text-sm"><span className="neon-text">Radiology</span> Arts</span>
-              </div>
-              <p className="text-xs text-muted-foreground leading-relaxed">
-                Лучевая диагностика — как искусство.<br />Попов Алексей Юрьевич.<br />Воронеж, 2026.
-              </p>
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-2">
+              <img src="https://cdn.poehali.dev/projects/e2a2e8fc-1c7b-4d0d-94e9-d091c4a3a812/bucket/e1355210-d807-468c-a8b2-a0633f39d81a.png" alt="Radiology Art" className="w-6 h-6 rounded-md object-cover" />
+              <span className="font-bold text-sm"><span className="neon-text">Radiology</span> Arts</span>
             </div>
-
-            <div>
-              <div className="text-xs text-muted-foreground uppercase tracking-wider mb-3 font-medium">Реквизиты</div>
-              <div className="text-xs text-muted-foreground leading-relaxed space-y-1">
-                <div>Самозанятый: Попов Алексей Юрьевич</div>
-                <div>ИНН: 644101988643</div>
-                <div>Плательщик налога на профессиональный доход</div>
-                <div className="mt-2">
-                  <a href="mailto:brainmodel@yandex.ru" className="hover:text-primary transition-colors">brainmodel@yandex.ru</a>
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <div className="text-xs text-muted-foreground uppercase tracking-wider mb-3 font-medium">Документы</div>
-              <div className="flex flex-col gap-2">
-                {[
-                  { label: "Договор публичной оферты", icon: "FileText", key: "offer" },
-                  { label: "Политика конфиденциальности", icon: "Shield", key: "privacy" },
-                  { label: "Согласие на обработку персональных данных", icon: "Lock", key: "pd" },
-                ].map(doc => (
-                  <button key={doc.key} onClick={() => setActiveDoc(doc.key)}
-                    className="flex items-center gap-2 text-xs text-muted-foreground hover:text-primary transition-colors text-left">
-                    <Icon name={doc.icon} size={12} className="neon-text shrink-0" />
-                    {doc.label}
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-6" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-            <p className="text-muted-foreground text-xs">© 2026 Попов Алексей Юрьевич — врач-рентгенолог высшей категории, к.м.н.</p>
-            <p className="text-muted-foreground text-xs">ИНН 644101988643 · Самозанятый</p>
+            <p className="text-xs text-muted-foreground text-center sm:text-left">
+              Попов Алексей Юрьевич · Самозанятый · ИНН 644101988643 ·{' '}
+              <a href="mailto:brainmodel@yandex.ru" className="hover:text-primary transition-colors">brainmodel@yandex.ru</a>
+            </p>
           </div>
         </div>
       </footer>
