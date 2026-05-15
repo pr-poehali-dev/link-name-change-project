@@ -362,9 +362,9 @@ export default function Index() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <div className="section-tag animate-fade-up">Лучевая диагностика — как искусство</div>
-              <h1 className="animate-fade-up-delay-1 mt-2 leading-tight" style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', fontWeight: 600, lineHeight: 1.1 }}>
-                <span className="neon-text">Попов</span><br />
-                <span style={{ color: 'white' }}>Алексей</span>
+              <h1 className="animate-fade-up-delay-1 mt-2 leading-tight" style={{ fontSize: 'clamp(2.3rem, 5.5vw, 4.2rem)', fontWeight: 600, lineHeight: 1.1 }}>
+                <span className="neon-text" style={{ fontFamily: "'Cormorant', serif", fontStyle: 'italic' }}>Попов</span><br />
+                <span style={{ color: 'white', fontFamily: "'Cormorant', serif", fontStyle: 'italic' }}>Алексей Юрьевич</span>
               </h1>
               <p className="animate-fade-up-delay-2 text-muted-foreground mt-6 text-lg leading-relaxed max-w-md">
                 Врач-рентгенолог высшей категории, к.м.н. Опыт более 25 лет. Специализация — МРТ и КТ мышечно-скелетной системы.
