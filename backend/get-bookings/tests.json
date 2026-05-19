@@ -1,0 +1,11 @@
+{
+  "tests": [
+    {
+      "name": "Get bookings by phone",
+      "method": "GET",
+      "path": "/?phone=%2B79001234567",
+      "expectedStatus": 200,
+      "bodyMatcher": "none"
+    }
+  ]
+}

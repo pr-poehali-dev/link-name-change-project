@@ -1,0 +1,16 @@
+{
+  "tests": [
+    {
+      "name": "Cancel booking",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "phone": "+79001234567",
+        "dateIso": "2026-05-20",
+        "time": "18:30"
+      },
+      "expectedStatus": 200,
+      "bodyMatcher": "none"
+    }
+  ]
+}

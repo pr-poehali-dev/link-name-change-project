@@ -260,6 +260,7 @@ const NAV_ITEMS = [
   { label: "Преподавание", href: "#teaching" },
   { label: "Где принимаю", href: "#prices" },
   { label: "Отзывы", href: "#reviews" },
+  { label: "Кабинет", href: "#cabinet" },
   { label: "Контакты", href: "#contacts" },
 ];
 
@@ -354,6 +355,12 @@ export default function Index() {
   const [busySlots, setBusySlots] = useState<string[]>([]);
   const [fullDays, setFullDays] = useState<Set<string>>(new Set());
   const [nearest, setNearest] = useState<{ date: string; time: string } | null>(null);
+
+  const [cabinetPhone, setCabinetPhone] = useState('');
+  const [cabinetBookings, setCabinetBookings] = useState<{id:number;date:string;time:string;name:string;serviceType:string}[]|null>(null);
+  const [cabinetLoading, setCabinetLoading] = useState(false);
+  const [cabinetError, setCabinetError] = useState('');
+  const [cancellingId, setCancellingId] = useState<number|null>(null);
 
   useEffect(() => {
     fetch(GET_SLOTS_URL)
@@ -537,6 +544,16 @@ export default function Index() {
             <div className="relative flex justify-center animate-float">
               <div className="relative" style={{ width: '100%', maxWidth: 420 }}>
                 <div className="absolute inset-0 rounded-3xl" style={{ background: 'radial-gradient(ellipse at center, rgba(0,229,255,0.12) 0%, transparent 70%)', transform: 'scale(1.1)' }} />
+                {/* Карточка "Ближайший приём" ПЕРЕД фото */}
+                <div className="mb-3 px-1">
+                  <div className="glass-card-neon p-4">
+                    <div className="text-xs text-muted-foreground mb-1">Ближайший приём</div>
+                    <div className="font-semibold flex items-center gap-2">
+                      <Icon name="Clock" size={14} className="neon-text" />
+                      {formatNearest()}
+                    </div>
+                  </div>
+                </div>
                 <div className="relative overflow-hidden" style={{ borderRadius: '1.5rem' }}>
                   {/* Background logo */}
                   <img
@@ -563,14 +580,8 @@ export default function Index() {
                       100% { opacity: 0; }
                     }
                   `}</style>
-                  <img
-                    src={DOCTOR_IMG}
-                    alt="Доктор Попов"
-                    className="relative w-full object-contain drop-shadow-2xl"
-                    style={{ filter: 'drop-shadow(0 20px 60px rgba(0,229,255,0.15))', zIndex: 1 }}
-                  />
-                  {/* Neon scanner line */}
-                  <div className="absolute top-0 bottom-0 pointer-events-none" style={{ width: '32px', marginLeft: '-15px', animation: 'neon-scan-v 9s ease-in-out infinite' }}>
+                  {/* Neon scanner line ПЕРЕД фото (z-index: 2) */}
+                  <div className="absolute top-0 bottom-0 pointer-events-none" style={{ zIndex: 2, width: '32px', marginLeft: '-15px', animation: 'neon-scan-v 9s ease-in-out infinite' }}>
                     {/* glow wide */}
                     <div className="absolute top-0 bottom-0 left-0 right-0" style={{ background: 'linear-gradient(180deg, transparent 0%, transparent 20%, rgba(0,229,255,0.06) 33%, rgba(0,229,255,0.13) 50%, rgba(0,229,255,0.06) 67%, transparent 80%, transparent 100%)', borderRadius: '50%' }} />
                     {/* glow mid */}
@@ -578,6 +589,12 @@ export default function Index() {
                     {/* core line */}
                     <div className="absolute top-0 bottom-0" style={{ left: '15px', width: '2px', background: 'linear-gradient(180deg, transparent 0%, transparent 20%, rgba(0,229,255,0.55) 33%, rgba(0,229,255,0.95) 50%, rgba(0,229,255,0.55) 67%, transparent 80%, transparent 100%)' }} />
                   </div>
+                  <img
+                    src={DOCTOR_IMG}
+                    alt="Доктор Попов"
+                    className="relative w-full object-contain drop-shadow-2xl"
+                    style={{ filter: 'drop-shadow(0 20px 60px rgba(0,229,255,0.15))', zIndex: 1 }}
+                  />
                 </div>
                 <style>{`
                   @keyframes neon-scan-v {
@@ -586,15 +603,6 @@ export default function Index() {
                     100% { left: 3%; }
                   }
                 `}</style>
-                <div className="absolute bottom-8 left-4 right-4">
-                  <div className="glass-card-neon p-4">
-                    <div className="text-xs text-muted-foreground mb-1">Ближайший приём</div>
-                    <div className="font-semibold flex items-center gap-2">
-                      <Icon name="Clock" size={14} className="neon-text" />
-                      {formatNearest()}
-                    </div>
-                  </div>
-                </div>
               </div>
               <div className="absolute -top-4 -right-4 glass-card-neon p-3 flex items-center gap-2 animate-fade-up">
                 <div className="w-2 h-2 rounded-full bg-green-400" style={{ boxShadow: '0 0 8px #4ade80' }} />
@@ -1064,6 +1072,112 @@ export default function Index() {
               </div>
             </div>
           )}
+        </div>
+      </section>
+
+      {/* ЛИЧНЫЙ КАБИНЕТ */}
+      <section id="cabinet" className="py-24 relative">
+        <div className="max-w-3xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <div className="section-tag">Управление записями</div>
+            <h2 className="mt-4 text-3xl font-semibold">Личный кабинет</h2>
+            <p className="text-muted-foreground mt-3">Введите номер телефона, указанный при записи, чтобы посмотреть или отменить бронирование</p>
+          </div>
+          <div className="glass-card p-8">
+            <form onSubmit={async (e) => {
+              e.preventDefault();
+              if (!cabinetPhone.trim()) return;
+              setCabinetLoading(true);
+              setCabinetError('');
+              setCabinetBookings(null);
+              try {
+                const res = await fetch(`https://functions.poehali.dev/0365d355-35b8-492a-a4d3-3ac7e0448380?phone=${encodeURIComponent(cabinetPhone.trim())}`);
+                const data = await res.json();
+                if (data.ok) setCabinetBookings(data.bookings);
+                else setCabinetError('Ошибка загрузки данных');
+              } catch {
+                setCabinetError('Не удалось подключиться к серверу');
+              } finally {
+                setCabinetLoading(false);
+              }
+            }} className="flex gap-3 mb-8">
+              <input
+                type="tel"
+                value={cabinetPhone}
+                onChange={e => { setCabinetPhone(e.target.value); setCabinetBookings(null); setCabinetError(''); }}
+                placeholder="+7 (900) 000-00-00"
+                required
+                className="flex-1 px-4 py-3 rounded-xl text-sm outline-none transition-all"
+                style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(0,229,255,0.2)', color: 'hsl(210,40%,98%)' }}
+                onFocus={e => (e.currentTarget.style.borderColor = 'rgba(0,229,255,0.6)')}
+                onBlur={e => (e.currentTarget.style.borderColor = 'rgba(0,229,255,0.2)')}
+              />
+              <button type="submit" disabled={cabinetLoading} className="neon-btn px-6 py-3 rounded-xl text-sm flex items-center gap-2 disabled:opacity-50">
+                <Icon name="Search" size={16} />
+                {cabinetLoading ? 'Поиск...' : 'Найти'}
+              </button>
+            </form>
+
+            {cabinetError && (
+              <p className="text-red-400 text-sm mb-4">{cabinetError}</p>
+            )}
+
+            {cabinetBookings !== null && cabinetBookings.length === 0 && (
+              <div className="text-center py-10 text-muted-foreground">
+                <Icon name="CalendarX" size={40} className="mx-auto mb-3 opacity-40" />
+                <p>Предстоящих записей не найдено</p>
+              </div>
+            )}
+
+            {cabinetBookings !== null && cabinetBookings.length > 0 && (
+              <div className="flex flex-col gap-4">
+                {cabinetBookings.map(b => {
+                  const d = new Date(b.date);
+                  const dayLabel = `${d.getDate()} ${MONTHS_GEN[d.getMonth()]} ${d.getFullYear()}`;
+                  const svcLabel = b.serviceType === 'mentoring' ? 'Наставничество' : 'Консультация';
+                  return (
+                    <div key={b.id} className="flex items-center justify-between gap-4 rounded-xl px-5 py-4" style={{ border: '1px solid rgba(0,229,255,0.15)', background: 'rgba(0,229,255,0.03)' }}>
+                      <div className="flex items-center gap-4">
+                        <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: 'rgba(0,229,255,0.1)' }}>
+                          <Icon name="CalendarCheck" size={18} className="neon-text" />
+                        </div>
+                        <div>
+                          <div className="font-semibold text-sm">{dayLabel} · {b.time}</div>
+                          <div className="text-xs text-muted-foreground mt-0.5">{svcLabel} · {b.name}</div>
+                        </div>
+                      </div>
+                      <button
+                        disabled={cancellingId === b.id}
+                        onClick={async () => {
+                          setCancellingId(b.id);
+                          try {
+                            await fetch('https://functions.poehali.dev/dac67018-9ef7-4407-892e-9e1a770a1413', {
+                              method: 'POST',
+                              headers: { 'Content-Type': 'application/json' },
+                              body: JSON.stringify({ phone: cabinetPhone.trim(), dateIso: b.date, time: b.time }),
+                            });
+                            setCabinetBookings(prev => prev ? prev.filter(x => x.id !== b.id) : prev);
+                            setNearest(null);
+                            fetch(`https://functions.poehali.dev/656c7ae9-29a0-4ae6-8b93-5f3b4a784fd2`).then(r=>r.json()).then(data => {
+                              if (data.nearest_date && data.nearest_time) setNearest({ date: data.nearest_date, time: data.nearest_time });
+                            }).catch(()=>{});
+                          } finally {
+                            setCancellingId(null);
+                          }
+                        }}
+                        className="text-xs px-4 py-2 rounded-lg transition-all disabled:opacity-40"
+                        style={{ border: '1px solid rgba(255,80,80,0.3)', color: 'rgba(255,120,120,0.9)' }}
+                        onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,80,80,0.1)'; e.currentTarget.style.borderColor = 'rgba(255,80,80,0.6)'; }}
+                        onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.borderColor = 'rgba(255,80,80,0.3)'; }}
+                      >
+                        {cancellingId === b.id ? 'Отмена...' : 'Отменить'}
+                      </button>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
         </div>
       </section>
 
