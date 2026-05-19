@@ -494,10 +494,10 @@ export default function Index() {
                   />
                   {/* Neon scanner line */}
                   <div className="absolute top-0 bottom-0 pointer-events-none" style={{
-                    width: '1px',
-                    background: 'linear-gradient(180deg, transparent 0%, rgba(0,229,255,0.12) 20%, rgba(0,229,255,0.35) 50%, rgba(0,229,255,0.12) 80%, transparent 100%)',
-                    boxShadow: '0 0 4px 1px rgba(0,229,255,0.18)',
-                    animation: 'neon-scan-v 4s ease-in-out infinite',
+                    width: '2px',
+                    background: 'linear-gradient(180deg, transparent 0%, transparent 20%, rgba(0,229,255,0.55) 33%, rgba(0,229,255,0.95) 50%, rgba(0,229,255,0.55) 67%, transparent 80%, transparent 100%)',
+                    boxShadow: '0 0 6px 3px rgba(0,229,255,0.35), 0 0 18px 6px rgba(0,229,255,0.15)',
+                    animation: 'neon-scan-v 9s ease-in-out infinite',
                   }} />
                 </div>
                 <style>{`
