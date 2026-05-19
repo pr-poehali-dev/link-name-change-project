@@ -264,11 +264,16 @@ const NAV_ITEMS = [
 ];
 
 const MONTHS = ["Январь","Февраль","Март","Апрель","Май","Июнь","Июль","Август","Сентябрь","Октябрь","Ноябрь","Декабрь"];
+const MONTHS_GEN = ["января","февраля","марта","апреля","мая","июня","июля","августа","сентября","октября","ноября","декабря"];
 const DAYS_SHORT = ["Пн","Вт","Ср","Чт","Пт","Сб","Вс"];
 const TIME_SLOTS = ["18:00","18:30","19:00","19:30","20:00","20:30"];
-const BUSY_SLOTS: string[] = [];
+const GET_SLOTS_URL = "https://functions.poehali.dev/656c7ae9-29a0-4ae6-8b93-5f3b4a784fd2";
 
-function Calendar({ selected, onSelect }: { selected: Date | null; onSelect: (d: Date) => void }) {
+function toIso(d: Date) {
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+
+function Calendar({ selected, onSelect, fullDays }: { selected: Date | null; onSelect: (d: Date) => void; fullDays: Set<string> }) {
   const today = new Date();
   const [viewDate, setViewDate] = useState(new Date(today.getFullYear(), today.getMonth(), 1));
 
@@ -291,6 +296,7 @@ function Calendar({ selected, onSelect }: { selected: Date | null; onSelect: (d:
   const isToday = (d: Date) => d.toDateString() === today.toDateString();
   const isPast = (d: Date) => d < new Date(today.getFullYear(), today.getMonth(), today.getDate());
   const isSelected = (d: Date) => selected?.toDateString() === d.toDateString();
+  const isFull = (d: Date) => fullDays.has(toIso(d));
 
   return (
     <div>
@@ -317,9 +323,9 @@ function Calendar({ selected, onSelect }: { selected: Date | null; onSelect: (d:
           <div key={i} style={{ display: 'flex', justifyContent: 'center' }}>
             {d ? (
               <div
-                className={`cal-day ${isPast(d) ? "cal-day--disabled" : ""} ${isSelected(d) ? "cal-day--selected" : ""} ${isToday(d) && !isSelected(d) ? "cal-day--today" : ""}`}
+                className={`cal-day ${(isPast(d) || isFull(d)) ? "cal-day--disabled" : ""} ${isSelected(d) ? "cal-day--selected" : ""} ${isToday(d) && !isSelected(d) && !isFull(d) ? "cal-day--today" : ""}`}
                 style={{ width: '100%' }}
-                onClick={() => !isPast(d) && onSelect(d)}
+                onClick={() => !isPast(d) && !isFull(d) && onSelect(d)}
               >
                 {d.getDate()}
               </div>
@@ -345,6 +351,47 @@ export default function Index() {
     try { return localStorage.getItem("cookie_accepted") === "1"; } catch { return false; }
   });
 
+  const [busySlots, setBusySlots] = useState<string[]>([]);
+  const [fullDays, setFullDays] = useState<Set<string>>(new Set());
+  const [nearest, setNearest] = useState<{ date: string; time: string } | null>(null);
+
+  useEffect(() => {
+    fetch(GET_SLOTS_URL)
+      .then(r => r.json())
+      .then(data => {
+        if (data.nearest_date && data.nearest_time) {
+          setNearest({ date: data.nearest_date, time: data.nearest_time });
+        }
+      })
+      .catch(() => {});
+  }, []);
+
+  useEffect(() => {
+    if (!selectedDate) { setBusySlots([]); return; }
+    fetch(`${GET_SLOTS_URL}?date=${toIso(selectedDate)}`)
+      .then(r => r.json())
+      .then(data => {
+        const busy: string[] = data.busy || [];
+        setBusySlots(busy);
+        if (busy.length === TIME_SLOTS.length) {
+          setFullDays(prev => new Set([...prev, toIso(selectedDate!)]));
+        }
+      })
+      .catch(() => {});
+  }, [selectedDate]);
+
+  const formatNearest = () => {
+    if (!nearest) return "Загрузка...";
+    const d = new Date(nearest.date);
+    const today = new Date();
+    const tomorrow = new Date(today); tomorrow.setDate(today.getDate() + 1);
+    let dayLabel = "";
+    if (d.toDateString() === today.toDateString()) dayLabel = "Сегодня";
+    else if (d.toDateString() === tomorrow.toDateString()) dayLabel = "Завтра";
+    else dayLabel = `${d.getDate()} ${MONTHS_GEN[d.getMonth()]}`;
+    return `${dayLabel} ${nearest.time} — свободно`;
+  };
+
   const handleBook = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!selectedDate || !selectedTime || !form.name || !form.phone || !serviceType) return;
@@ -357,10 +404,15 @@ export default function Index() {
           name: form.name,
           phone: form.phone,
           date: selectedDate.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long' }),
+          dateIso: toIso(selectedDate),
           time: selectedTime,
           serviceType,
         }),
       });
+      setNearest(null);
+      fetch(GET_SLOTS_URL).then(r => r.json()).then(data => {
+        if (data.nearest_date && data.nearest_time) setNearest({ date: data.nearest_date, time: data.nearest_time });
+      }).catch(() => {});
     } catch (err) {
       console.error('notify error', err);
     }
@@ -539,7 +591,7 @@ export default function Index() {
                     <div className="text-xs text-muted-foreground mb-1">Ближайший приём</div>
                     <div className="font-semibold flex items-center gap-2">
                       <Icon name="Clock" size={14} className="neon-text" />
-                      Сегодня 14:00 — свободно
+                      {formatNearest()}
                     </div>
                   </div>
                 </div>
@@ -892,7 +944,7 @@ export default function Index() {
                   <Icon name="CalendarDays" size={18} className="neon-text" />
                   Выберите дату
                 </h3>
-                <Calendar selected={selectedDate} onSelect={setSelectedDate} />
+                <Calendar selected={selectedDate} onSelect={(d) => { setSelectedDate(d); setSelectedTime(null); }} fullDays={fullDays} />
 
                 {selectedDate && (
                   <div className="mt-6">
@@ -904,9 +956,9 @@ export default function Index() {
                       {TIME_SLOTS.map(t => (
                         <button
                           key={t}
-                          disabled={BUSY_SLOTS.includes(t)}
-                          onClick={() => setSelectedTime(t)}
-                          className={`time-slot ${selectedTime === t ? "time-slot--selected" : ""} ${BUSY_SLOTS.includes(t) ? "opacity-30 cursor-not-allowed" : ""}`}
+                          disabled={busySlots.includes(t)}
+                          onClick={() => !busySlots.includes(t) && setSelectedTime(t)}
+                          className={`time-slot ${selectedTime === t ? "time-slot--selected" : ""} ${busySlots.includes(t) ? "opacity-30 cursor-not-allowed" : ""}`}
                         >
                           {t}
                         </button>

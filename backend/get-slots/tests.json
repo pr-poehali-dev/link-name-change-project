@@ -1,0 +1,18 @@
+{
+  "tests": [
+    {
+      "name": "Get nearest free slot",
+      "method": "GET",
+      "path": "/",
+      "expectedStatus": 200,
+      "bodyMatcher": "none"
+    },
+    {
+      "name": "Get busy slots for date",
+      "method": "GET",
+      "path": "/?date=2026-05-20",
+      "expectedStatus": 200,
+      "bodyMatcher": "none"
+    }
+  ]
+}

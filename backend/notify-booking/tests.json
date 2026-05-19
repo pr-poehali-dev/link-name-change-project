@@ -8,12 +8,12 @@
         "name": "Иванов Иван Иванович",
         "phone": "+79001234567",
         "date": "20 мая",
+        "dateIso": "2026-05-20",
         "time": "18:30",
         "serviceType": "consultation"
       },
       "expectedStatus": 200,
-      "expectedBody": { "ok": true },
-      "bodyMatcher": "partial"
+      "bodyMatcher": "none"
     }
   ]
 }

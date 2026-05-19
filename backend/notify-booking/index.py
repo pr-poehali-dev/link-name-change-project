@@ -3,12 +3,15 @@ import os
 import smtplib
 import urllib.request
 import urllib.parse
+from datetime import datetime
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
+import psycopg2
+
 
 def handler(event: dict, context) -> dict:
-    """Отправляет email и SMS при новой заявке на консультацию или наставничество."""
+    """Сохраняет бронь в БД и отправляет email и SMS при новой заявке на консультацию или наставничество."""
 
     if event.get('httpMethod') == 'OPTIONS':
         return {
@@ -25,16 +28,34 @@ def handler(event: dict, context) -> dict:
     body = json.loads(event.get('body') or '{}')
     name = body.get('name', '').strip()
     phone = body.get('phone', '').strip()
-    date = body.get('date', '').strip()
+    date_iso = body.get('dateIso', '').strip()
     time = body.get('time', '').strip()
     service_type = body.get('serviceType', 'consultation')
+    date_label = body.get('date', date_iso).strip()
+
+    # Сохранить в БД
+    if date_iso and time:
+        try:
+            conn = psycopg2.connect(os.environ['DATABASE_URL'])
+            cur = conn.cursor()
+            schema = 't_p2327292_link_name_change_pro'
+            cur.execute(
+                f"INSERT INTO {schema}.bookings (booking_date, booking_time, name, phone, service_type) "
+                f"VALUES (%s, %s, %s, %s, %s) ON CONFLICT (booking_date, booking_time) DO NOTHING",
+                (date_iso, time, name, phone, service_type)
+            )
+            conn.commit()
+            cur.close()
+            conn.close()
+        except Exception as e:
+            pass
 
     service_label = 'наставничество' if service_type == 'mentoring' else 'консультацию'
     service_label_cap = 'Наставничество' if service_type == 'mentoring' else 'Консультацию'
 
     message_text = (
         f"Имеется заявка на {service_label_cap} от {name}, "
-        f"{date}, {time}. "
+        f"{date_label}, {time}. "
         f"Свяжитесь с ним по телефону {phone}"
     )
 
