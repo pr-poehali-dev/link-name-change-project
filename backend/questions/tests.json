@@ -1,0 +1,27 @@
+{
+  "tests": [
+    {
+      "name": "Send question",
+      "method": "POST",
+      "path": "/",
+      "body": { "action": "send", "phone": "+79001234567", "name": "Тест", "question": "Тестовый вопрос?" },
+      "expectedStatus": 200,
+      "bodyMatcher": "none"
+    },
+    {
+      "name": "Get questions by phone",
+      "method": "GET",
+      "path": "/?phone=%2B79001234567",
+      "expectedStatus": 200,
+      "bodyMatcher": "none"
+    },
+    {
+      "name": "Answer - wrong token",
+      "method": "POST",
+      "path": "/",
+      "body": { "action": "answer", "token": "wrong", "id": 1, "answer": "Ответ" },
+      "expectedStatus": 403,
+      "bodyMatcher": "none"
+    }
+  ]
+}

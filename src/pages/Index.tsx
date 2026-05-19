@@ -357,10 +357,25 @@ export default function Index() {
   const [nearest, setNearest] = useState<{ date: string; time: string } | null>(null);
 
   const [cabinetPhone, setCabinetPhone] = useState('');
+  const [cabinetTab, setCabinetTab] = useState<'bookings'|'questions'>('bookings');
   const [cabinetBookings, setCabinetBookings] = useState<{id:number;date:string;time:string;name:string;serviceType:string}[]|null>(null);
   const [cabinetLoading, setCabinetLoading] = useState(false);
   const [cabinetError, setCabinetError] = useState('');
   const [cancellingId, setCancellingId] = useState<number|null>(null);
+
+  const QUESTIONS_URL = 'https://functions.poehali.dev/ff274f78-9dc1-4813-9cb1-909bc97c73e2';
+  type Question = {id:number;phone:string|null;name:string;question:string;answer:string|null;answeredAt:string|null;createdAt:string|null};
+  const [questions, setQuestions] = useState<Question[]|null>(null);
+  const [qLoading, setQLoading] = useState(false);
+  const [qError, setQError] = useState('');
+  const [newQuestion, setNewQuestion] = useState('');
+  const [sendingQ, setSendingQ] = useState(false);
+  const [ownerToken, setOwnerToken] = useState('');
+  const [ownerMode, setOwnerMode] = useState(false);
+  const [answerText, setAnswerText] = useState<Record<number,string>>({});
+  const [answeringId, setAnsweringId] = useState<number|null>(null);
+  const [cabinetUnlocked, setCabinetUnlocked] = useState(false);
+  const [cabinetName, setCabinetName] = useState('');
 
   useEffect(() => {
     fetch(GET_SLOTS_URL)
@@ -1079,105 +1094,345 @@ export default function Index() {
       <section id="cabinet" className="py-24 relative">
         <div className="max-w-3xl mx-auto px-6">
           <div className="text-center mb-12">
-            <div className="section-tag">Управление записями</div>
-            <h2 className="mt-4 text-3xl font-semibold">Личный кабинет</h2>
-            <p className="text-muted-foreground mt-3">Введите номер телефона, указанный при записи, чтобы посмотреть или отменить бронирование</p>
+            <div className="section-tag">Личный кабинет</div>
+            <h2 className="mt-4 text-3xl font-semibold">Мои записи и вопросы</h2>
+            <p className="text-muted-foreground mt-3">Введите номер телефона, указанный при записи</p>
           </div>
-          <div className="glass-card p-8">
-            <form onSubmit={async (e) => {
-              e.preventDefault();
-              if (!cabinetPhone.trim()) return;
-              setCabinetLoading(true);
-              setCabinetError('');
-              setCabinetBookings(null);
-              try {
-                const res = await fetch(`https://functions.poehali.dev/0365d355-35b8-492a-a4d3-3ac7e0448380?phone=${encodeURIComponent(cabinetPhone.trim())}`);
-                const data = await res.json();
-                if (data.ok) setCabinetBookings(data.bookings);
-                else setCabinetError('Ошибка загрузки данных');
-              } catch {
-                setCabinetError('Не удалось подключиться к серверу');
-              } finally {
-                setCabinetLoading(false);
-              }
-            }} className="flex gap-3 mb-8">
-              <input
-                type="tel"
-                value={cabinetPhone}
-                onChange={e => { setCabinetPhone(e.target.value); setCabinetBookings(null); setCabinetError(''); }}
-                placeholder="+7 (900) 000-00-00"
-                required
-                className="flex-1 px-4 py-3 rounded-xl text-sm outline-none transition-all"
-                style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(0,229,255,0.2)', color: 'hsl(210,40%,98%)' }}
-                onFocus={e => (e.currentTarget.style.borderColor = 'rgba(0,229,255,0.6)')}
-                onBlur={e => (e.currentTarget.style.borderColor = 'rgba(0,229,255,0.2)')}
-              />
-              <button type="submit" disabled={cabinetLoading} className="neon-btn px-6 py-3 rounded-xl text-sm flex items-center gap-2 disabled:opacity-50">
-                <Icon name="Search" size={16} />
-                {cabinetLoading ? 'Поиск...' : 'Найти'}
-              </button>
-            </form>
 
-            {cabinetError && (
-              <p className="text-red-400 text-sm mb-4">{cabinetError}</p>
-            )}
-
-            {cabinetBookings !== null && cabinetBookings.length === 0 && (
-              <div className="text-center py-10 text-muted-foreground">
-                <Icon name="CalendarX" size={40} className="mx-auto mb-3 opacity-40" />
-                <p>Предстоящих записей не найдено</p>
+          {/* Форма входа */}
+          {!cabinetUnlocked ? (
+            <div className="glass-card p-8">
+              <form onSubmit={async (e) => {
+                e.preventDefault();
+                if (!cabinetPhone.trim()) return;
+                setCabinetLoading(true);
+                setCabinetError('');
+                try {
+                  const isOwnerTry = ownerToken.trim().length > 0;
+                  if (isOwnerTry) {
+                    const res = await fetch(`${QUESTIONS_URL}?token=${encodeURIComponent(ownerToken.trim())}`);
+                    const data = await res.json();
+                    if (data.ok && data.isOwner) {
+                      setOwnerMode(true);
+                      setQuestions(data.questions);
+                      setCabinetUnlocked(true);
+                      setCabinetTab('questions');
+                    } else {
+                      setCabinetError('Неверный пароль владельца');
+                    }
+                  } else {
+                    const res = await fetch(`https://functions.poehali.dev/0365d355-35b8-492a-a4d3-3ac7e0448380?phone=${encodeURIComponent(cabinetPhone.trim())}`);
+                    const data = await res.json();
+                    if (data.ok) {
+                      setCabinetBookings(data.bookings);
+                      const qRes = await fetch(`${QUESTIONS_URL}?phone=${encodeURIComponent(cabinetPhone.trim())}`);
+                      const qData = await qRes.json();
+                      if (qData.ok) setQuestions(qData.questions);
+                      if (data.bookings.length > 0 && data.bookings[0].name) setCabinetName(data.bookings[0].name);
+                      setCabinetUnlocked(true);
+                    } else {
+                      setCabinetError('Ошибка загрузки данных');
+                    }
+                  }
+                } catch {
+                  setCabinetError('Не удалось подключиться к серверу');
+                } finally {
+                  setCabinetLoading(false);
+                }
+              }}>
+                <div className="flex gap-3 mb-4">
+                  <input
+                    type="tel"
+                    value={cabinetPhone}
+                    onChange={e => { setCabinetPhone(e.target.value); setCabinetError(''); }}
+                    placeholder="+7 (900) 000-00-00"
+                    required
+                    className="flex-1 px-4 py-3 rounded-xl text-sm outline-none transition-all"
+                    style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(0,229,255,0.2)', color: 'hsl(210,40%,98%)' }}
+                    onFocus={e => (e.currentTarget.style.borderColor = 'rgba(0,229,255,0.6)')}
+                    onBlur={e => (e.currentTarget.style.borderColor = 'rgba(0,229,255,0.2)')}
+                  />
+                  <button type="submit" disabled={cabinetLoading} className="neon-btn px-6 py-3 rounded-xl text-sm flex items-center gap-2 disabled:opacity-50">
+                    <Icon name="Search" size={16} />
+                    {cabinetLoading ? 'Поиск...' : 'Войти'}
+                  </button>
+                </div>
+                <details className="mt-2">
+                  <summary className="text-xs text-muted-foreground cursor-pointer select-none">Вход для врача</summary>
+                  <input
+                    type="password"
+                    value={ownerToken}
+                    onChange={e => setOwnerToken(e.target.value)}
+                    placeholder="Пароль"
+                    className="w-full mt-2 px-4 py-2.5 rounded-xl text-sm outline-none transition-all"
+                    style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(0,229,255,0.15)', color: 'hsl(210,40%,98%)' }}
+                    onFocus={e => (e.currentTarget.style.borderColor = 'rgba(0,229,255,0.5)')}
+                    onBlur={e => (e.currentTarget.style.borderColor = 'rgba(0,229,255,0.15)')}
+                  />
+                </details>
+                {cabinetError && <p className="text-red-400 text-sm mt-3">{cabinetError}</p>}
+              </form>
+            </div>
+          ) : (
+            <div>
+              {/* Шапка с выходом */}
+              <div className="flex items-center justify-between mb-6">
+                <div className="text-sm text-muted-foreground">
+                  {ownerMode ? <span className="neon-text font-semibold">Режим врача</span> : <span>Кабинет: <span className="text-foreground font-medium">{cabinetPhone}</span></span>}
+                </div>
+                <button onClick={() => { setCabinetUnlocked(false); setCabinetBookings(null); setQuestions(null); setOwnerMode(false); setOwnerToken(''); setCabinetPhone(''); setCabinetName(''); }} className="text-xs text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1.5">
+                  <Icon name="LogOut" size={13} />
+                  Выйти
+                </button>
               </div>
-            )}
 
-            {cabinetBookings !== null && cabinetBookings.length > 0 && (
-              <div className="flex flex-col gap-4">
-                {cabinetBookings.map(b => {
-                  const d = new Date(b.date);
-                  const dayLabel = `${d.getDate()} ${MONTHS_GEN[d.getMonth()]} ${d.getFullYear()}`;
-                  const svcLabel = b.serviceType === 'mentoring' ? 'Наставничество' : 'Консультация';
-                  return (
-                    <div key={b.id} className="flex items-center justify-between gap-4 rounded-xl px-5 py-4" style={{ border: '1px solid rgba(0,229,255,0.15)', background: 'rgba(0,229,255,0.03)' }}>
-                      <div className="flex items-center gap-4">
-                        <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: 'rgba(0,229,255,0.1)' }}>
-                          <Icon name="CalendarCheck" size={18} className="neon-text" />
-                        </div>
-                        <div>
-                          <div className="font-semibold text-sm">{dayLabel} · {b.time}</div>
-                          <div className="text-xs text-muted-foreground mt-0.5">{svcLabel} · {b.name}</div>
-                        </div>
-                      </div>
-                      <button
-                        disabled={cancellingId === b.id}
-                        onClick={async () => {
-                          setCancellingId(b.id);
-                          try {
-                            await fetch('https://functions.poehali.dev/dac67018-9ef7-4407-892e-9e1a770a1413', {
-                              method: 'POST',
-                              headers: { 'Content-Type': 'application/json' },
-                              body: JSON.stringify({ phone: cabinetPhone.trim(), dateIso: b.date, time: b.time }),
-                            });
-                            setCabinetBookings(prev => prev ? prev.filter(x => x.id !== b.id) : prev);
-                            setNearest(null);
-                            fetch(`https://functions.poehali.dev/656c7ae9-29a0-4ae6-8b93-5f3b4a784fd2`).then(r=>r.json()).then(data => {
-                              if (data.nearest_date && data.nearest_time) setNearest({ date: data.nearest_date, time: data.nearest_time });
-                            }).catch(()=>{});
-                          } finally {
-                            setCancellingId(null);
-                          }
-                        }}
-                        className="text-xs px-4 py-2 rounded-lg transition-all disabled:opacity-40"
-                        style={{ border: '1px solid rgba(255,80,80,0.3)', color: 'rgba(255,120,120,0.9)' }}
-                        onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,80,80,0.1)'; e.currentTarget.style.borderColor = 'rgba(255,80,80,0.6)'; }}
-                        onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.borderColor = 'rgba(255,80,80,0.3)'; }}
-                      >
-                        {cancellingId === b.id ? 'Отмена...' : 'Отменить'}
-                      </button>
+              {/* Вкладки */}
+              {!ownerMode && (
+                <div className="flex gap-2 mb-6">
+                  {(['bookings','questions'] as const).map(tab => (
+                    <button key={tab} onClick={() => setCabinetTab(tab)}
+                      className="px-5 py-2 rounded-xl text-sm transition-all"
+                      style={cabinetTab === tab
+                        ? { background: 'rgba(0,229,255,0.15)', border: '1px solid rgba(0,229,255,0.5)', color: 'hsl(var(--neon))' }
+                        : { background: 'transparent', border: '1px solid rgba(255,255,255,0.1)', color: 'hsl(var(--muted-foreground))' }}>
+                      {tab === 'bookings' ? <span className="flex items-center gap-2"><Icon name="CalendarDays" size={14} />Мои записи</span>
+                        : <span className="flex items-center gap-2"><Icon name="MessageCircle" size={14} />Вопросы врачу</span>}
+                    </button>
+                  ))}
+                </div>
+              )}
+
+              {/* === Вкладка: Записи === */}
+              {(cabinetTab === 'bookings' && !ownerMode) && (
+                <div className="glass-card p-6">
+                  {cabinetBookings !== null && cabinetBookings.length === 0 && (
+                    <div className="text-center py-10 text-muted-foreground">
+                      <Icon name="CalendarX" size={40} className="mx-auto mb-3 opacity-40" />
+                      <p>Предстоящих записей не найдено</p>
                     </div>
-                  );
-                })}
-              </div>
-            )}
-          </div>
+                  )}
+                  {cabinetBookings !== null && cabinetBookings.length > 0 && (
+                    <div className="flex flex-col gap-4">
+                      {cabinetBookings.map(b => {
+                        const d = new Date(b.date);
+                        const dayLabel = `${d.getDate()} ${MONTHS_GEN[d.getMonth()]} ${d.getFullYear()}`;
+                        const svcLabel = b.serviceType === 'mentoring' ? 'Наставничество' : 'Консультация';
+                        return (
+                          <div key={b.id} className="flex items-center justify-between gap-4 rounded-xl px-5 py-4" style={{ border: '1px solid rgba(0,229,255,0.15)', background: 'rgba(0,229,255,0.03)' }}>
+                            <div className="flex items-center gap-4">
+                              <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: 'rgba(0,229,255,0.1)' }}>
+                                <Icon name="CalendarCheck" size={18} className="neon-text" />
+                              </div>
+                              <div>
+                                <div className="font-semibold text-sm">{dayLabel} · {b.time}</div>
+                                <div className="text-xs text-muted-foreground mt-0.5">{svcLabel} · {b.name}</div>
+                              </div>
+                            </div>
+                            <button
+                              disabled={cancellingId === b.id}
+                              onClick={async () => {
+                                setCancellingId(b.id);
+                                try {
+                                  await fetch('https://functions.poehali.dev/dac67018-9ef7-4407-892e-9e1a770a1413', {
+                                    method: 'POST',
+                                    headers: { 'Content-Type': 'application/json' },
+                                    body: JSON.stringify({ phone: cabinetPhone.trim(), dateIso: b.date, time: b.time }),
+                                  });
+                                  setCabinetBookings(prev => prev ? prev.filter(x => x.id !== b.id) : prev);
+                                  setNearest(null);
+                                  fetch(GET_SLOTS_URL).then(r=>r.json()).then(data => {
+                                    if (data.nearest_date && data.nearest_time) setNearest({ date: data.nearest_date, time: data.nearest_time });
+                                  }).catch(()=>{});
+                                } finally {
+                                  setCancellingId(null);
+                                }
+                              }}
+                              className="text-xs px-4 py-2 rounded-lg transition-all disabled:opacity-40"
+                              style={{ border: '1px solid rgba(255,80,80,0.3)', color: 'rgba(255,120,120,0.9)' }}
+                              onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,80,80,0.1)'; e.currentTarget.style.borderColor = 'rgba(255,80,80,0.6)'; }}
+                              onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.borderColor = 'rgba(255,80,80,0.3)'; }}
+                            >
+                              {cancellingId === b.id ? 'Отмена...' : 'Отменить'}
+                            </button>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* === Вкладка: Вопросы (пользователь) === */}
+              {(cabinetTab === 'questions' && !ownerMode) && (
+                <div className="flex flex-col gap-6">
+                  {/* Форма нового вопроса */}
+                  <div className="glass-card p-6">
+                    <h3 className="font-semibold mb-4 flex items-center gap-2 text-sm">
+                      <Icon name="MessageCirclePlus" size={16} className="neon-text" />
+                      Задать вопрос врачу
+                    </h3>
+                    <form onSubmit={async (e) => {
+                      e.preventDefault();
+                      if (!newQuestion.trim()) return;
+                      setSendingQ(true);
+                      setQError('');
+                      try {
+                        const res = await fetch(QUESTIONS_URL, {
+                          method: 'POST',
+                          headers: { 'Content-Type': 'application/json' },
+                          body: JSON.stringify({ action: 'send', phone: cabinetPhone.trim(), name: cabinetName || cabinetPhone, question: newQuestion.trim() }),
+                        });
+                        const data = await res.json();
+                        if (data.ok) {
+                          setNewQuestion('');
+                          const qRes = await fetch(`${QUESTIONS_URL}?phone=${encodeURIComponent(cabinetPhone.trim())}`);
+                          const qData = await qRes.json();
+                          if (qData.ok) setQuestions(qData.questions);
+                        } else setQError('Ошибка отправки');
+                      } catch { setQError('Ошибка соединения'); }
+                      finally { setSendingQ(false); }
+                    }}>
+                      <textarea
+                        value={newQuestion}
+                        onChange={e => setNewQuestion(e.target.value)}
+                        placeholder="Напишите ваш вопрос..."
+                        required
+                        rows={3}
+                        className="w-full px-4 py-3 rounded-xl text-sm outline-none transition-all resize-none mb-3"
+                        style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(0,229,255,0.2)', color: 'hsl(210,40%,98%)' }}
+                        onFocus={e => (e.currentTarget.style.borderColor = 'rgba(0,229,255,0.6)')}
+                        onBlur={e => (e.currentTarget.style.borderColor = 'rgba(0,229,255,0.2)')}
+                      />
+                      {qError && <p className="text-red-400 text-xs mb-2">{qError}</p>}
+                      <button type="submit" disabled={sendingQ} className="neon-btn px-6 py-2.5 rounded-xl text-sm flex items-center gap-2 disabled:opacity-50">
+                        <Icon name="Send" size={14} />
+                        {sendingQ ? 'Отправка...' : 'Отправить вопрос'}
+                      </button>
+                    </form>
+                  </div>
+
+                  {/* Список вопросов */}
+                  {questions !== null && questions.length === 0 && (
+                    <div className="text-center py-8 text-muted-foreground text-sm">
+                      <Icon name="MessageCircle" size={36} className="mx-auto mb-3 opacity-30" />
+                      <p>Вопросов пока нет</p>
+                    </div>
+                  )}
+                  {questions !== null && questions.length > 0 && (
+                    <div className="flex flex-col gap-4">
+                      {questions.map(q => (
+                        <div key={q.id} className="glass-card p-5">
+                          <div className="flex items-start gap-3 mb-3">
+                            <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style={{ background: 'rgba(0,229,255,0.1)' }}>
+                              <Icon name="User" size={14} className="neon-text" />
+                            </div>
+                            <div className="flex-1">
+                              <div className="text-xs text-muted-foreground mb-1">{q.createdAt ? new Date(q.createdAt).toLocaleDateString('ru-RU', {day:'numeric',month:'long',year:'numeric'}) : ''}</div>
+                              <p className="text-sm">{q.question}</p>
+                            </div>
+                          </div>
+                          {q.answer ? (
+                            <div className="flex items-start gap-3 pl-2 pt-3" style={{ borderTop: '1px solid rgba(0,229,255,0.1)' }}>
+                              <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style={{ background: 'rgba(0,229,255,0.15)', border: '1px solid rgba(0,229,255,0.3)' }}>
+                                <Icon name="Stethoscope" size={13} className="neon-text" />
+                              </div>
+                              <div className="flex-1">
+                                <div className="text-xs neon-text font-semibold mb-1">Ответ врача</div>
+                                <p className="text-sm text-foreground">{q.answer}</p>
+                              </div>
+                            </div>
+                          ) : (
+                            <div className="pl-11 pt-2">
+                              <span className="text-xs text-muted-foreground italic">Ожидает ответа...</span>
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* === Режим врача: все вопросы + форма ответа === */}
+              {ownerMode && (
+                <div className="flex flex-col gap-4">
+                  <div className="glass-card p-5 mb-2" style={{ border: '1px solid rgba(0,229,255,0.25)' }}>
+                    <p className="text-xs text-muted-foreground">Всего вопросов: <span className="text-foreground font-medium">{questions?.length ?? 0}</span> · Без ответа: <span className="text-foreground font-medium">{questions?.filter(q => !q.answer).length ?? 0}</span></p>
+                  </div>
+                  {questions !== null && questions.length === 0 && (
+                    <div className="text-center py-8 text-muted-foreground text-sm">
+                      <Icon name="MessageCircle" size={36} className="mx-auto mb-3 opacity-30" />
+                      <p>Вопросов пока нет</p>
+                    </div>
+                  )}
+                  {questions !== null && questions.map(q => (
+                    <div key={q.id} className="glass-card p-5">
+                      <div className="flex items-start gap-3 mb-3">
+                        <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style={{ background: 'rgba(255,255,255,0.07)' }}>
+                          <Icon name="User" size={14} />
+                        </div>
+                        <div className="flex-1">
+                          <div className="text-xs text-muted-foreground mb-1">
+                            <span className="font-medium text-foreground">{q.name}</span>
+                            {q.phone && <span className="ml-2">{q.phone}</span>}
+                            <span className="ml-2">{q.createdAt ? new Date(q.createdAt).toLocaleDateString('ru-RU', {day:'numeric',month:'long'}) : ''}</span>
+                          </div>
+                          <p className="text-sm">{q.question}</p>
+                        </div>
+                        {!q.answer && <span className="text-xs px-2 py-0.5 rounded-full flex-shrink-0" style={{ background: 'rgba(255,165,0,0.15)', color: 'rgba(255,200,80,0.9)', border: '1px solid rgba(255,165,0,0.3)' }}>Новый</span>}
+                      </div>
+                      {q.answer ? (
+                        <div className="flex items-start gap-3 pl-2 pt-3" style={{ borderTop: '1px solid rgba(0,229,255,0.1)' }}>
+                          <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style={{ background: 'rgba(0,229,255,0.15)', border: '1px solid rgba(0,229,255,0.3)' }}>
+                            <Icon name="Stethoscope" size={13} className="neon-text" />
+                          </div>
+                          <div className="flex-1">
+                            <div className="text-xs neon-text font-semibold mb-1">Ваш ответ</div>
+                            <p className="text-sm">{q.answer}</p>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="pt-3" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+                          <textarea
+                            value={answerText[q.id] ?? ''}
+                            onChange={e => setAnswerText(prev => ({ ...prev, [q.id]: e.target.value }))}
+                            placeholder="Напишите ответ..."
+                            rows={2}
+                            className="w-full px-3 py-2.5 rounded-xl text-sm outline-none transition-all resize-none mb-2"
+                            style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(0,229,255,0.2)', color: 'hsl(210,40%,98%)' }}
+                            onFocus={e => (e.currentTarget.style.borderColor = 'rgba(0,229,255,0.6)')}
+                            onBlur={e => (e.currentTarget.style.borderColor = 'rgba(0,229,255,0.2)')}
+                          />
+                          <button
+                            disabled={answeringId === q.id || !(answerText[q.id]?.trim())}
+                            onClick={async () => {
+                              setAnsweringId(q.id);
+                              try {
+                                const res = await fetch(QUESTIONS_URL, {
+                                  method: 'POST',
+                                  headers: { 'Content-Type': 'application/json' },
+                                  body: JSON.stringify({ action: 'answer', token: ownerToken.trim(), id: q.id, answer: answerText[q.id]?.trim() }),
+                                });
+                                const data = await res.json();
+                                if (data.ok) {
+                                  setQuestions(prev => prev ? prev.map(x => x.id === q.id ? { ...x, answer: answerText[q.id]?.trim() || '', answeredAt: new Date().toISOString() } : x) : prev);
+                                  setAnswerText(prev => { const n = { ...prev }; delete n[q.id]; return n; });
+                                }
+                              } finally { setAnsweringId(null); }
+                            }}
+                            className="neon-btn px-5 py-2 rounded-xl text-xs flex items-center gap-1.5 disabled:opacity-40"
+                          >
+                            <Icon name="Send" size={12} />
+                            {answeringId === q.id ? 'Отправка...' : 'Ответить'}
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </section>
 

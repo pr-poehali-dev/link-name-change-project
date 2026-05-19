@@ -1,4 +1,5 @@
 {
+  "questions": "https://functions.poehali.dev/ff274f78-9dc1-4813-9cb1-909bc97c73e2",
   "cancel-booking": "https://functions.poehali.dev/dac67018-9ef7-4407-892e-9e1a770a1413",
   "get-bookings": "https://functions.poehali.dev/0365d355-35b8-492a-a4d3-3ac7e0448380",
   "get-slots": "https://functions.poehali.dev/656c7ae9-29a0-4ae6-8b93-5f3b4a784fd2",
