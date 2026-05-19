@@ -485,12 +485,28 @@ export default function Index() {
             <div className="relative flex justify-center animate-float">
               <div className="relative" style={{ width: '100%', maxWidth: 420 }}>
                 <div className="absolute inset-0 rounded-3xl" style={{ background: 'radial-gradient(ellipse at center, rgba(0,229,255,0.12) 0%, transparent 70%)', transform: 'scale(1.1)' }} />
-                <img
-                  src={DOCTOR_IMG}
-                  alt="Доктор Попов"
-                  className="relative w-full object-contain drop-shadow-2xl"
-                  style={{ filter: 'drop-shadow(0 20px 60px rgba(0,229,255,0.15))' }}
-                />
+                <div className="relative overflow-hidden" style={{ borderRadius: '1.5rem' }}>
+                  <img
+                    src={DOCTOR_IMG}
+                    alt="Доктор Попов"
+                    className="relative w-full object-contain drop-shadow-2xl"
+                    style={{ filter: 'drop-shadow(0 20px 60px rgba(0,229,255,0.15))' }}
+                  />
+                  {/* Neon scanner line */}
+                  <div className="absolute left-0 right-0 pointer-events-none" style={{
+                    height: '2px',
+                    background: 'linear-gradient(90deg, transparent 0%, rgba(0,229,255,0.15) 15%, rgba(0,229,255,0.9) 50%, rgba(0,229,255,0.15) 85%, transparent 100%)',
+                    boxShadow: '0 0 8px 2px rgba(0,229,255,0.5), 0 0 24px 6px rgba(0,229,255,0.2)',
+                    animation: 'neon-scan 4s ease-in-out infinite',
+                  }} />
+                </div>
+                <style>{`
+                  @keyframes neon-scan {
+                    0%   { top: 5%; }
+                    50%  { top: 92%; }
+                    100% { top: 5%; }
+                  }
+                `}</style>
                 <div className="absolute bottom-8 left-4 right-4">
                   <div className="glass-card-neon p-4">
                     <div className="text-xs text-muted-foreground mb-1">Ближайший приём</div>
