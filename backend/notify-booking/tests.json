@@ -1,0 +1,19 @@
+{
+  "tests": [
+    {
+      "name": "Notify booking - consultation",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "name": "Иванов Иван Иванович",
+        "phone": "+79001234567",
+        "date": "20 мая",
+        "time": "18:30",
+        "serviceType": "consultation"
+      },
+      "expectedStatus": 200,
+      "expectedBody": { "ok": true },
+      "bodyMatcher": "partial"
+    }
+  ]
+}

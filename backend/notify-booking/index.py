@@ -1,0 +1,82 @@
+import json
+import os
+import smtplib
+import urllib.request
+import urllib.parse
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+
+
+def handler(event: dict, context) -> dict:
+    """Отправляет email и SMS при новой заявке на консультацию или наставничество."""
+
+    if event.get('httpMethod') == 'OPTIONS':
+        return {
+            'statusCode': 200,
+            'headers': {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'POST, OPTIONS',
+                'Access-Control-Allow-Headers': 'Content-Type',
+                'Access-Control-Max-Age': '86400',
+            },
+            'body': '',
+        }
+
+    body = json.loads(event.get('body') or '{}')
+    name = body.get('name', '').strip()
+    phone = body.get('phone', '').strip()
+    date = body.get('date', '').strip()
+    time = body.get('time', '').strip()
+    service_type = body.get('serviceType', 'consultation')
+
+    service_label = 'наставничество' if service_type == 'mentoring' else 'консультацию'
+    service_label_cap = 'Наставничество' if service_type == 'mentoring' else 'Консультацию'
+
+    message_text = (
+        f"Имеется заявка на {service_label_cap} от {name}, "
+        f"{date}, {time}. "
+        f"Свяжитесь с ним по телефону {phone}"
+    )
+
+    errors = []
+
+    # EMAIL via Yandex SMTP
+    smtp_password = os.environ.get('SMTP_PASSWORD', '')
+    if smtp_password:
+        try:
+            msg = MIMEMultipart('alternative')
+            msg['Subject'] = f'Новая заявка на {service_label} — Radiology Arts'
+            msg['From'] = 'brainmodel@yandex.ru'
+            msg['To'] = 'brainmodel@yandex.ru'
+            msg.attach(MIMEText(message_text, 'plain', 'utf-8'))
+
+            with smtplib.SMTP_SSL('smtp.yandex.ru', 465) as server:
+                server.login('brainmodel@yandex.ru', smtp_password)
+                server.sendmail('brainmodel@yandex.ru', 'brainmodel@yandex.ru', msg.as_string())
+        except Exception as e:
+            errors.append(f'email: {e}')
+
+    # SMS via SMSC.ru
+    smsc_login = os.environ.get('SMSC_LOGIN', 'brainmodel@yandex.ru')
+    smsc_password = os.environ.get('SMSC_PASSWORD', '')
+    if smsc_password:
+        try:
+            params = urllib.parse.urlencode({
+                'login': smsc_login,
+                'psw': smsc_password,
+                'phones': '+79155835045',
+                'mes': message_text,
+                'charset': 'utf-8',
+                'fmt': '3',
+            })
+            url = f'https://smsc.ru/sys/send.php?{params}'
+            with urllib.request.urlopen(url, timeout=10) as resp:
+                resp.read()
+        except Exception as e:
+            errors.append(f'sms: {e}')
+
+    return {
+        'statusCode': 200,
+        'headers': {'Access-Control-Allow-Origin': '*'},
+        'body': json.dumps({'ok': True, 'errors': errors}),
+    }

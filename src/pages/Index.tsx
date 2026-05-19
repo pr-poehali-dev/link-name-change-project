@@ -265,8 +265,8 @@ const NAV_ITEMS = [
 
 const MONTHS = ["Январь","Февраль","Март","Апрель","Май","Июнь","Июль","Август","Сентябрь","Октябрь","Ноябрь","Декабрь"];
 const DAYS_SHORT = ["Пн","Вт","Ср","Чт","Пт","Сб","Вс"];
-const TIME_SLOTS = ["09:00","09:30","10:00","10:30","11:00","11:30","14:00","14:30","15:00","15:30","16:00","16:30","17:00"];
-const BUSY_SLOTS = ["09:30","11:00","14:30","16:00"];
+const TIME_SLOTS = ["18:00","18:30","19:00","19:30","20:00","20:30"];
+const BUSY_SLOTS: string[] = [];
 
 function Calendar({ selected, onSelect }: { selected: Date | null; onSelect: (d: Date) => void }) {
   const today = new Date();
@@ -338,16 +338,32 @@ export default function Index() {
   const [form, setForm] = useState({ name: "", phone: "", service: "" });
   const [booked, setBooked] = useState(false);
   const [activeDoc, setActiveDoc] = useState<string | null>(null);
+  const [serviceType, setServiceType] = useState<'consultation' | 'mentoring' | null>(null);
   const [consentPd, setConsentPd] = useState(false);
   const [consentNewsletter, setConsentNewsletter] = useState(false);
   const [cookieDismissed, setCookieDismissed] = useState(() => {
     try { return localStorage.getItem("cookie_accepted") === "1"; } catch { return false; }
   });
 
-  const handleBook = (e: React.FormEvent) => {
+  const handleBook = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!selectedDate || !selectedTime || !form.name || !form.phone) return;
+    if (!selectedDate || !selectedTime || !form.name || !form.phone || !serviceType) return;
     setBooked(true);
+    try {
+      await fetch('https://functions.poehali.dev/8f27327b-7867-40c6-90e2-3df994d573c0', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: form.name,
+          phone: form.phone,
+          date: selectedDate.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long' }),
+          time: selectedTime,
+          serviceType,
+        }),
+      });
+    } catch (err) {
+      console.error('notify error', err);
+    }
   };
 
   return (
@@ -774,12 +790,36 @@ export default function Index() {
       <section id="booking" className="py-24 relative">
         <div className="orb w-96 h-96 bottom-0 right-0 opacity-10" style={{ background: 'radial-gradient(circle, rgba(179,102,255,0.5) 0%, transparent 70%)' }} />
         <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-16">
+          <div className="text-center mb-10">
             <div className="section-tag">Онлайн-запись</div>
             <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 600 }}>
-              Запись на приём
+              Запись на консультацию
             </h2>
-            <p className="text-muted-foreground mt-4">Выберите удобную дату и время</p>
+            <p className="text-muted-foreground mt-4">Выберите тип услуги и удобную дату</p>
+          </div>
+
+          {/* SERVICE TYPE SELECTOR */}
+          <div className="flex justify-center gap-4 mb-10">
+            {([
+              { key: 'consultation' as const, label: 'Консультация', icon: 'MessageCircle', desc: 'Разбор снимков и диагностика' },
+              { key: 'mentoring' as const, label: 'Наставничество', icon: 'GraduationCap', desc: 'Обучение и профессиональный рост' },
+            ]).map(s => (
+              <button
+                key={s.key}
+                type="button"
+                onClick={() => { setServiceType(s.key); setSelectedDate(null); setSelectedTime(null); }}
+                className="flex flex-col items-center gap-2 px-8 py-5 rounded-2xl transition-all text-center w-48"
+                style={{
+                  background: serviceType === s.key ? 'rgba(0,229,255,0.12)' : 'rgba(255,255,255,0.03)',
+                  border: serviceType === s.key ? '1.5px solid rgba(0,229,255,0.6)' : '1.5px solid rgba(255,255,255,0.08)',
+                  boxShadow: serviceType === s.key ? '0 0 20px rgba(0,229,255,0.15)' : 'none',
+                }}
+              >
+                <Icon name={s.icon} size={26} className={serviceType === s.key ? 'neon-text' : 'text-muted-foreground'} />
+                <span className={`font-semibold text-sm ${serviceType === s.key ? 'neon-text' : 'text-foreground'}`}>{s.label}</span>
+                <span className="text-xs text-muted-foreground leading-tight">{s.desc}</span>
+              </button>
+            ))}
           </div>
 
           {booked ? (
@@ -795,11 +835,13 @@ export default function Index() {
                 </span>
               </p>
               <p className="text-muted-foreground mt-2 text-sm">Мы свяжемся с вами по номеру {form.phone} для подтверждения</p>
-              <button onClick={() => { setBooked(false); setSelectedDate(null); setSelectedTime(null); setForm({ name: "", phone: "", service: "" }); }}
+              <button onClick={() => { setBooked(false); setSelectedDate(null); setSelectedTime(null); setForm({ name: "", phone: "", service: "" }); setServiceType(null); setConsentPd(false); setConsentNewsletter(false); }}
                 className="mt-8 px-6 py-2.5 rounded-lg text-sm transition-all" style={{ border: '1px solid rgba(0,229,255,0.3)', color: 'hsl(186,100%,50%)' }}>
                 Записать ещё раз
               </button>
             </div>
+          ) : serviceType === null ? (
+            <p className="text-center text-muted-foreground text-sm mt-4">Выберите тип услуги выше, чтобы открыть календарь</p>
           ) : (
             <div className="grid lg:grid-cols-2 gap-8">
               <div className="glass-card p-6">
