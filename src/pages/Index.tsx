@@ -493,18 +493,18 @@ export default function Index() {
                     style={{ filter: 'drop-shadow(0 20px 60px rgba(0,229,255,0.15))' }}
                   />
                   {/* Neon scanner line */}
-                  <div className="absolute left-0 right-0 pointer-events-none" style={{
-                    height: '2px',
-                    background: 'linear-gradient(90deg, transparent 0%, rgba(0,229,255,0.15) 15%, rgba(0,229,255,0.9) 50%, rgba(0,229,255,0.15) 85%, transparent 100%)',
-                    boxShadow: '0 0 8px 2px rgba(0,229,255,0.5), 0 0 24px 6px rgba(0,229,255,0.2)',
-                    animation: 'neon-scan 4s ease-in-out infinite',
+                  <div className="absolute top-0 bottom-0 pointer-events-none" style={{
+                    width: '1px',
+                    background: 'linear-gradient(180deg, transparent 0%, rgba(0,229,255,0.12) 20%, rgba(0,229,255,0.35) 50%, rgba(0,229,255,0.12) 80%, transparent 100%)',
+                    boxShadow: '0 0 4px 1px rgba(0,229,255,0.18)',
+                    animation: 'neon-scan-v 4s ease-in-out infinite',
                   }} />
                 </div>
                 <style>{`
-                  @keyframes neon-scan {
-                    0%   { top: 5%; }
-                    50%  { top: 92%; }
-                    100% { top: 5%; }
+                  @keyframes neon-scan-v {
+                    0%   { left: 3%; }
+                    50%  { left: 97%; }
+                    100% { left: 3%; }
                   }
                 `}</style>
                 <div className="absolute bottom-8 left-4 right-4">
