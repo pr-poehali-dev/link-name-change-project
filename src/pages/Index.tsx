@@ -486,11 +486,36 @@ export default function Index() {
               <div className="relative" style={{ width: '100%', maxWidth: 420 }}>
                 <div className="absolute inset-0 rounded-3xl" style={{ background: 'radial-gradient(ellipse at center, rgba(0,229,255,0.12) 0%, transparent 70%)', transform: 'scale(1.1)' }} />
                 <div className="relative overflow-hidden" style={{ borderRadius: '1.5rem' }}>
+                  {/* Background logo */}
+                  <img
+                    src="https://cdn.poehali.dev/projects/e2a2e8fc-1c7b-4d0d-94e9-d091c4a3a812/bucket/391b9e67-07a9-48ce-b620-6d0aa55ebecb.jpg"
+                    alt=""
+                    className="absolute pointer-events-none"
+                    style={{
+                      top: '8%',
+                      left: '5%',
+                      width: '22%',
+                      zIndex: 0,
+                      opacity: 0,
+                      filter: 'brightness(1.5) saturate(1.8) drop-shadow(0 0 8px rgba(0,229,255,0.8))',
+                      mixBlendMode: 'screen',
+                      animation: 'logo-pulse 9s ease-in-out infinite',
+                    }}
+                  />
+                  <style>{`
+                    @keyframes logo-pulse {
+                      0%   { opacity: 0; }
+                      5%   { opacity: 0.13; }
+                      22%  { opacity: 0.13; }
+                      27%  { opacity: 0; }
+                      100% { opacity: 0; }
+                    }
+                  `}</style>
                   <img
                     src={DOCTOR_IMG}
                     alt="Доктор Попов"
                     className="relative w-full object-contain drop-shadow-2xl"
-                    style={{ filter: 'drop-shadow(0 20px 60px rgba(0,229,255,0.15))' }}
+                    style={{ filter: 'drop-shadow(0 20px 60px rgba(0,229,255,0.15))', zIndex: 1 }}
                   />
                   {/* Neon scanner line */}
                   <div className="absolute top-0 bottom-0 pointer-events-none" style={{ width: '32px', marginLeft: '-15px', animation: 'neon-scan-v 9s ease-in-out infinite' }}>
