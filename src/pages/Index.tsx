@@ -488,7 +488,7 @@ export default function Index() {
                 <div className="relative overflow-hidden" style={{ borderRadius: '1.5rem' }}>
                   {/* Background logo */}
                   <img
-                    src="https://cdn.poehali.dev/projects/e2a2e8fc-1c7b-4d0d-94e9-d091c4a3a812/bucket/391b9e67-07a9-48ce-b620-6d0aa55ebecb.jpg"
+                    src="https://cdn.poehali.dev/projects/e2a2e8fc-1c7b-4d0d-94e9-d091c4a3a812/bucket/70b69367-81d7-4eb9-9a5f-fd0428286320.png"
                     alt=""
                     className="absolute pointer-events-none"
                     style={{
