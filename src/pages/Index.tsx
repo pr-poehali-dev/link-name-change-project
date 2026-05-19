@@ -493,12 +493,14 @@ export default function Index() {
                     style={{ filter: 'drop-shadow(0 20px 60px rgba(0,229,255,0.15))' }}
                   />
                   {/* Neon scanner line */}
-                  <div className="absolute top-0 bottom-0 pointer-events-none" style={{
-                    width: '2px',
-                    background: 'linear-gradient(180deg, transparent 0%, transparent 20%, rgba(0,229,255,0.55) 33%, rgba(0,229,255,0.95) 50%, rgba(0,229,255,0.55) 67%, transparent 80%, transparent 100%)',
-                    boxShadow: '0 0 6px 3px rgba(0,229,255,0.35), 0 0 18px 6px rgba(0,229,255,0.15)',
-                    animation: 'neon-scan-v 9s ease-in-out infinite',
-                  }} />
+                  <div className="absolute top-0 bottom-0 pointer-events-none" style={{ width: '32px', marginLeft: '-15px', animation: 'neon-scan-v 9s ease-in-out infinite' }}>
+                    {/* glow wide */}
+                    <div className="absolute top-0 bottom-0 left-0 right-0" style={{ background: 'linear-gradient(180deg, transparent 0%, transparent 20%, rgba(0,229,255,0.06) 33%, rgba(0,229,255,0.13) 50%, rgba(0,229,255,0.06) 67%, transparent 80%, transparent 100%)', borderRadius: '50%' }} />
+                    {/* glow mid */}
+                    <div className="absolute top-0 bottom-0" style={{ left: '8px', right: '8px', background: 'linear-gradient(180deg, transparent 0%, transparent 20%, rgba(0,229,255,0.15) 33%, rgba(0,229,255,0.3) 50%, rgba(0,229,255,0.15) 67%, transparent 80%, transparent 100%)' }} />
+                    {/* core line */}
+                    <div className="absolute top-0 bottom-0" style={{ left: '15px', width: '2px', background: 'linear-gradient(180deg, transparent 0%, transparent 20%, rgba(0,229,255,0.55) 33%, rgba(0,229,255,0.95) 50%, rgba(0,229,255,0.55) 67%, transparent 80%, transparent 100%)' }} />
+                  </div>
                 </div>
                 <style>{`
                   @keyframes neon-scan-v {
