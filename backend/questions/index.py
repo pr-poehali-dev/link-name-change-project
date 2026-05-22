@@ -70,7 +70,29 @@ def handler(event: dict, context) -> dict:
                 GROUP BY d ORDER BY d DESC LIMIT 30
             """)
             daily = [{'date': str(r[0]), 'count': r[1]} for r in cur.fetchall()]
-            visits_stats = {'total': total, 'week': week, 'today': today, 'daily': daily}
+
+            cur.execute(f"""
+                SELECT
+                    CASE
+                        WHEN referrer IS NULL OR referrer = '' THEN 'Прямой переход'
+                        WHEN referrer LIKE '%google%' THEN 'Google'
+                        WHEN referrer LIKE '%yandex%' THEN 'Яндекс'
+                        WHEN referrer LIKE '%instagram%' THEN 'Instagram'
+                        WHEN referrer LIKE '%t.me%' OR referrer LIKE '%telegram%' THEN 'Telegram'
+                        WHEN referrer LIKE '%vk.com%' THEN 'ВКонтакте'
+                        WHEN referrer LIKE '%facebook%' THEN 'Facebook'
+                        WHEN referrer LIKE '%youtube%' THEN 'YouTube'
+                        ELSE REGEXP_REPLACE(REGEXP_REPLACE(referrer, '^https?://(www\\.)?', ''), '/.*$', '')
+                    END AS source,
+                    COUNT(*) AS cnt
+                FROM {SCHEMA}.page_visits
+                GROUP BY source
+                ORDER BY cnt DESC
+                LIMIT 10
+            """)
+            referrers = [{'source': r[0], 'count': r[1]} for r in cur.fetchall()]
+
+            visits_stats = {'total': total, 'week': week, 'today': today, 'daily': daily, 'referrers': referrers}
 
         cur.close()
         conn.close()

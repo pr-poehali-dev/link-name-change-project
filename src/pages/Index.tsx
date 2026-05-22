@@ -377,7 +377,7 @@ export default function Index() {
   const [cabinetUnlocked, setCabinetUnlocked] = useState(false);
   const [cabinetName, setCabinetName] = useState('');
 
-  type VisitStats = { total: number; week: number; today: number; daily: {date: string; count: number}[] };
+  type VisitStats = { total: number; week: number; today: number; daily: {date: string; count: number}[]; referrers?: {source: string; count: number}[] };
   const [visitStats, setVisitStats] = useState<VisitStats | null>(null);
 
   useEffect(() => {
@@ -1402,6 +1402,26 @@ export default function Index() {
                                     <div className="h-full rounded-full" style={{ width: `${pct}%`, background: 'rgba(0,229,255,0.6)' }} />
                                   </div>
                                   <span className="text-xs text-muted-foreground w-5 text-right shrink-0">{d.count}</span>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      )}
+                      {visitStats.referrers && visitStats.referrers.length > 0 && (
+                        <div className="mt-4 pt-4" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+                          <div className="text-xs text-muted-foreground mb-2">Источники переходов</div>
+                          <div className="flex flex-col gap-1.5">
+                            {visitStats.referrers.map(r => {
+                              const max = Math.max(...visitStats.referrers!.map(x => x.count), 1);
+                              const pct = Math.round((r.count / max) * 100);
+                              return (
+                                <div key={r.source} className="flex items-center gap-2">
+                                  <span className="text-xs text-muted-foreground w-28 shrink-0 truncate">{r.source}</span>
+                                  <div className="flex-1 h-1.5 rounded-full" style={{ background: 'rgba(255,255,255,0.06)' }}>
+                                    <div className="h-full rounded-full" style={{ width: `${pct}%`, background: 'rgba(0,229,255,0.45)' }} />
+                                  </div>
+                                  <span className="text-xs text-muted-foreground w-5 text-right shrink-0">{r.count}</span>
                                 </div>
                               );
                             })}
