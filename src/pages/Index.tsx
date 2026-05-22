@@ -377,6 +377,17 @@ export default function Index() {
   const [cabinetUnlocked, setCabinetUnlocked] = useState(false);
   const [cabinetName, setCabinetName] = useState('');
 
+  type VisitStats = { total: number; week: number; today: number; daily: {date: string; count: number}[] };
+  const [visitStats, setVisitStats] = useState<VisitStats | null>(null);
+
+  useEffect(() => {
+    fetch(QUESTIONS_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'visit', user_agent: navigator.userAgent, referrer: document.referrer }),
+    }).catch(() => {});
+  }, []);
+
   useEffect(() => {
     fetch(GET_SLOTS_URL)
       .then(r => r.json())
@@ -1115,6 +1126,7 @@ export default function Index() {
                     if (data.ok && data.isOwner) {
                       setOwnerMode(true);
                       setQuestions(data.questions);
+                      if (data.visits) setVisitStats(data.visits);
                       setCabinetUnlocked(true);
                       setCabinetTab('questions');
                     } else {
@@ -1356,8 +1368,50 @@ export default function Index() {
               {/* === Режим врача: все вопросы + форма ответа === */}
               {ownerMode && (
                 <div className="flex flex-col gap-4">
-                  <div className="glass-card p-5 mb-2" style={{ border: '1px solid rgba(0,229,255,0.25)' }}>
-                    <p className="text-xs text-muted-foreground">Всего вопросов: <span className="text-foreground font-medium">{questions?.length ?? 0}</span> · Без ответа: <span className="text-foreground font-medium">{questions?.filter(q => !q.answer).length ?? 0}</span></p>
+                  {/* Счётчик посещений */}
+                  {visitStats && (
+                    <div className="glass-card p-5" style={{ border: '1px solid rgba(0,229,255,0.25)' }}>
+                      <div className="flex items-center gap-2 mb-4">
+                        <Icon name="BarChart2" size={15} className="neon-text" />
+                        <span className="text-xs font-semibold neon-text uppercase tracking-wider">Посещения сайта</span>
+                      </div>
+                      <div className="grid grid-cols-3 gap-3 mb-4">
+                        {[
+                          { label: 'Сегодня', value: visitStats.today },
+                          { label: 'За 7 дней', value: visitStats.week },
+                          { label: 'Всего', value: visitStats.total },
+                        ].map(s => (
+                          <div key={s.label} className="rounded-xl p-3 text-center" style={{ background: 'rgba(0,229,255,0.06)', border: '1px solid rgba(0,229,255,0.15)' }}>
+                            <div className="text-2xl font-bold neon-text">{s.value}</div>
+                            <div className="text-xs text-muted-foreground mt-0.5">{s.label}</div>
+                          </div>
+                        ))}
+                      </div>
+                      {visitStats.daily.length > 0 && (
+                        <div>
+                          <div className="text-xs text-muted-foreground mb-2">Последние 30 дней</div>
+                          <div className="flex flex-col gap-1">
+                            {visitStats.daily.slice(0, 7).map(d => {
+                              const max = Math.max(...visitStats.daily.map(x => x.count), 1);
+                              const pct = Math.round((d.count / max) * 100);
+                              const dt = new Date(d.date);
+                              return (
+                                <div key={d.date} className="flex items-center gap-2">
+                                  <span className="text-xs text-muted-foreground w-20 shrink-0">{dt.toLocaleDateString('ru-RU', {day:'numeric',month:'short'})}</span>
+                                  <div className="flex-1 h-1.5 rounded-full" style={{ background: 'rgba(255,255,255,0.06)' }}>
+                                    <div className="h-full rounded-full" style={{ width: `${pct}%`, background: 'rgba(0,229,255,0.6)' }} />
+                                  </div>
+                                  <span className="text-xs text-muted-foreground w-5 text-right shrink-0">{d.count}</span>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                  <div className="glass-card p-5" style={{ border: '1px solid rgba(0,229,255,0.15)' }}>
+                    <p className="text-xs text-muted-foreground">Вопросов: <span className="text-foreground font-medium">{questions?.length ?? 0}</span> · Без ответа: <span className="text-foreground font-medium">{questions?.filter(q => !q.answer).length ?? 0}</span></p>
                   </div>
                   {questions !== null && questions.length === 0 && (
                     <div className="text-center py-8 text-muted-foreground text-sm">

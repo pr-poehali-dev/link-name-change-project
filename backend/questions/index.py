@@ -14,11 +14,12 @@ CORS = {
 
 
 def handler(event: dict, context) -> dict:
-    """Управление вопросами и ответами в личном кабинете.
+    """Управление вопросами, ответами и счётчиком посещений.
     GET  ?phone=...          — вопросы пользователя по телефону
-    GET  ?token=...          — все вопросы (только владелец)
+    GET  ?token=...          — все вопросы + статистика посещений (только владелец)
     POST action=send         — отправить вопрос {phone, name, question}
     POST action=answer       — ответить на вопрос {token, id, answer}
+    POST action=visit        — записать посещение {user_agent, referrer}
     """
 
     if event.get('httpMethod') == 'OPTIONS':
@@ -53,6 +54,24 @@ def handler(event: dict, context) -> dict:
             )
 
         rows = cur.fetchall()
+
+        visits_stats = None
+        if is_owner:
+            cur.execute(f"SELECT COUNT(*) FROM {SCHEMA}.page_visits")
+            total = cur.fetchone()[0]
+            cur.execute(f"SELECT COUNT(*) FROM {SCHEMA}.page_visits WHERE visited_at >= NOW() - INTERVAL '7 days'")
+            week = cur.fetchone()[0]
+            cur.execute(f"SELECT COUNT(*) FROM {SCHEMA}.page_visits WHERE visited_at >= NOW() - INTERVAL '1 day'")
+            today = cur.fetchone()[0]
+            cur.execute(f"""
+                SELECT DATE(visited_at) AS d, COUNT(*) AS cnt
+                FROM {SCHEMA}.page_visits
+                WHERE visited_at >= NOW() - INTERVAL '30 days'
+                GROUP BY d ORDER BY d DESC LIMIT 30
+            """)
+            daily = [{'date': str(r[0]), 'count': r[1]} for r in cur.fetchall()]
+            visits_stats = {'total': total, 'week': week, 'today': today, 'daily': daily}
+
         cur.close()
         conn.close()
 
@@ -67,7 +86,7 @@ def handler(event: dict, context) -> dict:
         } for r in rows]
 
         return {'statusCode': 200, 'headers': CORS,
-                'body': json.dumps({'ok': True, 'questions': questions, 'isOwner': is_owner})}
+                'body': json.dumps({'ok': True, 'questions': questions, 'isOwner': is_owner, 'visits': visits_stats})}
 
     if method == 'POST':
         body = json.loads(event.get('body') or '{}')
@@ -112,6 +131,20 @@ def handler(event: dict, context) -> dict:
             cur.execute(
                 f"UPDATE {SCHEMA}.questions SET answer = %s, answered_at = %s WHERE id = %s",
                 (answer, datetime.now(), question_id)
+            )
+            conn.commit()
+            cur.close()
+            conn.close()
+            return {'statusCode': 200, 'headers': CORS, 'body': json.dumps({'ok': True})}
+
+        if action == 'visit':
+            user_agent = body.get('user_agent', '')[:512]
+            referrer = body.get('referrer', '')[:512]
+            conn = psycopg2.connect(os.environ['DATABASE_URL'])
+            cur = conn.cursor()
+            cur.execute(
+                f"INSERT INTO {SCHEMA}.page_visits (user_agent, referrer) VALUES (%s, %s)",
+                (user_agent, referrer)
             )
             conn.commit()
             cur.close()

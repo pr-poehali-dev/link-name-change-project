@@ -9,6 +9,14 @@
       "bodyMatcher": "none"
     },
     {
+      "name": "Record visit",
+      "method": "POST",
+      "path": "/",
+      "body": { "action": "visit", "user_agent": "TestAgent", "referrer": "" },
+      "expectedStatus": 200,
+      "bodyMatcher": "none"
+    },
+    {
       "name": "Get questions by phone",
       "method": "GET",
       "path": "/?phone=%2B79001234567",
