@@ -75,6 +75,13 @@ const COURSES = [
     url: "https://univerexpert.ru/courses/26/",
     type: "Повышение квалификации",
   },
+  {
+    role: "Автор",
+    title: "Курс повышения квалификации «МРТ-диагностика височно-нижнечелюстных суставов»",
+    url: "https://univerexpert.ru/courses/56/",
+    type: "Повышение квалификации",
+    isNew: true,
+  },
 ];
 
 export default function TeachingSection() {
@@ -143,6 +150,12 @@ export default function TeachingSection() {
             </p>
           </div>
 
+          <style>{`
+            @keyframes fuchsia-pulse {
+              0%, 100% { opacity: 1; text-shadow: 0 0 6px #ff00cc, 0 0 12px #ff00cc; }
+              50%       { opacity: 0.35; text-shadow: none; }
+            }
+          `}</style>
           <div className="grid md:grid-cols-2 gap-5">
             {COURSES.map((c) => (
               <a
@@ -150,7 +163,7 @@ export default function TeachingSection() {
                 href={c.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group block rounded-2xl border p-6 transition-all duration-300 hover:scale-[1.02]"
+                className="group relative block rounded-2xl border p-6 transition-all duration-300 hover:scale-[1.02]"
                 style={{
                   background: "rgba(255,255,255,0.03)",
                   borderColor: "rgba(255,255,255,0.08)",
@@ -164,6 +177,19 @@ export default function TeachingSection() {
                   (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.03)";
                 }}
               >
+                {'isNew' in c && c.isNew && (
+                  <span
+                    className="absolute top-3 right-3 text-xs font-bold px-2 py-0.5 rounded-full"
+                    style={{
+                      color: '#ff00cc',
+                      background: 'rgba(255,0,204,0.1)',
+                      border: '1px solid rgba(255,0,204,0.35)',
+                      animation: 'fuchsia-pulse 1.8s ease-in-out infinite',
+                    }}
+                  >
+                    Новый
+                  </span>
+                )}
                 <div className="flex items-start gap-4">
                   <div
                     className="shrink-0 w-10 h-10 rounded-full flex items-center justify-center mt-0.5"
