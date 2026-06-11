@@ -623,7 +623,7 @@ export default function Index() {
                       style={{ mixBlendMode: 'multiply', display: 'block' }}
                     />
                     <div className="absolute inset-0 pointer-events-none" style={{
-                      background: 'radial-gradient(ellipse 80% 70% at 52% 30%, transparent 45%, rgba(6,10,20,0.55) 70%, rgba(6,10,20,0.92) 100%)',
+                      background: 'radial-gradient(ellipse 65% 60% at 52% 28%, transparent 55%, rgba(6,10,20,0.3) 75%, rgba(6,10,20,0.65) 100%)',
                     }} />
                   </div>
                 </div>
