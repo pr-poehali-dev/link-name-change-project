@@ -709,7 +709,7 @@ export default function Index() {
                 Врач-рентгенолог высшей категории, кандидат медицинских наук, член-корреспондент Академии военных наук. Окончил Саратовский ГМУ им. Разумовского. Основной опыт — военный госпиталь, включая заведование отделением.
               </p>
               <p className="text-muted-foreground mt-3 leading-relaxed">
-                Специализируется на сложных случаях травматологической патологии и заболеваниях мышечно-скелетной системы, включая педиатрическую патологию, онкологию,{' '}
+                Специализируюсь на сложных случаях травматологической патологии и заболеваниях мышечно-скелетной системы, включая педиатрическую патологию, онкологию,{' '}
                 спортивную травму и патологию{' '}
                 <a href="https://univerexpert.ru/courses/56/" target="_blank" rel="noopener noreferrer" className="neon-text hover:underline">височно-нижнечелюстных суставов</a>.{' '}
                 Доцент кафедры лучевой диагностики АНО ДПО «ИПКМК». Автор и соавтор более 70 печатных работ, включая 5 монографий.
@@ -742,6 +742,28 @@ export default function Index() {
                     <span className="text-sm text-muted-foreground leading-snug">{item.text}</span>
                   </div>
                 ))}
+              </div>
+
+              <div
+                className="mt-6 rounded-2xl px-6 py-5"
+                style={{
+                  background: 'rgba(255,255,255,0.03)',
+                  border: '1px solid rgba(255,140,0,0.25)',
+                  boxShadow: '0 0 18px rgba(255,140,0,0.08)',
+                }}
+              >
+                <p
+                  className="leading-snug text-center"
+                  style={{
+                    fontFamily: "'Exo 2', 'Exo', sans-serif",
+                    fontSize: '1.1rem',
+                    color: 'rgba(255,160,40,0.82)',
+                    textShadow: '0 0 10px rgba(255,130,0,0.45), 0 0 22px rgba(255,120,0,0.2)',
+                    letterSpacing: '0.01em',
+                  }}
+                >
+                  Помогу найти верный ответ там, где сложно, — и пациенту, и врачу
+                </p>
               </div>
             </div>
           </div>
