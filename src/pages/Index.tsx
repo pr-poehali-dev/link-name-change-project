@@ -230,7 +230,7 @@ E-mail: brainmodel@yandex.ru`,
   },
 };
 
-const DOCTOR_IMG = "https://cdn.poehali.dev/projects/e2a2e8fc-1c7b-4d0d-94e9-d091c4a3a812/bucket/a32bc2b5-9c10-4c84-98fe-80be3dbd1f86.png";
+const DOCTOR_IMG = "https://cdn.poehali.dev/projects/e2a2e8fc-1c7b-4d0d-94e9-d091c4a3a812/bucket/c9926d32-0b34-4ec9-81c9-51000ba2487c.png";
 const MRI_IMG = "https://cdn.poehali.dev/projects/e2a2e8fc-1c7b-4d0d-94e9-d091c4a3a812/files/2bbb39b7-8dfe-4af1-81b6-2b31f86c11a6.jpg";
 
 const SERVICES = [
@@ -615,12 +615,17 @@ export default function Index() {
                     {/* core line */}
                     <div className="absolute top-0 bottom-0" style={{ left: '15px', width: '2px', background: 'linear-gradient(180deg, transparent 0%, transparent 20%, rgba(0,229,255,0.55) 33%, rgba(0,229,255,0.95) 50%, rgba(0,229,255,0.55) 67%, transparent 80%, transparent 100%)' }} />
                   </div>
-                  <img
-                    src={DOCTOR_IMG}
-                    alt="Доктор Попов"
-                    className="relative w-full object-contain"
-                    style={{ mixBlendMode: 'multiply', zIndex: 1 }}
-                  />
+                  <div className="relative w-full" style={{ zIndex: 1 }}>
+                    <img
+                      src={DOCTOR_IMG}
+                      alt="Доктор Попов"
+                      className="w-full object-contain"
+                      style={{ mixBlendMode: 'multiply', display: 'block' }}
+                    />
+                    <div className="absolute inset-0 pointer-events-none" style={{
+                      background: 'radial-gradient(ellipse 80% 70% at 52% 30%, transparent 45%, rgba(6,10,20,0.55) 70%, rgba(6,10,20,0.92) 100%)',
+                    }} />
+                  </div>
                 </div>
                 <style>{`
                   @keyframes neon-scan-v {
