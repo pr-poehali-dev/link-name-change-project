@@ -748,17 +748,17 @@ export default function Index() {
                 className="mt-6 rounded-2xl px-6 py-5"
                 style={{
                   background: 'rgba(255,255,255,0.03)',
-                  border: '1px solid rgba(255,140,0,0.25)',
-                  boxShadow: '0 0 18px rgba(255,140,0,0.08)',
+                  border: '1px solid rgba(255,140,0,0.35)',
+                  boxShadow: '0 0 30px 8px rgba(255,130,0,0.18), 0 0 70px 16px rgba(255,100,0,0.08)',
                 }}
               >
                 <p
                   className="leading-snug text-center"
                   style={{
                     fontFamily: "'Exo 2', 'Exo', sans-serif",
-                    fontSize: '1.1rem',
-                    color: 'rgba(255,160,40,0.82)',
-                    textShadow: '0 0 10px rgba(255,130,0,0.45), 0 0 22px rgba(255,120,0,0.2)',
+                    fontSize: '1.35rem',
+                    color: 'rgba(255,170,50,0.97)',
+                    textShadow: '0 0 8px rgba(255,140,0,0.9), 0 0 20px rgba(255,110,0,0.6), 0 0 40px rgba(255,80,0,0.3)',
                     letterSpacing: '0.01em',
                   }}
                 >
