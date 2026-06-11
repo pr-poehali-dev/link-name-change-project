@@ -230,7 +230,7 @@ E-mail: brainmodel@yandex.ru`,
   },
 };
 
-const DOCTOR_IMG = "https://cdn.poehali.dev/projects/e2a2e8fc-1c7b-4d0d-94e9-d091c4a3a812/bucket/c52651cd-309a-488f-88f4-ec92811ed6a6.png";
+const DOCTOR_IMG = "https://cdn.poehali.dev/projects/e2a2e8fc-1c7b-4d0d-94e9-d091c4a3a812/bucket/a32bc2b5-9c10-4c84-98fe-80be3dbd1f86.png";
 const MRI_IMG = "https://cdn.poehali.dev/projects/e2a2e8fc-1c7b-4d0d-94e9-d091c4a3a812/files/2bbb39b7-8dfe-4af1-81b6-2b31f86c11a6.jpg";
 
 const SERVICES = [
@@ -618,8 +618,8 @@ export default function Index() {
                   <img
                     src={DOCTOR_IMG}
                     alt="Доктор Попов"
-                    className="relative w-full object-contain drop-shadow-2xl"
-                    style={{ filter: 'drop-shadow(0 20px 60px rgba(0,229,255,0.15))', zIndex: 1 }}
+                    className="relative w-full object-contain"
+                    style={{ mixBlendMode: 'multiply', zIndex: 1 }}
                   />
                 </div>
                 <style>{`
