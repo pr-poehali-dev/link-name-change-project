@@ -540,7 +540,7 @@ export default function Index() {
               <div className="section-tag animate-fade-up">Лучевая диагностика — как искусство</div>
               <h1 className="animate-fade-up-delay-1 mt-2 leading-tight" style={{ fontSize: 'clamp(2.3rem, 5.5vw, 4.2rem)', fontWeight: 600, lineHeight: 1.1 }}>
                 <span className="neon-text" style={{ fontFamily: "'Cormorant', serif", fontStyle: 'italic' }}>Попов</span><br />
-                <span style={{ color: 'white', fontFamily: "'Cormorant', serif", fontStyle: 'italic' }}>Алексей Юрьевич</span>
+                <span style={{ color: '#EBF3F9', fontFamily: "'Cormorant', serif", fontStyle: 'italic' }}>Алексей Юрьевич</span>
               </h1>
               <p className="animate-fade-up-delay-2 text-muted-foreground mt-6 text-lg leading-relaxed max-w-md">
                 Врач-рентгенолог высшей категории, к.м.н. Опыт более 25 лет. Специализация — МРТ и КТ мышечно-скелетной системы.
@@ -550,7 +550,7 @@ export default function Index() {
                   <Icon name="CalendarCheck" size={18} />
                   Записаться онлайн
                 </a>
-                <a href="#services" className="px-8 py-3 rounded-xl text-base flex items-center gap-2 transition-all" style={{ border: '1px solid rgba(255,255,255,0.15)', color: 'white' }}
+                <a href="#services" className="px-8 py-3 rounded-xl text-base flex items-center gap-2 transition-all" style={{ border: '1px solid rgba(255,255,255,0.15)', color: '#EBF3F9' }}
                   onMouseEnter={e => (e.currentTarget.style.borderColor = 'rgba(0,229,255,0.5)')}
                   onMouseLeave={e => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)')}>
                   Услуги
@@ -708,7 +708,7 @@ export default function Index() {
               <div className="section-tag">О специалисте</div>
               <h2 className="mt-2" style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', fontWeight: 600 }}>
                 <span className="neon-text">Попов</span><br />
-                <span style={{ color: 'white' }}>Алексей Юрьевич</span>
+                <span style={{ color: '#EBF3F9' }}>Алексей Юрьевич</span>
               </h2>
               <p className="text-muted-foreground mt-5 leading-relaxed">
                 Врач-рентгенолог высшей категории, кандидат медицинских наук, член-корреспондент Академии военных наук. Окончил Саратовский ГМУ им. Разумовского. Основной опыт — военный госпиталь, включая заведование отделением.
@@ -1044,7 +1044,7 @@ export default function Index() {
                       value={form.name}
                       onChange={e => setForm(p => ({ ...p, name: e.target.value }))}
                       className="w-full px-4 py-3 rounded-xl text-sm outline-none transition-all"
-                      style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.12)', color: 'white', fontFamily: "'Golos Text', sans-serif" }}
+                      style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.12)', color: '#EBF3F9', fontFamily: "'Golos Text', sans-serif" }}
                       onFocus={e => (e.target.style.borderColor = 'rgba(0,229,255,0.5)')}
                       onBlur={e => (e.target.style.borderColor = 'rgba(255,255,255,0.12)')}
                     />
@@ -1058,7 +1058,7 @@ export default function Index() {
                       value={form.phone}
                       onChange={e => setForm(p => ({ ...p, phone: e.target.value }))}
                       className="w-full px-4 py-3 rounded-xl text-sm outline-none transition-all"
-                      style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.12)', color: 'white', fontFamily: "'Golos Text', sans-serif" }}
+                      style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.12)', color: '#EBF3F9', fontFamily: "'Golos Text', sans-serif" }}
                       onFocus={e => (e.target.style.borderColor = 'rgba(0,229,255,0.5)')}
                       onBlur={e => (e.target.style.borderColor = 'rgba(255,255,255,0.12)')}
                     />
@@ -1069,7 +1069,7 @@ export default function Index() {
                       value={form.service}
                       onChange={e => setForm(p => ({ ...p, service: e.target.value }))}
                       className="w-full px-4 py-3 rounded-xl text-sm outline-none transition-all"
-                      style={{ background: 'rgba(20,24,36,0.95)', border: '1px solid rgba(255,255,255,0.12)', color: form.service ? 'white' : 'rgba(255,255,255,0.4)', fontFamily: "'Golos Text', sans-serif" }}
+                      style={{ background: 'rgba(20,24,36,0.95)', border: '1px solid rgba(255,255,255,0.12)', color: form.service ? '#EBF3F9' : 'rgba(235,243,249,0.4)', fontFamily: "'Golos Text', sans-serif" }}
                       onFocus={e => (e.target.style.borderColor = 'rgba(0,229,255,0.5)')}
                       onBlur={e => (e.target.style.borderColor = 'rgba(255,255,255,0.12)')}
                     >
@@ -1187,7 +1187,7 @@ export default function Index() {
                     placeholder="+7 (900) 000-00-00"
                     required
                     className="flex-1 px-4 py-3 rounded-xl text-sm outline-none transition-all"
-                    style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(0,229,255,0.2)', color: 'hsl(210,40%,98%)' }}
+                    style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(0,229,255,0.2)', color: '#EBF3F9' }}
                     onFocus={e => (e.currentTarget.style.borderColor = 'rgba(0,229,255,0.6)')}
                     onBlur={e => (e.currentTarget.style.borderColor = 'rgba(0,229,255,0.2)')}
                   />
@@ -1204,7 +1204,7 @@ export default function Index() {
                     onChange={e => setOwnerToken(e.target.value)}
                     placeholder="Пароль"
                     className="w-full mt-2 px-4 py-2.5 rounded-xl text-sm outline-none transition-all"
-                    style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(0,229,255,0.15)', color: 'hsl(210,40%,98%)' }}
+                    style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(0,229,255,0.15)', color: '#EBF3F9' }}
                     onFocus={e => (e.currentTarget.style.borderColor = 'rgba(0,229,255,0.5)')}
                     onBlur={e => (e.currentTarget.style.borderColor = 'rgba(0,229,255,0.15)')}
                   />
@@ -1338,7 +1338,7 @@ export default function Index() {
                         required
                         rows={3}
                         className="w-full px-4 py-3 rounded-xl text-sm outline-none transition-all resize-none mb-3"
-                        style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(0,229,255,0.2)', color: 'hsl(210,40%,98%)' }}
+                        style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(0,229,255,0.2)', color: '#EBF3F9' }}
                         onFocus={e => (e.currentTarget.style.borderColor = 'rgba(0,229,255,0.6)')}
                         onBlur={e => (e.currentTarget.style.borderColor = 'rgba(0,229,255,0.2)')}
                       />
@@ -1500,7 +1500,7 @@ export default function Index() {
                             placeholder="Напишите ответ..."
                             rows={2}
                             className="w-full px-3 py-2.5 rounded-xl text-sm outline-none transition-all resize-none mb-2"
-                            style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(0,229,255,0.2)', color: 'hsl(210,40%,98%)' }}
+                            style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(0,229,255,0.2)', color: '#EBF3F9' }}
                             onFocus={e => (e.currentTarget.style.borderColor = 'rgba(0,229,255,0.6)')}
                             onBlur={e => (e.currentTarget.style.borderColor = 'rgba(0,229,255,0.2)')}
                           />

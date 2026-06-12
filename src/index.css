@@ -5,28 +5,28 @@
 @layer base {
   :root {
     --background: 220 20% 6%;
-    --foreground: 210 40% 98%;
+    --foreground: 210 50% 93%;
 
     --card: 220 20% 9%;
-    --card-foreground: 210 40% 98%;
+    --card-foreground: 210 50% 93%;
 
     --popover: 220 20% 9%;
-    --popover-foreground: 210 40% 98%;
+    --popover-foreground: 210 50% 93%;
 
     --primary: 186 100% 50%;
     --primary-foreground: 220 20% 6%;
 
     --secondary: 220 20% 14%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary-foreground: 210 50% 93%;
 
     --muted: 220 20% 14%;
-    --muted-foreground: 215 20% 55%;
+    --muted-foreground: 215 20% 75%;
 
     --accent: 186 100% 50%;
     --accent-foreground: 220 20% 6%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 210 50% 93%;
 
     --border: 220 20% 18%;
     --input: 220 20% 14%;
@@ -40,11 +40,11 @@
     --neon2-rgb: 179, 102, 255;
 
     --sidebar-background: 220 20% 6%;
-    --sidebar-foreground: 210 40% 98%;
+    --sidebar-foreground: 210 50% 93%;
     --sidebar-primary: 186 100% 50%;
     --sidebar-primary-foreground: 220 20% 6%;
     --sidebar-accent: 220 20% 14%;
-    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-accent-foreground: 210 50% 93%;
     --sidebar-border: 220 20% 18%;
     --sidebar-ring: 186 100% 50%;
   }
@@ -57,6 +57,7 @@
 
   html {
     scroll-behavior: smooth;
+    font-size: 18px;
   }
 
   body {
@@ -253,7 +254,7 @@
   font-size: 0.875rem;
   transition: all 0.2s ease;
   background: transparent;
-  color: hsl(210, 40%, 98%);
+  color: #ebf3f9;
 }
 
 .time-slot:hover {
