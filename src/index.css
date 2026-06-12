@@ -5,22 +5,22 @@
 @layer base {
   :root {
     --background: 14 22% 68%;
-    --foreground: 210 40% 98%;
+    --foreground: 14 60% 12%;
 
     --card: 14 22% 72%;
-    --card-foreground: 210 40% 98%;
+    --card-foreground: 14 60% 12%;
 
     --popover: 14 22% 72%;
-    --popover-foreground: 210 40% 98%;
+    --popover-foreground: 14 60% 12%;
 
     --primary: 193 93% 32%;
     --primary-foreground: 210 40% 98%;
 
     --secondary: 14 22% 60%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary-foreground: 14 60% 12%;
 
     --muted: 14 22% 60%;
-    --muted-foreground: 14 15% 35%;
+    --muted-foreground: 14 30% 30%;
 
     --accent: 193 93% 32%;
     --accent-foreground: 210 40% 98%;
@@ -28,7 +28,7 @@
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 14 22% 55%;
+    --border: 14 22% 52%;
     --input: 14 22% 60%;
     --ring: 193 93% 32%;
 
@@ -40,12 +40,12 @@
     --neon2-rgb: 179, 102, 255;
 
     --sidebar-background: 14 22% 68%;
-    --sidebar-foreground: 210 40% 98%;
+    --sidebar-foreground: 14 60% 12%;
     --sidebar-primary: 193 93% 32%;
     --sidebar-primary-foreground: 210 40% 98%;
     --sidebar-accent: 14 22% 60%;
-    --sidebar-accent-foreground: 210 40% 98%;
-    --sidebar-border: 14 22% 55%;
+    --sidebar-accent-foreground: 14 60% 12%;
+    --sidebar-border: 14 22% 52%;
     --sidebar-ring: 193 93% 32%;
   }
 }
@@ -302,7 +302,7 @@
 .nav-link {
   position: relative;
   font-size: 0.875rem;
-  color: hsl(215, 20%, 65%);
+  color: hsl(14, 30%, 30%);
   transition: color 0.2s;
   text-decoration: none;
 }

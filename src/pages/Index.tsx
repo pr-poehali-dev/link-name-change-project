@@ -540,7 +540,7 @@ export default function Index() {
               <div className="section-tag animate-fade-up">Лучевая диагностика — как искусство</div>
               <h1 className="animate-fade-up-delay-1 mt-2 leading-tight" style={{ fontSize: 'clamp(2.3rem, 5.5vw, 4.2rem)', fontWeight: 600, lineHeight: 1.1 }}>
                 <span className="neon-text" style={{ fontFamily: "'Cormorant', serif", fontStyle: 'italic' }}>Попов</span><br />
-                <span style={{ color: 'white', fontFamily: "'Cormorant', serif", fontStyle: 'italic' }}>Алексей Юрьевич</span>
+                <span style={{ color: 'hsl(14, 60%, 12%)', fontFamily: "'Cormorant', serif", fontStyle: 'italic' }}>Алексей Юрьевич</span>
               </h1>
               <p className="animate-fade-up-delay-2 text-muted-foreground mt-6 text-lg leading-relaxed max-w-md">
                 Врач-рентгенолог высшей категории, к.м.н. Опыт более 25 лет. Специализация — МРТ и КТ мышечно-скелетной системы.
@@ -550,7 +550,7 @@ export default function Index() {
                   <Icon name="CalendarCheck" size={18} />
                   Записаться онлайн
                 </a>
-                <a href="#services" className="px-8 py-3 rounded-xl text-base flex items-center gap-2 transition-all" style={{ border: '1px solid rgba(255,255,255,0.15)', color: 'white' }}
+                <a href="#services" className="px-8 py-3 rounded-xl text-base flex items-center gap-2 transition-all" style={{ border: '1px solid rgba(44, 26, 20, 0.25)', color: 'hsl(14, 60%, 12%)' }}
                   onMouseEnter={e => (e.currentTarget.style.borderColor = 'rgba(0,229,255,0.5)')}
                   onMouseLeave={e => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)')}>
                   Услуги
@@ -708,7 +708,7 @@ export default function Index() {
               <div className="section-tag">О специалисте</div>
               <h2 className="mt-2" style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', fontWeight: 600 }}>
                 <span className="neon-text">Попов</span><br />
-                <span style={{ color: 'white' }}>Алексей Юрьевич</span>
+                <span style={{ color: 'hsl(14, 60%, 12%)' }}>Алексей Юрьевич</span>
               </h2>
               <p className="text-muted-foreground mt-5 leading-relaxed">
                 Врач-рентгенолог высшей категории, кандидат медицинских наук, член-корреспондент Академии военных наук. Окончил Саратовский ГМУ им. Разумовского. Основной опыт — военный госпиталь, включая заведование отделением.
@@ -1044,9 +1044,9 @@ export default function Index() {
                       value={form.name}
                       onChange={e => setForm(p => ({ ...p, name: e.target.value }))}
                       className="w-full px-4 py-3 rounded-xl text-sm outline-none transition-all"
-                      style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.12)', color: 'white', fontFamily: "'Golos Text', sans-serif" }}
-                      onFocus={e => (e.target.style.borderColor = 'rgba(0,229,255,0.5)')}
-                      onBlur={e => (e.target.style.borderColor = 'rgba(255,255,255,0.12)')}
+                      style={{ background: 'rgba(255,255,255,0.25)', border: '1px solid rgba(44,26,20,0.2)', color: 'hsl(14,60%,12%)', fontFamily: "'Golos Text', sans-serif" }}
+                      onFocus={e => (e.target.style.borderColor = 'rgba(5,124,158,0.6)')}
+                      onBlur={e => (e.target.style.borderColor = 'rgba(44,26,20,0.2)')}
                     />
                   </div>
                   <div>
@@ -1058,9 +1058,9 @@ export default function Index() {
                       value={form.phone}
                       onChange={e => setForm(p => ({ ...p, phone: e.target.value }))}
                       className="w-full px-4 py-3 rounded-xl text-sm outline-none transition-all"
-                      style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.12)', color: 'white', fontFamily: "'Golos Text', sans-serif" }}
-                      onFocus={e => (e.target.style.borderColor = 'rgba(0,229,255,0.5)')}
-                      onBlur={e => (e.target.style.borderColor = 'rgba(255,255,255,0.12)')}
+                      style={{ background: 'rgba(255,255,255,0.25)', border: '1px solid rgba(44,26,20,0.2)', color: 'hsl(14,60%,12%)', fontFamily: "'Golos Text', sans-serif" }}
+                      onFocus={e => (e.target.style.borderColor = 'rgba(5,124,158,0.6)')}
+                      onBlur={e => (e.target.style.borderColor = 'rgba(44,26,20,0.2)')}
                     />
                   </div>
                   <div>
@@ -1069,17 +1069,17 @@ export default function Index() {
                       value={form.service}
                       onChange={e => setForm(p => ({ ...p, service: e.target.value }))}
                       className="w-full px-4 py-3 rounded-xl text-sm outline-none transition-all"
-                      style={{ background: 'rgba(20,24,36,0.95)', border: '1px solid rgba(255,255,255,0.12)', color: form.service ? 'white' : 'rgba(255,255,255,0.4)', fontFamily: "'Golos Text', sans-serif" }}
-                      onFocus={e => (e.target.style.borderColor = 'rgba(0,229,255,0.5)')}
-                      onBlur={e => (e.target.style.borderColor = 'rgba(255,255,255,0.12)')}
+                      style={{ background: 'rgba(255,255,255,0.25)', border: '1px solid rgba(44,26,20,0.2)', color: form.service ? 'hsl(14,60%,12%)' : 'hsl(14,30%,45%)', fontFamily: "'Golos Text', sans-serif" }}
+                      onFocus={e => (e.target.style.borderColor = 'rgba(5,124,158,0.6)')}
+                      onBlur={e => (e.target.style.borderColor = 'rgba(44,26,20,0.2)')}
                     >
-                      <option value="" style={{ background: '#141824' }}>Выберите услугу</option>
-                      {SERVICES.map(s => <option key={s.title} value={s.title} style={{ background: '#141824' }}>{s.title}</option>)}
+                      <option value="" style={{ background: '#c09e96' }}>Выберите услугу</option>
+                      {SERVICES.map(s => <option key={s.title} value={s.title} style={{ background: '#c09e96' }}>{s.title}</option>)}
                     </select>
                   </div>
 
                   {(!selectedDate || !selectedTime) && (
-                    <div className="text-xs text-muted-foreground px-4 py-3 rounded-xl flex items-center gap-2" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)' }}>
+                    <div className="text-xs text-muted-foreground px-4 py-3 rounded-xl flex items-center gap-2" style={{ background: 'rgba(44,26,20,0.06)', border: '1px solid rgba(44,26,20,0.12)' }}>
                       <Icon name="Info" size={14} className="neon-text shrink-0" />
                       Выберите дату и время в календаре слева
                     </div>
@@ -1187,9 +1187,9 @@ export default function Index() {
                     placeholder="+7 (900) 000-00-00"
                     required
                     className="flex-1 px-4 py-3 rounded-xl text-sm outline-none transition-all"
-                    style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(0,229,255,0.2)', color: 'hsl(210,40%,98%)' }}
-                    onFocus={e => (e.currentTarget.style.borderColor = 'rgba(0,229,255,0.6)')}
-                    onBlur={e => (e.currentTarget.style.borderColor = 'rgba(0,229,255,0.2)')}
+                    style={{ background: 'rgba(255,255,255,0.25)', border: '1px solid rgba(44,26,20,0.2)', color: 'hsl(14,60%,12%)' }}
+                    onFocus={e => (e.currentTarget.style.borderColor = 'rgba(5,124,158,0.6)')}
+                    onBlur={e => (e.currentTarget.style.borderColor = 'rgba(44,26,20,0.2)')}
                   />
                   <button type="submit" disabled={cabinetLoading} className="neon-btn px-6 py-3 rounded-xl text-sm flex items-center gap-2 disabled:opacity-50">
                     <Icon name="Search" size={16} />
@@ -1204,7 +1204,7 @@ export default function Index() {
                     onChange={e => setOwnerToken(e.target.value)}
                     placeholder="Пароль"
                     className="w-full mt-2 px-4 py-2.5 rounded-xl text-sm outline-none transition-all"
-                    style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(0,229,255,0.15)', color: 'hsl(210,40%,98%)' }}
+                    style={{ background: 'rgba(255,255,255,0.25)', border: '1px solid rgba(44,26,20,0.2)', color: 'hsl(14,60%,12%)' }}
                     onFocus={e => (e.currentTarget.style.borderColor = 'rgba(0,229,255,0.5)')}
                     onBlur={e => (e.currentTarget.style.borderColor = 'rgba(0,229,255,0.15)')}
                   />
@@ -1233,7 +1233,7 @@ export default function Index() {
                       className="px-5 py-2 rounded-xl text-sm transition-all"
                       style={cabinetTab === tab
                         ? { background: 'rgba(0,229,255,0.15)', border: '1px solid rgba(0,229,255,0.5)', color: 'hsl(var(--neon))' }
-                        : { background: 'transparent', border: '1px solid rgba(255,255,255,0.1)', color: 'hsl(var(--muted-foreground))' }}>
+                        : { background: 'transparent', border: '1px solid rgba(44,26,20,0.2)', color: 'hsl(var(--muted-foreground))' }}>
                       {tab === 'bookings' ? <span className="flex items-center gap-2"><Icon name="CalendarDays" size={14} />Мои записи</span>
                         : <span className="flex items-center gap-2"><Icon name="MessageCircle" size={14} />Вопросы врачу</span>}
                     </button>
@@ -1338,9 +1338,9 @@ export default function Index() {
                         required
                         rows={3}
                         className="w-full px-4 py-3 rounded-xl text-sm outline-none transition-all resize-none mb-3"
-                        style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(0,229,255,0.2)', color: 'hsl(210,40%,98%)' }}
-                        onFocus={e => (e.currentTarget.style.borderColor = 'rgba(0,229,255,0.6)')}
-                        onBlur={e => (e.currentTarget.style.borderColor = 'rgba(0,229,255,0.2)')}
+                        style={{ background: 'rgba(255,255,255,0.25)', border: '1px solid rgba(44,26,20,0.2)', color: 'hsl(14,60%,12%)' }}
+                        onFocus={e => (e.currentTarget.style.borderColor = 'rgba(5,124,158,0.6)')}
+                        onBlur={e => (e.currentTarget.style.borderColor = 'rgba(44,26,20,0.2)')}
                       />
                       {qError && <p className="text-red-400 text-xs mb-2">{qError}</p>}
                       <button type="submit" disabled={sendingQ} className="neon-btn px-6 py-2.5 rounded-xl text-sm flex items-center gap-2 disabled:opacity-50">
@@ -1425,8 +1425,8 @@ export default function Index() {
                               return (
                                 <div key={d.date} className="flex items-center gap-2">
                                   <span className="text-xs text-muted-foreground w-20 shrink-0">{dt.toLocaleDateString('ru-RU', {day:'numeric',month:'short'})}</span>
-                                  <div className="flex-1 h-1.5 rounded-full" style={{ background: 'rgba(255,255,255,0.06)' }}>
-                                    <div className="h-full rounded-full" style={{ width: `${pct}%`, background: 'rgba(0,229,255,0.6)' }} />
+                                  <div className="flex-1 h-1.5 rounded-full" style={{ background: 'rgba(44,26,20,0.12)' }}>
+                                    <div className="h-full rounded-full" style={{ width: `${pct}%`, background: 'rgba(5,124,158,0.6)' }} />
                                   </div>
                                   <span className="text-xs text-muted-foreground w-5 text-right shrink-0">{d.count}</span>
                                 </div>
@@ -1436,7 +1436,7 @@ export default function Index() {
                         </div>
                       )}
                       {visitStats.referrers && visitStats.referrers.length > 0 && (
-                        <div className="mt-4 pt-4" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+                        <div className="mt-4 pt-4" style={{ borderTop: '1px solid rgba(44,26,20,0.12)' }}>
                           <div className="text-xs text-muted-foreground mb-2">Источники переходов</div>
                           <div className="flex flex-col gap-1.5">
                             {visitStats.referrers.map(r => {
@@ -1445,8 +1445,8 @@ export default function Index() {
                               return (
                                 <div key={r.source} className="flex items-center gap-2">
                                   <span className="text-xs text-muted-foreground w-28 shrink-0 truncate">{r.source}</span>
-                                  <div className="flex-1 h-1.5 rounded-full" style={{ background: 'rgba(255,255,255,0.06)' }}>
-                                    <div className="h-full rounded-full" style={{ width: `${pct}%`, background: 'rgba(0,229,255,0.45)' }} />
+                                  <div className="flex-1 h-1.5 rounded-full" style={{ background: 'rgba(44,26,20,0.12)' }}>
+                                    <div className="h-full rounded-full" style={{ width: `${pct}%`, background: 'rgba(5,124,158,0.45)' }} />
                                   </div>
                                   <span className="text-xs text-muted-foreground w-5 text-right shrink-0">{r.count}</span>
                                 </div>
@@ -1469,7 +1469,7 @@ export default function Index() {
                   {questions !== null && questions.map(q => (
                     <div key={q.id} className="glass-card p-5">
                       <div className="flex items-start gap-3 mb-3">
-                        <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style={{ background: 'rgba(255,255,255,0.07)' }}>
+                        <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style={{ background: 'rgba(44,26,20,0.1)' }}>
                           <Icon name="User" size={14} />
                         </div>
                         <div className="flex-1">
@@ -1493,16 +1493,16 @@ export default function Index() {
                           </div>
                         </div>
                       ) : (
-                        <div className="pt-3" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+                        <div className="pt-3" style={{ borderTop: '1px solid rgba(44,26,20,0.12)' }}>
                           <textarea
                             value={answerText[q.id] ?? ''}
                             onChange={e => setAnswerText(prev => ({ ...prev, [q.id]: e.target.value }))}
                             placeholder="Напишите ответ..."
                             rows={2}
                             className="w-full px-3 py-2.5 rounded-xl text-sm outline-none transition-all resize-none mb-2"
-                            style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(0,229,255,0.2)', color: 'hsl(210,40%,98%)' }}
-                            onFocus={e => (e.currentTarget.style.borderColor = 'rgba(0,229,255,0.6)')}
-                            onBlur={e => (e.currentTarget.style.borderColor = 'rgba(0,229,255,0.2)')}
+                            style={{ background: 'rgba(255,255,255,0.25)', border: '1px solid rgba(44,26,20,0.2)', color: 'hsl(14,60%,12%)' }}
+                            onFocus={e => (e.currentTarget.style.borderColor = 'rgba(5,124,158,0.6)')}
+                            onBlur={e => (e.currentTarget.style.borderColor = 'rgba(44,26,20,0.2)')}
                           />
                           <button
                             disabled={answeringId === q.id || !(answerText[q.id]?.trim())}
@@ -1572,28 +1572,28 @@ export default function Index() {
             <a href="https://t.me/brainmodel76" target="_blank" rel="noopener noreferrer"
               className="glass-card px-6 py-3 flex items-center gap-3 hover:-translate-y-0.5 transition-all"
               onMouseEnter={e => (e.currentTarget.style.borderColor = 'rgba(0,229,255,0.4)')}
-              onMouseLeave={e => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)')}>
+              onMouseLeave={e => (e.currentTarget.style.borderColor = 'rgba(44,26,20,0.08)')}>
               <Icon name="Send" size={18} className="neon-text" />
               <span className="font-medium text-sm">Telegram</span>
             </a>
             <a href="https://max.ru/join/W_9gST8pFWDy8yplJ8sC9WUF9XuQU6ttrbjtzG5mkG4" target="_blank" rel="noopener noreferrer"
               className="glass-card px-6 py-3 flex items-center gap-3 hover:-translate-y-0.5 transition-all"
-              onMouseEnter={e => (e.currentTarget.style.borderColor = 'rgba(0,229,255,0.4)')}
-              onMouseLeave={e => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)')}>
+              onMouseEnter={e => (e.currentTarget.style.borderColor = 'rgba(5,124,158,0.4)')}
+              onMouseLeave={e => (e.currentTarget.style.borderColor = 'rgba(44,26,20,0.08)')}>
               <Icon name="MessageCircle" size={18} className="neon-text" />
               <span className="font-medium text-sm">Макс</span>
             </a>
             <a href="https://dzen.ru/id/6625fe9426b0b07859221c96" target="_blank" rel="noopener noreferrer"
               className="glass-card px-6 py-3 flex items-center gap-3 hover:-translate-y-0.5 transition-all"
-              onMouseEnter={e => (e.currentTarget.style.borderColor = 'rgba(0,229,255,0.4)')}
-              onMouseLeave={e => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)')}>
+              onMouseEnter={e => (e.currentTarget.style.borderColor = 'rgba(5,124,158,0.4)')}
+              onMouseLeave={e => (e.currentTarget.style.borderColor = 'rgba(44,26,20,0.08)')}>
               <Icon name="Rss" size={18} className="neon-text" />
               <span className="font-medium text-sm">Дзен</span>
             </a>
             <a href="https://vk.ru/radiologyart" target="_blank" rel="noopener noreferrer"
               className="glass-card px-6 py-3 flex items-center gap-3 hover:-translate-y-0.5 transition-all"
-              onMouseEnter={e => (e.currentTarget.style.borderColor = 'rgba(0,229,255,0.4)')}
-              onMouseLeave={e => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)')}>
+              onMouseEnter={e => (e.currentTarget.style.borderColor = 'rgba(5,124,158,0.4)')}
+              onMouseLeave={e => (e.currentTarget.style.borderColor = 'rgba(44,26,20,0.08)')}>
               <Icon name="Users" size={18} className="neon-text" />
               <span className="font-medium text-sm">ВКонтакте</span>
             </a>
@@ -1602,7 +1602,7 @@ export default function Index() {
       </section>
 
       {/* FOOTER */}
-      <footer className="pt-10 pb-6" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+      <footer className="pt-10 pb-6" style={{ borderTop: '1px solid rgba(44,26,20,0.15)' }}>
         <div className="max-w-6xl mx-auto px-6">
           <div className="flex flex-col sm:flex-row items-start justify-between gap-8 mb-8">
             <div className="flex items-center gap-2 shrink-0">
@@ -1624,7 +1624,7 @@ export default function Index() {
               ))}
             </div>
           </div>
-          <div className="pt-5 flex flex-col sm:flex-row items-center justify-between gap-2" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+          <div className="pt-5 flex flex-col sm:flex-row items-center justify-between gap-2" style={{ borderTop: '1px solid rgba(44,26,20,0.15)' }}>
             <p className="text-xs text-muted-foreground">
               © 2026 Попов Алексей Юрьевич · Самозанятый · ИНН 644101988643
             </p>
