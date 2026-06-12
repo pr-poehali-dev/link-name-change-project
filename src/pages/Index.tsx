@@ -725,7 +725,7 @@ export default function Index() {
                 «Ассоциация врачей МРТ- и КТ-диагностики». Член группы аудита врачей-рентгенологов. Модератор сайта{' '}
                 <a href="https://radiomed.ru/" target="_blank" rel="noopener noreferrer" className="neon-text hover:underline">Radiomed</a>{' '}
                 с 2010 года. Ведущий телеграм+ Макс-канала{' '}
-                <a href="https://max.ru/join/W_9gST8pFWDy8yplJ8sC9WUF9XuQU6ttrbjtzG5mkG4" target="_blank" rel="noopener noreferrer" className="neon-text hover:underline">D2D Trauma Expert</a>.{' '}
+                <a href="https://max.ru/se13287388_biz" target="_blank" rel="noopener noreferrer" className="neon-text hover:underline">D2D Trauma Expert</a>.{' '}
                 Модератор (редактор) каналов Школы D2D Expert. Лектор школы{' '}
                 <a href="https://vk.com/practicalradiology" target="_blank" rel="noopener noreferrer" className="neon-text hover:underline">Практическая радиология</a>.{' '}
                 Автор/соавтор 9{' '}
@@ -1576,7 +1576,7 @@ export default function Index() {
               <Icon name="Send" size={18} className="neon-text" />
               <span className="font-medium text-sm">Telegram</span>
             </a>
-            <a href="https://max.ru/join/W_9gST8pFWDy8yplJ8sC9WUF9XuQU6ttrbjtzG5mkG4" target="_blank" rel="noopener noreferrer"
+            <a href="https://max.ru/se13287388_biz" target="_blank" rel="noopener noreferrer"
               className="glass-card px-6 py-3 flex items-center gap-3 hover:-translate-y-0.5 transition-all"
               onMouseEnter={e => (e.currentTarget.style.borderColor = 'rgba(0,229,255,0.4)')}
               onMouseLeave={e => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)')}>
