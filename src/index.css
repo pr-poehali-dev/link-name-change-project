@@ -20,7 +20,7 @@
     --secondary-foreground: 210 50% 93%;
 
     --muted: 220 20% 14%;
-    --muted-foreground: 215 20% 90%;
+    --muted-foreground: 215 20% 75%;
 
     --accent: 186 100% 50%;
     --accent-foreground: 220 20% 6%;
@@ -57,7 +57,7 @@
 
   html {
     scroll-behavior: smooth;
-    font-size: 22px;
+    font-size: 20px;
   }
 
   body {
@@ -303,7 +303,7 @@
 .nav-link {
   position: relative;
   font-size: 0.875rem;
-  color: hsl(215, 20%, 85%);
+  color: hsl(215, 20%, 70%);
   transition: color 0.2s;
   text-decoration: none;
 }
