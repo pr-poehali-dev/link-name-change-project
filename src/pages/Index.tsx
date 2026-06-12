@@ -346,6 +346,7 @@ export default function Index() {
   const [booked, setBooked] = useState(false);
   const [activeDoc, setActiveDoc] = useState<string | null>(null);
   const [serviceType, setServiceType] = useState<'consultation' | 'mentoring' | null>(null);
+  const [consentDocs, setConsentDocs] = useState(false);
   const [consentPd, setConsentPd] = useState(false);
   const [consentNewsletter, setConsentNewsletter] = useState(false);
   const [cookieDismissed, setCookieDismissed] = useState(() => {
@@ -1095,6 +1096,27 @@ export default function Index() {
                     </div>
                   )}
 
+                  <label className="flex items-start gap-3 cursor-pointer">
+                    <button
+                      type="button"
+                      onClick={() => setConsentDocs(v => !v)}
+                      className="mt-0.5 shrink-0 w-4 h-4 rounded flex items-center justify-center transition-all border"
+                      style={{
+                        background: consentDocs ? 'hsl(var(--neon))' : 'transparent',
+                        borderColor: consentDocs ? 'hsl(var(--neon))' : 'rgba(255,255,255,0.3)',
+                        boxShadow: consentDocs ? '0 0 8px rgba(0,229,255,0.4)' : 'none',
+                      }}
+                    >
+                      {consentDocs && <Icon name="Check" size={11} style={{ color: 'hsl(220,20%,6%)' }} />}
+                    </button>
+                    <span className="text-xs text-muted-foreground leading-relaxed">
+                      Я ознакомлен(а) с{' '}
+                      <button type="button" onClick={() => setActiveDoc('privacy')} className="neon-text hover:underline">политикой обработки персональных данных</button>
+                      {' '}и{' '}
+                      <button type="button" onClick={() => setActiveDoc('offer')} className="neon-text hover:underline">офертой на оказание услуг</button>
+                    </span>
+                  </label>
+
                   <label className="flex items-start gap-2 cursor-pointer">
                     <input type="checkbox" checked={consentPd} onChange={e => setConsentPd(e.target.checked)}
                       className="mt-0.5 accent-cyan-400 shrink-0" />
@@ -1115,7 +1137,7 @@ export default function Index() {
 
                   <button
                     type="submit"
-                    disabled={!selectedDate || !selectedTime || !consentPd}
+                    disabled={!selectedDate || !selectedTime || !consentDocs || !consentPd}
                     className="neon-btn px-6 py-3.5 rounded-xl text-base mt-2 flex items-center justify-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed disabled:transform-none"
                   >
                     <Icon name="CalendarCheck" size={18} />
