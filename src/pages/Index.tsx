@@ -802,14 +802,6 @@ export default function Index() {
           <div className="mt-16 flex gap-8 items-stretch">
             {/* Левая часть — контент */}
             <div className="flex flex-col justify-center flex-1 min-w-0">
-              <div className="mb-10 rounded-2xl overflow-hidden" style={{ height: '220px' }}>
-                <img
-                  src="https://cdn.poehali.dev/projects/e2a2e8fc-1c7b-4d0d-94e9-d091c4a3a812/bucket/1966e519-74be-426e-869f-aa35dc81ea5c.jpg"
-                  alt="Материалы"
-                  className="w-full h-full object-cover"
-                  style={{ objectPosition: 'center 20%' }}
-                />
-              </div>
               <div className="flex items-center gap-3 mb-3">
                 <div className="section-tag" style={{ fontSize: '1rem', boxShadow: '0 0 18px rgba(0,229,255,0.5)', textShadow: '0 0 12px rgba(0,229,255,0.9)' }}>Материалы</div>
               </div>
