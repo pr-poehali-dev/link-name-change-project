@@ -254,7 +254,7 @@ const MATERIALS_CATALOG: Record<MaterialsTabKey, { name: string; link: string; p
   ],
   videos: [
     { name: 'МРТ-фишки плечевого сустава, 16:02', link: 'https://disk.yandex.ru/i/4U9tvjMqdw81Wg', price: '300 ₽', buyLink: 'https://disk.yandex.ru/i/4U9tvjMqdw81Wg' },
-    { name: 'МРТ-фишки локтевого сустава, 12:20', link: 'https://disk.yandex.ru/i/nM909ojI7vrWMw', price: '330 ₽', buyLink: 'https://disk.yandex.ru/i/nM909ojI7vrWMw' },
+    { name: 'МРТ-фишки локтевого сустава, 12:20', link: 'https://disk.yandex.ru/i/nM909ojI7vrWMw', price: '300 ₽', buyLink: 'https://disk.yandex.ru/i/nM909ojI7vrWMw' },
     { name: 'МРТ-фишки кистевого сустава, 14:22', link: 'https://disk.yandex.ru/i/_PO5CNVKC-1Oew', price: '300 ₽', buyLink: 'https://disk.yandex.ru/i/_PO5CNVKC-1Oew' },
     {
       name: 'МРТ-фишки суставов верхней конечности: блок из 3-х видео',
