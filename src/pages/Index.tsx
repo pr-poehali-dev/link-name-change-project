@@ -914,10 +914,9 @@ export default function Index() {
                         </td>
                         <td className="px-4 py-3 neon-text font-semibold">{item.price}</td>
                         <td className="px-4 py-3">
-                          <a href={item.buyLink} target="_blank" rel="noopener noreferrer"
-                            className="neon-btn px-4 py-1.5 rounded-lg text-xs font-medium inline-flex items-center gap-1">
+                          <span className="px-4 py-1.5 rounded-lg text-xs font-medium inline-flex items-center gap-1 cursor-not-allowed opacity-40" style={{ border: '1px solid rgba(255,255,255,0.15)', color: 'hsl(var(--muted-foreground))' }}>
                             <Icon name="ShoppingCart" size={12} /> Купить
-                          </a>
+                          </span>
                         </td>
                       </tr>
                     ))}
