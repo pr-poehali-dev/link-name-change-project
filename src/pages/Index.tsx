@@ -799,45 +799,57 @@ export default function Index() {
           </div>
 
           {/* МАТЕРИАЛЫ BLOCK */}
-          <div className="mt-16">
-            <div className="rounded-2xl overflow-hidden mb-10" style={{ height: '280px' }}>
+          <div className="mt-16 flex gap-8 items-stretch">
+            {/* Левая часть — контент */}
+            <div className="flex flex-col justify-center flex-1 min-w-0">
+              <div className="mb-10 rounded-2xl overflow-hidden" style={{ height: '220px' }}>
+                <img
+                  src="https://cdn.poehali.dev/projects/e2a2e8fc-1c7b-4d0d-94e9-d091c4a3a812/bucket/1966e519-74be-426e-869f-aa35dc81ea5c.jpg"
+                  alt="Материалы"
+                  className="w-full h-full object-cover"
+                  style={{ objectPosition: 'center 20%' }}
+                />
+              </div>
+              <div className="flex items-center gap-3 mb-3">
+                <div className="section-tag" style={{ fontSize: '1rem', boxShadow: '0 0 18px rgba(0,229,255,0.5)', textShadow: '0 0 12px rgba(0,229,255,0.9)' }}>Материалы</div>
+              </div>
+              <p className="text-muted-foreground text-sm mb-8">Полезные прикладные материалы для врачей-рентгенологов</p>
+              <div className="flex flex-col gap-3">
+                {MATERIALS_TABS.map(tab => (
+                  <button
+                    key={tab.key}
+                    type="button"
+                    onClick={() => setActiveMaterialsTab(tab.key)}
+                    className="flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-medium transition-all text-left"
+                    style={{
+                      background: 'rgba(255,255,255,0.04)',
+                      border: '1.5px solid rgba(255,255,255,0.1)',
+                    }}
+                    onMouseEnter={e => {
+                      (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(0,229,255,0.5)';
+                      (e.currentTarget as HTMLButtonElement).style.background = 'rgba(0,229,255,0.08)';
+                      (e.currentTarget as HTMLButtonElement).style.color = 'hsl(186,100%,50%)';
+                    }}
+                    onMouseLeave={e => {
+                      (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(255,255,255,0.1)';
+                      (e.currentTarget as HTMLButtonElement).style.background = 'rgba(255,255,255,0.04)';
+                      (e.currentTarget as HTMLButtonElement).style.color = '';
+                    }}
+                  >
+                    <Icon name={tab.icon} size={16} className="neon-text" />
+                    {tab.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+            {/* Правая часть — фото */}
+            <div className="hidden md:block w-80 lg:w-96 shrink-0 rounded-2xl overflow-hidden" style={{ minHeight: '480px' }}>
               <img
-                src="https://cdn.poehali.dev/projects/e2a2e8fc-1c7b-4d0d-94e9-d091c4a3a812/bucket/1966e519-74be-426e-869f-aa35dc81ea5c.jpg"
-                alt="Материалы"
+                src="https://cdn.poehali.dev/projects/e2a2e8fc-1c7b-4d0d-94e9-d091c4a3a812/bucket/f99a24d3-a57c-47ff-9d43-158ec8bb4723.png"
+                alt="Рабочее место"
                 className="w-full h-full object-cover"
-                style={{ objectPosition: 'center 20%' }}
+                style={{ objectPosition: 'center center' }}
               />
-            </div>
-            <div className="flex items-center gap-3 mb-3">
-              <div className="section-tag" style={{ fontSize: '1rem', boxShadow: '0 0 18px rgba(0,229,255,0.5)', textShadow: '0 0 12px rgba(0,229,255,0.9)' }}>Материалы</div>
-            </div>
-            <p className="text-muted-foreground text-sm mb-8">Полезные прикладные материалы для врачей-рентгенологов</p>
-            <div className="flex flex-wrap gap-3">
-              {MATERIALS_TABS.map(tab => (
-                <button
-                  key={tab.key}
-                  type="button"
-                  onClick={() => setActiveMaterialsTab(tab.key)}
-                  className="flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-medium transition-all"
-                  style={{
-                    background: 'rgba(255,255,255,0.04)',
-                    border: '1.5px solid rgba(255,255,255,0.1)',
-                  }}
-                  onMouseEnter={e => {
-                    (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(0,229,255,0.5)';
-                    (e.currentTarget as HTMLButtonElement).style.background = 'rgba(0,229,255,0.08)';
-                    (e.currentTarget as HTMLButtonElement).style.color = 'hsl(186,100%,50%)';
-                  }}
-                  onMouseLeave={e => {
-                    (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(255,255,255,0.1)';
-                    (e.currentTarget as HTMLButtonElement).style.background = 'rgba(255,255,255,0.04)';
-                    (e.currentTarget as HTMLButtonElement).style.color = '';
-                  }}
-                >
-                  <Icon name={tab.icon} size={16} className="neon-text" />
-                  {tab.label}
-                </button>
-              ))}
             </div>
           </div>
         </div>
