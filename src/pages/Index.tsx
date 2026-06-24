@@ -1366,7 +1366,9 @@ export default function Index() {
                       onBlur={e => (e.target.style.borderColor = 'rgba(255,255,255,0.12)')}
                     >
                       <option value="" style={{ background: '#141824' }}>Выберите услугу</option>
-                      {SERVICES.map(s => <option key={s.title} value={s.title} style={{ background: '#141824' }}>{s.title}</option>)}
+                      {['Информационная консультация', 'Наставничество', 'Второе мнение', 'МРТ-диагностика', 'Обучение'].map(s => (
+                        <option key={s} value={s} style={{ background: '#141824' }}>{s}</option>
+                      ))}
                     </select>
                   </div>
 
