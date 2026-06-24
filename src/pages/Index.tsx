@@ -595,6 +595,7 @@ const NAV_ITEMS = [
   { label: "Преподавание", href: "#teaching" },
   { label: "Где принимаю", href: "#prices" },
   { label: "Отзывы", href: "#reviews" },
+  { label: "Материалы", href: "#materials" },
   { label: "Кабинет", href: "#cabinet" },
   { label: "Контакты", href: "#contacts" },
 ];
@@ -1097,7 +1098,7 @@ export default function Index() {
           </div>
 
           {/* МАТЕРИАЛЫ BLOCK */}
-          <div className="mt-16 flex gap-8 items-stretch">
+          <div id="materials" className="mt-16 flex gap-8 items-stretch">
             {/* Левая часть — контент */}
             <div className="flex flex-col justify-center flex-1 min-w-0">
               <div className="flex items-center gap-3 mb-3">
