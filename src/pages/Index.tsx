@@ -1945,7 +1945,7 @@ export default function Index() {
           </div>
           <div className="pt-5 flex flex-col sm:flex-row items-center justify-between gap-2" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
             <p className="text-xs text-muted-foreground">
-              © 2026 Попов Алексей Юрьевич · Самозанятый · ИНН 644101988643
+              Все права защищены. © 2026 Попов Алексей Юрьевич · Самозанятый · ИНН 644101988643
             </p>
             <a href="mailto:brainmodel@yandex.ru" className="text-xs text-muted-foreground hover:text-primary transition-colors">
               brainmodel@yandex.ru
