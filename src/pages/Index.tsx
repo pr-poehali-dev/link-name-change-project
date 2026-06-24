@@ -233,6 +233,26 @@ E-mail: brainmodel@yandex.ru`,
 const DOCTOR_IMG = "https://cdn.poehali.dev/projects/e2a2e8fc-1c7b-4d0d-94e9-d091c4a3a812/bucket/c9926d32-0b34-4ec9-81c9-51000ba2487c.png";
 const MRI_IMG = "https://cdn.poehali.dev/projects/e2a2e8fc-1c7b-4d0d-94e9-d091c4a3a812/files/2bbb39b7-8dfe-4af1-81b6-2b31f86c11a6.jpg";
 
+const MATERIALS_TABS = [
+  { key: 'guides', label: 'Гайды', icon: 'Map' },
+  { key: 'manuals', label: 'Методички', icon: 'FileText' },
+  { key: 'checklists', label: 'Чек-листы', icon: 'ClipboardList' },
+  { key: 'videos', label: 'Видеоуроки', icon: 'PlayCircle' },
+  { key: 'courses', label: 'Курсы', icon: 'GraduationCap' },
+  { key: 'cases', label: 'Кейсы', icon: 'FolderOpen' },
+] as const;
+
+type MaterialsTabKey = typeof MATERIALS_TABS[number]['key'];
+
+const MATERIALS_CATALOG: Record<MaterialsTabKey, { name: string; link: string; price: string; buyLink: string }[]> = {
+  guides: [],
+  manuals: [],
+  checklists: [],
+  videos: [],
+  courses: [],
+  cases: [],
+};
+
 const SERVICES = [
   { icon: "ScanLine", title: "МРТ-диагностика", desc: "Магнитно-резонансная томография всех суставов конечностей, включая ВНЧС. Специализация на мышечно-скелетной системе.", links: [{ label: "info", tooltip: "Прейскурант ВОККДЦ", href: "https://vodc.ru/34/" }] },
   { icon: "Cpu", title: "КТ-исследования", desc: "Консультирование и второе мнение по компьютерно-томографическим исследованиям костно-суставной системы.", links: [{ label: "info", tooltip: "Прейскурант АНО ДПО ИПКМК", href: "https://univerexpert.ru/telemedicine/" }] },
@@ -347,6 +367,7 @@ export default function Index() {
   const [activeDoc, setActiveDoc] = useState<string | null>(null);
   const [serviceType, setServiceType] = useState<'consultation' | 'mentoring' | 'info-consult' | null>(null);
   const [showInfoConsultBanner, setShowInfoConsultBanner] = useState(false);
+  const [activeMaterialsTab, setActiveMaterialsTab] = useState<string | null>(null);
   const [consentDocs, setConsentDocs] = useState(false);
   const [consentPd, setConsentPd] = useState(false);
   const [consentNewsletter, setConsentNewsletter] = useState(false);
@@ -759,8 +780,122 @@ export default function Index() {
               </div>
             </div>
           </div>
+
+          {/* МАТЕРИАЛЫ BLOCK */}
+          <div className="mt-16">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="section-tag">Материалы</div>
+            </div>
+            <p className="text-muted-foreground text-sm mb-8">Полезные прикладные материалы для врачей-рентгенологов</p>
+            <div className="flex flex-wrap gap-3">
+              {MATERIALS_TABS.map(tab => (
+                <button
+                  key={tab.key}
+                  type="button"
+                  onClick={() => setActiveMaterialsTab(tab.key)}
+                  className="flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-medium transition-all"
+                  style={{
+                    background: 'rgba(255,255,255,0.04)',
+                    border: '1.5px solid rgba(255,255,255,0.1)',
+                  }}
+                  onMouseEnter={e => {
+                    (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(0,229,255,0.5)';
+                    (e.currentTarget as HTMLButtonElement).style.background = 'rgba(0,229,255,0.08)';
+                    (e.currentTarget as HTMLButtonElement).style.color = 'hsl(186,100%,50%)';
+                  }}
+                  onMouseLeave={e => {
+                    (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(255,255,255,0.1)';
+                    (e.currentTarget as HTMLButtonElement).style.background = 'rgba(255,255,255,0.04)';
+                    (e.currentTarget as HTMLButtonElement).style.color = '';
+                  }}
+                >
+                  <Icon name={tab.icon} size={16} className="neon-text" />
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
+
+      {/* MATERIALS CATALOG MODAL */}
+      {activeMaterialsTab && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+          style={{ background: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(10px)' }}
+          onClick={() => setActiveMaterialsTab(null)}>
+          <div className="relative w-full max-w-4xl max-h-[85vh] flex flex-col rounded-2xl overflow-hidden"
+            style={{ background: 'rgba(14,18,28,0.99)', border: '1px solid rgba(0,229,255,0.2)' }}
+            onClick={e => e.stopPropagation()}>
+            <div className="flex items-center justify-between px-6 py-4 shrink-0" style={{ borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+              <div className="flex items-center gap-3">
+                <Icon name={MATERIALS_TABS.find(t => t.key === activeMaterialsTab)?.icon ?? 'FolderOpen'} size={18} className="neon-text" />
+                <h3 className="font-semibold text-base">{MATERIALS_TABS.find(t => t.key === activeMaterialsTab)?.label}</h3>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="flex gap-2">
+                  {MATERIALS_TABS.map(tab => (
+                    <button
+                      key={tab.key}
+                      type="button"
+                      onClick={() => setActiveMaterialsTab(tab.key)}
+                      className="px-3 py-1.5 rounded-lg text-xs font-medium transition-all"
+                      style={{
+                        background: activeMaterialsTab === tab.key ? 'rgba(0,229,255,0.15)' : 'rgba(255,255,255,0.04)',
+                        border: activeMaterialsTab === tab.key ? '1px solid rgba(0,229,255,0.5)' : '1px solid rgba(255,255,255,0.08)',
+                        color: activeMaterialsTab === tab.key ? 'hsl(186,100%,50%)' : '',
+                      }}
+                    >{tab.label}</button>
+                  ))}
+                </div>
+                <button onClick={() => setActiveMaterialsTab(null)} className="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-primary transition-colors shrink-0" style={{ background: 'rgba(255,255,255,0.05)' }}>
+                  <Icon name="X" size={16} />
+                </button>
+              </div>
+            </div>
+            <div className="overflow-auto flex-1">
+              {MATERIALS_CATALOG[activeMaterialsTab as MaterialsTabKey]?.length === 0 ? (
+                <div className="flex flex-col items-center justify-center py-20 text-muted-foreground">
+                  <Icon name="Clock" size={36} className="mb-4 opacity-30" />
+                  <p className="text-sm">Материалы скоро появятся</p>
+                </div>
+              ) : (
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+                      <th className="text-left px-4 py-3 text-xs text-muted-foreground font-medium w-10">#</th>
+                      <th className="text-left px-4 py-3 text-xs text-muted-foreground font-medium">Название</th>
+                      <th className="text-left px-4 py-3 text-xs text-muted-foreground font-medium">Ссылка</th>
+                      <th className="text-left px-4 py-3 text-xs text-muted-foreground font-medium w-28">Цена</th>
+                      <th className="text-left px-4 py-3 text-xs text-muted-foreground font-medium w-28"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {MATERIALS_CATALOG[activeMaterialsTab as MaterialsTabKey].map((item, i) => (
+                      <tr key={i} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}
+                        className="hover:bg-white/[0.02] transition-colors">
+                        <td className="px-4 py-3 text-muted-foreground">{i + 1}</td>
+                        <td className="px-4 py-3 font-medium">{item.name}</td>
+                        <td className="px-4 py-3">
+                          <a href={item.link} target="_blank" rel="noopener noreferrer" className="neon-text hover:underline flex items-center gap-1 w-fit">
+                            Открыть <Icon name="ExternalLink" size={11} />
+                          </a>
+                        </td>
+                        <td className="px-4 py-3 neon-text font-semibold">{item.price}</td>
+                        <td className="px-4 py-3">
+                          <a href={item.buyLink} target="_blank" rel="noopener noreferrer"
+                            className="neon-btn px-4 py-1.5 rounded-lg text-xs font-medium inline-flex items-center gap-1">
+                            <Icon name="ShoppingCart" size={12} /> Купить
+                          </a>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* ABOUT */}
       <section id="about" className="py-24 relative" style={{ background: 'rgba(0,229,255,0.02)' }}>
