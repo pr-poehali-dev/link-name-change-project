@@ -244,11 +244,31 @@ const MATERIALS_TABS = [
 
 type MaterialsTabKey = typeof MATERIALS_TABS[number]['key'];
 
-const MATERIALS_CATALOG: Record<MaterialsTabKey, { name: string; link: string; price: string; buyLink: string }[]> = {
+const MATERIALS_CATALOG: Record<MaterialsTabKey, { name: string; link: string; price: string; buyLink: string; discount?: boolean; bundleLinks?: string[] }[]> = {
   guides: [],
-  manuals: [],
-  checklists: [],
-  videos: [],
+  manuals: [
+    { name: 'МРТ-исследование суставов: уверенное оформление без ошибок', link: 'https://disk.yandex.ru/i/_nTRyRBus0BF1g', price: '1 000 ₽', buyLink: 'https://disk.yandex.ru/i/_nTRyRBus0BF1g' },
+  ],
+  checklists: [
+    { name: 'Чек-лист по анатомическим «фишкам» крупных суставов', link: 'https://disk.yandex.ru/d/1GbFsbXnCBBFwg', price: '200 ₽', buyLink: 'https://disk.yandex.ru/d/1GbFsbXnCBBFwg' },
+  ],
+  videos: [
+    { name: 'МРТ-фишки плечевого сустава, 16:02', link: 'https://disk.yandex.ru/i/4U9tvjMqdw81Wg', price: '300 ₽', buyLink: 'https://disk.yandex.ru/i/4U9tvjMqdw81Wg' },
+    { name: 'МРТ-фишки локтевого сустава, 12:20', link: 'https://disk.yandex.ru/i/nM909ojI7vrWMw', price: '330 ₽', buyLink: 'https://disk.yandex.ru/i/nM909ojI7vrWMw' },
+    { name: 'МРТ-фишки кистевого сустава, 14:22', link: 'https://disk.yandex.ru/i/_PO5CNVKC-1Oew', price: '300 ₽', buyLink: 'https://disk.yandex.ru/i/_PO5CNVKC-1Oew' },
+    {
+      name: 'МРТ-фишки суставов верхней конечности: блок из 3-х видео',
+      link: '',
+      price: '800 ₽',
+      buyLink: 'mailto:brainmodel@yandex.ru',
+      discount: true,
+      bundleLinks: [
+        'https://disk.yandex.ru/i/4U9tvjMqdw81Wg',
+        'https://disk.yandex.ru/i/nM909ojI7vrWMw',
+        'https://disk.yandex.ru/i/_PO5CNVKC-1Oew',
+      ],
+    },
+  ],
   courses: [],
   cases: [],
 };
@@ -869,13 +889,28 @@ export default function Index() {
                   <tbody>
                     {MATERIALS_CATALOG[activeMaterialsTab as MaterialsTabKey].map((item, i) => (
                       <tr key={i} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}
-                        className="hover:bg-white/[0.02] transition-colors">
+                        className="hover:bg-white/[0.02] transition-colors relative">
                         <td className="px-4 py-3 text-muted-foreground">{i + 1}</td>
-                        <td className="px-4 py-3 font-medium">{item.name}</td>
+                        <td className="px-4 py-3 font-medium">
+                          <div className="relative inline-flex items-center gap-2">
+                            {item.name}
+                            {item.discount && (
+                              <span className="text-xs font-bold px-2 py-0.5 rounded-md shrink-0" style={{ background: '#ff2d78', color: '#fff' }}>Скидка</span>
+                            )}
+                          </div>
+                          {item.bundleLinks && (
+                            <div className="mt-1 flex flex-col gap-0.5">
+                              {item.bundleLinks.map((l, bi) => (
+                                <span key={bi} className="text-xs text-muted-foreground">• видео {bi + 1}</span>
+                              ))}
+                            </div>
+                          )}
+                        </td>
                         <td className="px-4 py-3">
-                          <a href={item.link} target="_blank" rel="noopener noreferrer" className="neon-text hover:underline flex items-center gap-1 w-fit">
-                            Открыть <Icon name="ExternalLink" size={11} />
-                          </a>
+                          <span className="flex items-center gap-1.5 text-muted-foreground text-xs">
+                            <Icon name="Lock" size={13} />
+                            Доступно после оплаты
+                          </span>
                         </td>
                         <td className="px-4 py-3 neon-text font-semibold">{item.price}</td>
                         <td className="px-4 py-3">
