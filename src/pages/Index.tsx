@@ -1264,11 +1264,19 @@ export default function Index() {
                     в разделе «Направления работы».
                   </p>
                 </div>
-                <div className="px-6 pb-5">
+                <div className="px-6 pb-5 flex gap-3">
                   <button
                     onClick={() => setShowInfoConsultBanner(false)}
                     className="neon-btn px-6 py-2.5 rounded-xl text-sm"
                   >Понятно, продолжить запись</button>
+                  <button
+                    onClick={() => {
+                      setShowInfoConsultBanner(false);
+                      setServiceType(null);
+                    }}
+                    className="px-6 py-2.5 rounded-xl text-sm transition-all"
+                    style={{ border: '1px solid rgba(255,255,255,0.15)', color: 'hsl(var(--muted-foreground))' }}
+                  >Отклонить</button>
                 </div>
               </div>
             </div>
@@ -1287,10 +1295,14 @@ export default function Index() {
                 </span>
               </p>
               <p className="text-muted-foreground mt-2 text-sm">Мы свяжемся с вами по номеру {form.phone} для подтверждения</p>
-              <button onClick={() => { setBooked(false); setSelectedDate(null); setSelectedTime(null); setForm({ name: "", phone: "", service: "" }); setServiceType(null); setConsentPd(false); setConsentNewsletter(false); }}
-                className="mt-8 px-6 py-2.5 rounded-lg text-sm transition-all" style={{ border: '1px solid rgba(0,229,255,0.3)', color: 'hsl(186,100%,50%)' }}>
-                Записать ещё раз
-              </button>
+              <a
+                href="https://radiologyart.getcourse.ru/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-8 neon-btn px-8 py-3 rounded-xl text-sm inline-flex items-center gap-2"
+              >
+                <Icon name="ShoppingCart" size={16} /> Купить
+              </a>
             </div>
           ) : serviceType === null ? (
             <p className="text-center text-muted-foreground text-sm mt-4">Выберите тип услуги выше, чтобы открыть календарь</p>
