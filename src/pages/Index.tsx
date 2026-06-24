@@ -345,7 +345,8 @@ export default function Index() {
   const [form, setForm] = useState({ name: "", phone: "", service: "" });
   const [booked, setBooked] = useState(false);
   const [activeDoc, setActiveDoc] = useState<string | null>(null);
-  const [serviceType, setServiceType] = useState<'consultation' | 'mentoring' | null>(null);
+  const [serviceType, setServiceType] = useState<'consultation' | 'mentoring' | 'info-consult' | null>(null);
+  const [showInfoConsultBanner, setShowInfoConsultBanner] = useState(false);
   const [consentDocs, setConsentDocs] = useState(false);
   const [consentPd, setConsentPd] = useState(false);
   const [consentNewsletter, setConsentNewsletter] = useState(false);
@@ -690,6 +691,74 @@ export default function Index() {
               </div>
             ))}
           </div>
+
+          {/* УСЛУГИ BLOCK */}
+          <div id="services-block" className="mt-16">
+            <div className="flex items-center gap-3 mb-8">
+              <div className="section-tag">Услуги</div>
+            </div>
+            <div className="grid sm:grid-cols-3 gap-5">
+              {/* Наставничество */}
+              <div className="glass-card p-6 group transition-all duration-300 hover:-translate-y-1"
+                onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.borderColor = 'rgba(0,229,255,0.3)'; (e.currentTarget as HTMLDivElement).style.boxShadow = '0 0 30px rgba(0,229,255,0.08)'; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.borderColor = 'rgba(255,255,255,0.08)'; (e.currentTarget as HTMLDivElement).style.boxShadow = 'none'; }}>
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-all group-hover:scale-110" style={{ background: 'rgba(0,229,255,0.1)', border: '1px solid rgba(0,229,255,0.2)' }}>
+                  <Icon name="GraduationCap" size={22} className="neon-text" />
+                </div>
+                <h3 className="font-semibold text-lg mb-2">Наставничество</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed mb-4">Формирование правильных профессиональных навыков у начинающих врачей-рентгенологов.</p>
+                <button
+                  type="button"
+                  className="text-sm font-bold neon-text hover:underline flex items-center gap-1"
+                  onClick={() => {
+                    document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth' });
+                    setTimeout(() => { setServiceType('mentoring'); }, 600);
+                  }}
+                >Записаться <Icon name="ArrowRight" size={12} /></button>
+              </div>
+
+              {/* Информационная консультация */}
+              <div className="glass-card p-6 group transition-all duration-300 hover:-translate-y-1"
+                onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.borderColor = 'rgba(0,229,255,0.3)'; (e.currentTarget as HTMLDivElement).style.boxShadow = '0 0 30px rgba(0,229,255,0.08)'; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.borderColor = 'rgba(255,255,255,0.08)'; (e.currentTarget as HTMLDivElement).style.boxShadow = 'none'; }}>
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-all group-hover:scale-110" style={{ background: 'rgba(0,229,255,0.1)', border: '1px solid rgba(0,229,255,0.2)' }}>
+                  <Icon name="BookOpen" size={22} className="neon-text" />
+                </div>
+                <h3 className="font-semibold text-lg mb-2">Информационная консультация</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed mb-4">Решение насущных вопросов теории и МРТ практики для врачей-рентгенологов.</p>
+                <button
+                  type="button"
+                  className="text-sm font-bold neon-text hover:underline flex items-center gap-1"
+                  onClick={() => {
+                    document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth' });
+                    setTimeout(() => {
+                      setServiceType('info-consult');
+                      setShowInfoConsultBanner(true);
+                    }, 600);
+                  }}
+                >Записаться <Icon name="ArrowRight" size={12} /></button>
+              </div>
+
+              {/* Второе мнение */}
+              <div className="glass-card p-6 group transition-all duration-300 hover:-translate-y-1"
+                onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.borderColor = 'rgba(0,229,255,0.3)'; (e.currentTarget as HTMLDivElement).style.boxShadow = '0 0 30px rgba(0,229,255,0.08)'; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.borderColor = 'rgba(255,255,255,0.08)'; (e.currentTarget as HTMLDivElement).style.boxShadow = 'none'; }}>
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-all group-hover:scale-110" style={{ background: 'rgba(0,229,255,0.1)', border: '1px solid rgba(0,229,255,0.2)' }}>
+                  <Icon name="MessageSquare" size={22} className="neon-text" />
+                </div>
+                <h3 className="font-semibold text-lg mb-2">Второе мнение</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed mb-4">Независимая экспертная оценка сложных случаев: травматология, онкология, педиатрическая патология, спортивная травма.</p>
+                <button
+                  type="button"
+                  className="text-sm font-bold neon-text hover:underline flex items-center gap-1"
+                  onClick={() => {
+                    document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth' });
+                    setTimeout(() => { setServiceType('consultation'); }, 600);
+                  }}
+                >Записаться <Icon name="ArrowRight" size={12} /></button>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -956,15 +1025,22 @@ export default function Index() {
           </div>
 
           {/* SERVICE TYPE SELECTOR */}
-          <div className="flex justify-center gap-4 mb-10">
+          <div className="flex flex-wrap justify-center gap-4 mb-10">
             {([
               { key: 'consultation' as const, label: 'Консультация', icon: 'MessageCircle', desc: 'Разбор снимков и диагностика' },
               { key: 'mentoring' as const, label: 'Наставничество', icon: 'GraduationCap', desc: 'Обучение и профессиональный рост' },
+              { key: 'info-consult' as const, label: 'Информационная консультация', icon: 'BookOpen', desc: 'Ваши вопросы – мои ответы (теория и практика МРТ)' },
             ]).map(s => (
               <button
                 key={s.key}
+                id={s.key === 'info-consult' ? 'booking-info-consult' : undefined}
                 type="button"
-                onClick={() => { setServiceType(s.key); setSelectedDate(null); setSelectedTime(null); }}
+                onClick={() => {
+                  setServiceType(s.key);
+                  setSelectedDate(null);
+                  setSelectedTime(null);
+                  if (s.key === 'info-consult') setShowInfoConsultBanner(true);
+                }}
                 className="flex flex-col items-center gap-2 px-8 py-5 rounded-2xl transition-all text-center w-48"
                 style={{
                   background: serviceType === s.key ? 'rgba(0,229,255,0.12)' : 'rgba(255,255,255,0.03)',
@@ -978,6 +1054,47 @@ export default function Index() {
               </button>
             ))}
           </div>
+
+          {/* INFO CONSULT BANNER */}
+          {showInfoConsultBanner && (
+            <div className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+              style={{ background: 'rgba(0,0,0,0.8)', backdropFilter: 'blur(8px)' }}
+              onClick={() => setShowInfoConsultBanner(false)}>
+              <div className="relative w-full max-w-2xl rounded-2xl overflow-hidden"
+                style={{ background: 'rgba(14,18,28,0.98)', border: '1px solid rgba(0,229,255,0.2)' }}
+                onClick={e => e.stopPropagation()}>
+                <div className="flex items-center justify-between px-6 py-4" style={{ borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+                  <h3 className="font-semibold text-base neon-text">Информационная консультация</h3>
+                  <button onClick={() => setShowInfoConsultBanner(false)} className="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-primary transition-colors" style={{ background: 'rgba(255,255,255,0.05)' }}>
+                    <Icon name="X" size={16} />
+                  </button>
+                </div>
+                <div className="px-6 py-5 text-sm text-muted-foreground leading-relaxed space-y-3">
+                  <p>Информационная консультация несёт в себе цель:</p>
+                  <p><span className="text-foreground font-medium">а)</span> ликвидации пробела знаний в конкретных теоретических вопросах (заранее сформулируйте ваш запрос по нужной теме)</p>
+                  <p><span className="text-foreground font-medium">б)</span> наработки практических умений по оценке МРТ-исследований.</p>
+                  <p>Информационная консультация <span className="text-foreground">не заменяет</span> второе мнение эксперта по конкретному кейсу, т.к. объясняет общие закономерности при данном виде патологии и не ставит конкретный диагноз/заключение конкретному пациенту.</p>
+                  <p>Если у вас есть вопросы по конкретному МРТ-исследованию конкретного пациента, вам надо оформить услугу{' '}
+                    <button
+                      type="button"
+                      className="neon-text hover:underline font-medium"
+                      onClick={() => {
+                        setShowInfoConsultBanner(false);
+                        document.getElementById('services-block')?.scrollIntoView({ behavior: 'smooth' });
+                      }}
+                    >«Второе мнение»</button>{' '}
+                    в разделе «Направления работы».
+                  </p>
+                </div>
+                <div className="px-6 pb-5">
+                  <button
+                    onClick={() => setShowInfoConsultBanner(false)}
+                    className="neon-btn px-6 py-2.5 rounded-xl text-sm"
+                  >Понятно, продолжить запись</button>
+                </div>
+              </div>
+            </div>
+          )}
 
           {booked ? (
             <div className="glass-card-neon p-12 text-center max-w-lg mx-auto">
