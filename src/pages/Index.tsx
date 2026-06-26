@@ -1707,6 +1707,27 @@ export default function Index() {
                   <label className="flex items-start gap-3 cursor-pointer">
                     <button
                       type="button"
+                      onClick={() => setConsentPd(v => !v)}
+                      className="mt-0.5 shrink-0 w-4 h-4 rounded flex items-center justify-center transition-all border"
+                      style={{
+                        background: consentPd ? 'hsl(var(--neon))' : 'transparent',
+                        borderColor: consentPd ? 'hsl(var(--neon))' : 'rgba(255,255,255,0.3)',
+                        boxShadow: consentPd ? '0 0 8px rgba(0,229,255,0.4)' : 'none',
+                      }}
+                    >
+                      {consentPd && <Icon name="Check" size={11} style={{ color: 'hsl(220,20%,6%)' }} />}
+                    </button>
+                    <span className="text-xs text-muted-foreground leading-relaxed">
+                      Я даю{' '}
+                      <button type="button" onClick={() => setActiveDoc('pd')} className="neon-text hover:underline">согласие на обработку персональных данных</button>
+                      {' '}в соответствии с{' '}
+                      <button type="button" onClick={() => setActiveDoc('privacy')} className="neon-text hover:underline">политикой конфиденциальности</button>
+                    </span>
+                  </label>
+
+                  <label className="flex items-start gap-3 cursor-pointer">
+                    <button
+                      type="button"
                       onClick={() => setConsentDocs(v => !v)}
                       className="mt-0.5 shrink-0 w-4 h-4 rounded flex items-center justify-center transition-all border"
                       style={{
@@ -1718,28 +1739,27 @@ export default function Index() {
                       {consentDocs && <Icon name="Check" size={11} style={{ color: 'hsl(220,20%,6%)' }} />}
                     </button>
                     <span className="text-xs text-muted-foreground leading-relaxed">
-                      Я ознакомлен(а) с{' '}
-                      <button type="button" onClick={() => setActiveDoc('privacy')} className="neon-text hover:underline">политикой обработки персональных данных</button>
-                      {' '}и{' '}
-                      <button type="button" onClick={() => setActiveDoc('offer')} className="neon-text hover:underline">офертой на оказание услуг</button>
+                      Я подтверждаю ознакомление и согласие с{' '}
+                      <button type="button" onClick={() => setActiveDoc('offer')} className="neon-text hover:underline">договором-оферты</button>
                     </span>
                   </label>
 
-                  <label className="flex items-start gap-2 cursor-pointer">
-                    <input type="checkbox" checked={consentPd} onChange={e => setConsentPd(e.target.checked)}
-                      className="mt-0.5 accent-cyan-400 shrink-0" />
-                    <span className="text-xs text-muted-foreground">
+                  <label className="flex items-start gap-3 cursor-pointer">
+                    <button
+                      type="button"
+                      onClick={() => setConsentNewsletter(v => !v)}
+                      className="mt-0.5 shrink-0 w-4 h-4 rounded flex items-center justify-center transition-all border"
+                      style={{
+                        background: consentNewsletter ? 'hsl(var(--neon))' : 'transparent',
+                        borderColor: consentNewsletter ? 'hsl(var(--neon))' : 'rgba(255,255,255,0.3)',
+                        boxShadow: consentNewsletter ? '0 0 8px rgba(0,229,255,0.4)' : 'none',
+                      }}
+                    >
+                      {consentNewsletter && <Icon name="Check" size={11} style={{ color: 'hsl(220,20%,6%)' }} />}
+                    </button>
+                    <span className="text-xs text-muted-foreground leading-relaxed">
                       Я даю{' '}
-                      <button type="button" onClick={() => setActiveDoc('pd')} className="neon-text hover:underline">согласие на обработку персональных данных</button>
-                    </span>
-                  </label>
-
-                  <label className="flex items-start gap-2 cursor-pointer">
-                    <input type="checkbox" checked={consentNewsletter} onChange={e => setConsentNewsletter(e.target.checked)}
-                      className="mt-0.5 accent-cyan-400 shrink-0" />
-                    <span className="text-xs text-muted-foreground">
-                      Я даю{' '}
-                      <button type="button" onClick={() => setActiveDoc('newsletter')} className="neon-text hover:underline">согласие на получение информационной рассылки</button>
+                      <button type="button" onClick={() => setActiveDoc('newsletter')} className="neon-text hover:underline">согласие на получение информационной и рекламной рассылки</button>
                     </span>
                   </label>
 
