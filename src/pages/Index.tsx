@@ -1014,6 +1014,7 @@ export default function Index() {
   const [cookieDismissed, setCookieDismissed] = useState(() => {
     try { return localStorage.getItem("cookie_accepted") === "1"; } catch { return false; }
   });
+  const [cookieConsent, setCookieConsent] = useState(false);
 
   const [busySlots, setBusySlots] = useState<string[]>([]);
   const [fullDays, setFullDays] = useState<Set<string>>(new Set());
@@ -1120,18 +1121,38 @@ export default function Index() {
 
       {/* COOKIE BANNER */}
       {!cookieDismissed && (
-        <div className="fixed bottom-0 left-0 right-0 z-[110] p-4 flex justify-center">
-          <div className="w-full max-w-2xl rounded-2xl px-6 py-4 flex flex-col sm:flex-row items-start sm:items-center gap-4"
-            style={{ background: 'rgba(14,18,28,0.97)', border: '1px solid rgba(0,229,255,0.2)', boxShadow: '0 0 30px rgba(0,229,255,0.08)' }}>
-            <p className="text-xs text-muted-foreground flex-1">
-              Сайт использует файлы cookie для корректной работы и аналитики.{' '}
+        <div className="fixed inset-0 z-[110] flex items-center justify-center p-4" style={{ background: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(6px)' }}>
+          <div className="w-full max-w-lg rounded-2xl px-6 py-6 flex flex-col gap-4"
+            style={{ background: 'rgba(14,18,28,0.98)', border: '1px solid rgba(0,229,255,0.2)', boxShadow: '0 0 40px rgba(0,229,255,0.1)' }}>
+            <h3 className="text-sm font-semibold text-white">Политика обработки файлов cookie</h3>
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              Сайт использует файлы cookie и иные данные для корректной работы, аналитики и персонализации.{' '}
               <button onClick={() => setActiveDoc('cookies')} className="neon-text hover:underline">Подробнее</button>
             </p>
+            <label className="flex items-start gap-3 cursor-pointer" onClick={() => setCookieConsent(v => !v)}>
+              <button
+                type="button"
+                className="mt-0.5 shrink-0 w-4 h-4 rounded flex items-center justify-center transition-all border"
+                style={{
+                  background: cookieConsent ? 'hsl(var(--neon))' : 'transparent',
+                  borderColor: cookieConsent ? 'hsl(var(--neon))' : 'rgba(255,255,255,0.3)',
+                  boxShadow: cookieConsent ? '0 0 8px rgba(0,229,255,0.4)' : 'none',
+                }}
+              >
+                {cookieConsent && <Icon name="Check" size={11} style={{ color: 'hsl(220,20%,6%)' }} />}
+              </button>
+              <span className="text-xs text-muted-foreground leading-relaxed">
+                Я ознакомлен(а) с{' '}
+                <button type="button" onClick={e => { e.stopPropagation(); setActiveDoc('cookies'); }} className="neon-text hover:underline">политикой обработки файлов cookie</button>
+                {' '}и согласен(а) с её условиями
+              </span>
+            </label>
             <button
-              className="neon-btn px-5 py-2 rounded-xl text-xs shrink-0"
+              disabled={!cookieConsent}
+              className="neon-btn px-5 py-2 rounded-xl text-xs self-end disabled:opacity-40 disabled:cursor-not-allowed transition-opacity"
               onClick={() => { localStorage.setItem('cookie_accepted', '1'); setCookieDismissed(true); }}
             >
-              Принять
+              Принять и продолжить
             </button>
           </div>
         </div>
