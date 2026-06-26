@@ -917,6 +917,7 @@ export default function Index() {
   const [ownerMode, setOwnerMode] = useState(false);
   const [answerText, setAnswerText] = useState<Record<number,string>>({});
   const [answeringId, setAnsweringId] = useState<number|null>(null);
+  const [cabinetConsent, setCabinetConsent] = useState(false);
   const [cabinetUnlocked, setCabinetUnlocked] = useState(false);
   const [cabinetName, setCabinetName] = useState('');
 
@@ -1994,6 +1995,33 @@ export default function Index() {
           {/* Форма входа */}
           {!cabinetUnlocked ? (
             <div className="glass-card p-8">
+              {/* Баннер согласия */}
+              {!cabinetConsent && (
+                <div className="mb-6 p-4 rounded-xl flex flex-col gap-3" style={{ background: 'rgba(0,229,255,0.06)', border: '1px solid rgba(0,229,255,0.2)' }}>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    Для использования Личного кабинета необходимо ваше согласие
+                  </p>
+                  <label className="flex items-start gap-3 cursor-pointer" onClick={() => setCabinetConsent(v => !v)}>
+                    <button
+                      type="button"
+                      className="mt-0.5 shrink-0 w-4 h-4 rounded flex items-center justify-center transition-all border"
+                      style={{
+                        background: cabinetConsent ? 'hsl(var(--neon))' : 'transparent',
+                        borderColor: cabinetConsent ? 'hsl(var(--neon))' : 'rgba(255,255,255,0.3)',
+                        boxShadow: cabinetConsent ? '0 0 8px rgba(0,229,255,0.4)' : 'none',
+                      }}
+                    >
+                      {cabinetConsent && <Icon name="Check" size={11} style={{ color: 'hsl(220,20%,6%)' }} />}
+                    </button>
+                    <span className="text-xs text-muted-foreground leading-relaxed">
+                      Я даю{' '}
+                      <button type="button" onClick={e => { e.stopPropagation(); setActiveDoc('userAgreementConsent'); }} className="neon-text hover:underline">согласие</button>
+                      {' '}в соответствии с{' '}
+                      <button type="button" onClick={e => { e.stopPropagation(); setActiveDoc('userAgreement'); }} className="neon-text hover:underline">Пользовательским соглашением</button>
+                    </span>
+                  </label>
+                </div>
+              )}
               <form onSubmit={async (e) => {
                 e.preventDefault();
                 if (!cabinetPhone.trim()) return;
@@ -2045,7 +2073,7 @@ export default function Index() {
                     onFocus={e => (e.currentTarget.style.borderColor = 'rgba(0,229,255,0.6)')}
                     onBlur={e => (e.currentTarget.style.borderColor = 'rgba(0,229,255,0.2)')}
                   />
-                  <button type="submit" disabled={cabinetLoading} className="neon-btn px-6 py-3 rounded-xl text-sm flex items-center gap-2 disabled:opacity-50">
+                  <button type="submit" disabled={cabinetLoading || !cabinetConsent} className="neon-btn px-6 py-3 rounded-xl text-sm flex items-center gap-2 disabled:opacity-50">
                     <Icon name="Search" size={16} />
                     {cabinetLoading ? 'Поиск...' : 'Войти'}
                   </button>
