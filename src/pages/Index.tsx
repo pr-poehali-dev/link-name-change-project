@@ -2664,13 +2664,16 @@ export default function Index() {
                 { key: 'offer', label: 'Оферта на оказание услуг' },
                 { key: 'sitePrivacy', label: 'Политика конфиденциальности сайта' },
                 { key: 'userAgreement', label: 'Пользовательское соглашение' },
-                { key: 'userAgreementConsent', label: 'Согласие к пользовательскому соглашению' },
               ] as { key: string; label: string }[]).map(doc => (
                 <button key={doc.key} onClick={() => setActiveDoc(doc.key)}
                   className="text-xs text-muted-foreground hover:text-primary transition-colors text-left">
                   {doc.label}
                 </button>
               ))}
+              <a href="https://disk.yandex.ru/i/7PgURj5qrCNFFw" target="_blank" rel="noopener noreferrer"
+                className="text-xs text-muted-foreground hover:text-primary transition-colors text-left">
+                Согласие к пользовательскому соглашению
+              </a>
             </div>
           </div>
           <div className="pt-5 flex flex-col sm:flex-row items-center justify-between gap-2" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
