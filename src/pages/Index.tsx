@@ -1011,6 +1011,18 @@ const MATERIALS_CATALOG: Record<MaterialsTabKey, { name: string; link: string; p
         'Кистевой сустав',
       ],
     },
+    {
+      name: 'АНАТОМИЧЕСКИЕ "ФИШКИ" НИЖНЕЙ КОНЕЧНОСТИ НА МРТ (3 ВИДЕО)',
+      link: '',
+      price: '999 ₽',
+      buyLink: 'https://radiologyart.getcourse.ru/showcase?trainingId=935655155',
+      active: true,
+      bundleLinks: [
+        'Тазобедренный сустав',
+        'Коленный сустав',
+        'Голеностопный сустав',
+      ],
+    },
   ],
   courses: [],
   cases: [],
