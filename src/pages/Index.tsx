@@ -1709,7 +1709,7 @@ export default function Index() {
                           {item.bundleLinks && (
                             <div className="mt-1 flex flex-col gap-0.5">
                               {item.bundleLinks.map((l, bi) => (
-                                <span key={bi} className="text-xs text-muted-foreground">Видео {bi + 1} «{l}»</span>
+                                <span key={bi} className="text-xs text-muted-foreground">{activeMaterialsTab === 'checklists' ? 'Файл' : 'Видео'} {bi + 1} «{l}»</span>
                               ))}
                             </div>
                           )}
