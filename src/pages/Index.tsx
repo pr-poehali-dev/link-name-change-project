@@ -997,7 +997,23 @@ const MATERIALS_CATALOG: Record<MaterialsTabKey, { name: string; link: string; p
   manuals: [
     { name: 'МРТ-исследование суставов: уверенное оформление без ошибок', link: 'https://disk.yandex.ru/i/_nTRyRBus0BF1g', price: '999 ₽', buyLink: 'https://radiologyart.getcourse.ru/showcase?trainingId=935650598', active: true },
   ],
-  checklists: [],
+  checklists: [
+    {
+      name: 'ШАБЛОНЫ МРТ-ПРОТОКОЛОВ НОРМЫ СУСТАВОВ (6 шт. Word .docx)',
+      link: '',
+      price: '599 ₽',
+      buyLink: 'https://radiologyart.getcourse.ru/showcase?trainingId=935651127',
+      active: true,
+      bundleLinks: [
+        'Плечевой сустав',
+        'Локтевой сустав',
+        'Кистевой сустав',
+        'Тазобедренный сустав',
+        'Коленный сустав',
+        'Голеностопный сустав',
+      ],
+    },
+  ],
   videos: [
     {
       name: 'АНАТОМИЧЕСКИЕ "ФИШКИ" ВЕРХНЕЙ КОНЕЧНОСТИ НА МРТ (3 ВИДЕО)',
