@@ -999,19 +999,16 @@ const MATERIALS_CATALOG: Record<MaterialsTabKey, { name: string; link: string; p
   ],
   checklists: [],
   videos: [
-    { name: 'МРТ-фишки плечевого сустава, 16:02', link: 'https://disk.yandex.ru/i/4U9tvjMqdw81Wg', price: '300 ₽', buyLink: 'https://disk.yandex.ru/i/4U9tvjMqdw81Wg' },
-    { name: 'МРТ-фишки локтевого сустава, 12:20', link: 'https://disk.yandex.ru/i/nM909ojI7vrWMw', price: '300 ₽', buyLink: 'https://disk.yandex.ru/i/nM909ojI7vrWMw' },
-    { name: 'МРТ-фишки кистевого сустава, 14:22', link: 'https://disk.yandex.ru/i/_PO5CNVKC-1Oew', price: '300 ₽', buyLink: 'https://disk.yandex.ru/i/_PO5CNVKC-1Oew' },
     {
-      name: 'МРТ-фишки суставов верхней конечности: блок из 3-х видео',
+      name: 'АНАТОМИЧЕСКИЕ "ФИШКИ" ВЕРХНЕЙ КОНЕЧНОСТИ НА МРТ (3 ВИДЕО)',
       link: '',
-      price: '800 ₽',
-      buyLink: 'mailto:brainmodel@yandex.ru',
-      discount: true,
+      price: '999 ₽',
+      buyLink: 'https://radiologyart.getcourse.ru/showcase?trainingId=935651143',
+      active: true,
       bundleLinks: [
-        'https://disk.yandex.ru/i/4U9tvjMqdw81Wg',
-        'https://disk.yandex.ru/i/nM909ojI7vrWMw',
-        'https://disk.yandex.ru/i/_PO5CNVKC-1Oew',
+        'Плечевой сустав',
+        'Локтевой сустав',
+        'Кистевой сустав',
       ],
     },
   ],
@@ -1684,7 +1681,7 @@ export default function Index() {
                           {item.bundleLinks && (
                             <div className="mt-1 flex flex-col gap-0.5">
                               {item.bundleLinks.map((l, bi) => (
-                                <span key={bi} className="text-xs text-muted-foreground">• видео {bi + 1}</span>
+                                <span key={bi} className="text-xs text-muted-foreground">Видео {bi + 1} «{l}»</span>
                               ))}
                             </div>
                           )}
