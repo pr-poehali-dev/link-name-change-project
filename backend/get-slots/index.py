@@ -1,11 +1,12 @@
 import json
 import os
-from datetime import date, datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 import psycopg2
 
 
 TIME_SLOTS = ["18:00", "18:30", "19:00", "19:30", "20:00", "20:30"]
+MSK = timezone(timedelta(hours=3))
 
 
 def handler(event: dict, context) -> dict:
@@ -45,8 +46,13 @@ def handler(event: dict, context) -> dict:
             'body': json.dumps({'busy': busy}),
         }
 
-    # Ищем ближайший свободный слот начиная с сегодня
-    today = date.today()
+    # Ищем ближайший свободный слот начиная с текущего часа по Москве (с округлением вверх)
+    now_msk = datetime.now(MSK)
+    rounded_now = now_msk.replace(minute=0, second=0, microsecond=0)
+    if now_msk.minute > 0 or now_msk.second > 0:
+        rounded_now += timedelta(hours=1)
+
+    today = rounded_now.date()
     nearest_date = None
     nearest_time = None
 
@@ -58,11 +64,10 @@ def handler(event: dict, context) -> dict:
         )
         busy_times = {row[0] for row in cur.fetchall()}
 
-        now = datetime.now()
         for slot in TIME_SLOTS:
             slot_dt = datetime(check_date.year, check_date.month, check_date.day,
-                               int(slot.split(':')[0]), int(slot.split(':')[1]))
-            if slot_dt <= now:
+                               int(slot.split(':')[0]), int(slot.split(':')[1]), tzinfo=MSK)
+            if slot_dt < rounded_now:
                 continue
             if slot not in busy_times:
                 nearest_date = check_date.isoformat()
