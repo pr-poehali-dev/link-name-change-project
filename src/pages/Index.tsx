@@ -1600,7 +1600,7 @@ export default function Index() {
             {/* Левая часть — контент */}
             <div className="flex flex-col justify-center flex-1 min-w-0">
               <div className="flex items-center gap-3 mb-3">
-                <div className="section-tag" style={{ fontSize: '1rem', boxShadow: '0 0 18px rgba(0,229,255,0.5)', textShadow: '0 0 12px rgba(0,229,255,0.9)' }}>Материалы</div>
+                <div className="section-tag" style={{ fontSize: 'calc(1rem + 2px)', color: 'rgba(255,170,50,0.97)', border: '1px solid rgba(255,140,0,0.4)', boxShadow: '0 0 18px rgba(255,140,0,0.5)', textShadow: '0 0 8px rgba(255,140,0,0.9), 0 0 20px rgba(255,110,0,0.6)' }}>Материалы</div>
               </div>
               <p className="text-muted-foreground text-sm mb-8">Полезные прикладные материалы для врачей-рентгенологов</p>
               <div className="flex flex-col gap-3">
