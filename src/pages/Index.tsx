@@ -992,14 +992,12 @@ const MATERIALS_TABS = [
 
 type MaterialsTabKey = typeof MATERIALS_TABS[number]['key'];
 
-const MATERIALS_CATALOG: Record<MaterialsTabKey, { name: string; link: string; price: string; buyLink: string; discount?: boolean; bundleLinks?: string[] }[]> = {
+const MATERIALS_CATALOG: Record<MaterialsTabKey, { name: string; link: string; price: string; buyLink: string; discount?: boolean; bundleLinks?: string[]; active?: boolean }[]> = {
   guides: [],
   manuals: [
-    { name: 'МРТ-исследование суставов: уверенное оформление без ошибок', link: 'https://disk.yandex.ru/i/_nTRyRBus0BF1g', price: '1 000 ₽', buyLink: 'https://disk.yandex.ru/i/_nTRyRBus0BF1g' },
+    { name: 'МРТ-исследование суставов: уверенное оформление без ошибок', link: 'https://disk.yandex.ru/i/_nTRyRBus0BF1g', price: '999 ₽', buyLink: 'https://radiologyart.getcourse.ru/showcase?trainingId=935650598', active: true },
   ],
-  checklists: [
-    { name: 'Чек-лист по анатомическим «фишкам» крупных суставов', link: 'https://disk.yandex.ru/d/1GbFsbXnCBBFwg', price: '200 ₽', buyLink: 'https://disk.yandex.ru/d/1GbFsbXnCBBFwg' },
-  ],
+  checklists: [],
   videos: [
     { name: 'МРТ-фишки плечевого сустава, 16:02', link: 'https://disk.yandex.ru/i/4U9tvjMqdw81Wg', price: '300 ₽', buyLink: 'https://disk.yandex.ru/i/4U9tvjMqdw81Wg' },
     { name: 'МРТ-фишки локтевого сустава, 12:20', link: 'https://disk.yandex.ru/i/nM909ojI7vrWMw', price: '300 ₽', buyLink: 'https://disk.yandex.ru/i/nM909ojI7vrWMw' },
@@ -1667,7 +1665,6 @@ export default function Index() {
                     <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
                       <th className="text-left px-4 py-3 text-xs text-muted-foreground font-medium w-10">#</th>
                       <th className="text-left px-4 py-3 text-xs text-muted-foreground font-medium">Название</th>
-                      <th className="text-left px-4 py-3 text-xs text-muted-foreground font-medium">Ссылка</th>
                       <th className="text-left px-4 py-3 text-xs text-muted-foreground font-medium w-28">Цена</th>
                       <th className="text-left px-4 py-3 text-xs text-muted-foreground font-medium w-28"></th>
                     </tr>
@@ -1692,17 +1689,19 @@ export default function Index() {
                             </div>
                           )}
                         </td>
-                        <td className="px-4 py-3">
-                          <span className="flex items-center gap-1.5 text-muted-foreground text-xs">
-                            <Icon name="Lock" size={13} />
-                            Доступно после оплаты
-                          </span>
-                        </td>
                         <td className="px-4 py-3 neon-text font-semibold">{item.price}</td>
                         <td className="px-4 py-3">
-                          <span className="px-4 py-1.5 rounded-lg text-xs font-medium inline-flex items-center gap-1 cursor-not-allowed opacity-40" style={{ border: '1px solid rgba(255,255,255,0.15)', color: 'hsl(var(--muted-foreground))' }}>
-                            <Icon name="ShoppingCart" size={12} /> Купить
-                          </span>
+                          {item.active ? (
+                            <a href={item.buyLink} target="_blank" rel="noopener noreferrer"
+                              className="px-4 py-1.5 rounded-lg text-xs font-medium inline-flex items-center gap-1 transition-colors neon-border hover:bg-white/5"
+                              style={{ border: '1px solid rgba(0,229,255,0.4)', color: 'hsl(var(--primary))' }}>
+                              <Icon name="ShoppingCart" size={12} /> Купить
+                            </a>
+                          ) : (
+                            <span className="px-4 py-1.5 rounded-lg text-xs font-medium inline-flex items-center gap-1 cursor-not-allowed opacity-40" style={{ border: '1px solid rgba(255,255,255,0.15)', color: 'hsl(var(--muted-foreground))' }}>
+                              <Icon name="ShoppingCart" size={12} /> Купить
+                            </span>
+                          )}
                         </td>
                       </tr>
                     ))}
