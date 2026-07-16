@@ -995,7 +995,7 @@ type MaterialsTabKey = typeof MATERIALS_TABS[number]['key'];
 const MATERIALS_CATALOG: Record<MaterialsTabKey, { name: string; link: string; price: string; buyLink: string; discount?: boolean; bundleLinks?: string[]; active?: boolean }[]> = {
   guides: [],
   manuals: [
-    { name: 'МРТ-исследование суставов: уверенное оформление без ошибок', link: 'https://disk.yandex.ru/i/_nTRyRBus0BF1g', price: '999 ₽', buyLink: 'https://radiologyart.getcourse.ru/showcase?trainingId=935650598', active: true },
+    { name: 'МРТ-исследование суставов: уверенное оформление без ошибок', link: 'https://disk.yandex.ru/i/_nTRyRBus0BF1g', price: '599 ₽', buyLink: 'https://radiologyart.getcourse.ru/metodichka_mrt', active: true },
   ],
   checklists: [
     {
