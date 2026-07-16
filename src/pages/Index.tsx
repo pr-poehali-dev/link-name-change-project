@@ -1002,7 +1002,7 @@ const MATERIALS_CATALOG: Record<MaterialsTabKey, { name: string; link: string; p
       name: 'ШАБЛОНЫ МРТ-ПРОТОКОЛОВ НОРМЫ СУСТАВОВ (6 шт. Word .docx)',
       link: '',
       price: '599 ₽',
-      buyLink: 'https://radiologyart.getcourse.ru/showcase?trainingId=935651127',
+      buyLink: 'https://radiologyart.getcourse.ru/shablon_mrt',
       active: true,
       bundleLinks: [
         'Плечевой сустав',
