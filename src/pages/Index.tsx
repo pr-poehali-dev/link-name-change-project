@@ -1031,7 +1031,7 @@ const MATERIALS_CATALOG: Record<MaterialsTabKey, { name: string; link: string; p
       name: 'АНАТОМИЧЕСКИЕ "ФИШКИ" НИЖНЕЙ КОНЕЧНОСТИ НА МРТ (3 ВИДЕО)',
       link: '',
       price: '999 ₽',
-      buyLink: 'https://radiologyart.getcourse.ru/showcase?trainingId=935655155',
+      buyLink: 'https://radiologyart.getcourse.ru/video_anatom_niz',
       active: true,
       bundleLinks: [
         'Тазобедренный сустав',
