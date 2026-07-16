@@ -1019,7 +1019,7 @@ const MATERIALS_CATALOG: Record<MaterialsTabKey, { name: string; link: string; p
       name: 'АНАТОМИЧЕСКИЕ "ФИШКИ" ВЕРХНЕЙ КОНЕЧНОСТИ НА МРТ (3 ВИДЕО)',
       link: '',
       price: '999 ₽',
-      buyLink: 'https://radiologyart.getcourse.ru/showcase?trainingId=935651143',
+      buyLink: 'https://radiologyart.getcourse.ru/video_anatom_verh',
       active: true,
       bundleLinks: [
         'Плечевой сустав',
