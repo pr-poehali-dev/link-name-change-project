@@ -1046,7 +1046,7 @@ const MATERIALS_CATALOG: Record<MaterialsTabKey, { name: string; link: string; p
 
 const SERVICES = [
   { icon: "ScanLine", title: "МРТ-диагностика", desc: "Магнитно-резонансная томография всех суставов конечностей, включая ВНЧС. Специализация на мышечно-скелетной системе.", links: [{ label: "info", tooltip: "Прейскурант ВОККДЦ", href: "https://vodc.ru/34/" }] },
-  { icon: "FileSearch", title: "Телерадиология", desc: "Дистанционное описание готовых лучевых исследований с развёрнутым заключением. Работаю дистанционно.", links: [{ label: "info", tooltip: "Прейскурант Smart Clinic", href: "https://smart-clinica.ru/staff/vrachi/popov-aleksey-yurevich/?sphrase_id=193893" }, { label: "info", tooltip: "Прейскурант АНО ДПО ИПКМК", href: "https://univerexpert.ru/telemedicine/" }] },
+  { icon: "FileSearch", title: "Телерадиология", desc: "Дистанционная работа с готовыми исследованиями. Удобный формат сотрудничества.", links: [{ label: "info", tooltip: "Прейскурант Smart Clinic", href: "https://smart-clinica.ru/staff/vrachi/popov-aleksey-yurevich/?sphrase_id=193893" }, { label: "info", tooltip: "Прейскурант АНО ДПО ИПКМК", href: "https://univerexpert.ru/telemedicine/" }] },
   { icon: "BookOpen", title: "Обучение", desc: "Формирование структурированной теоретической базы у начинающих врачей-рентгенологов. Лектор семинаров НМО.", links: [{ label: "info", tooltip: "Прейскурант ИПКМК", href: "https://univerexpert.ru/courses/" }] },
 ];
 
