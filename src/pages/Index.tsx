@@ -2311,7 +2311,7 @@ export default function Index() {
                       Я даю{' '}
                       <button type="button" onClick={e => { e.stopPropagation(); setActiveDoc('userAgreementConsent'); }} className="neon-text hover:underline">согласие</button>
                       {' '}в соответствии с{' '}
-                      <a href="https://disk.yandex.ru/i/7PgURj5qrCNFFw" target="_blank" rel="noopener noreferrer" className="neon-text hover:underline">Пользовательским соглашением</a>
+                      <a href="https://disk.yandex.ru/i/Lnw-kSQW3fpVYQ" target="_blank" rel="noopener noreferrer" className="neon-text hover:underline">Пользовательским соглашением</a>
                     </span>
                   </label>
                 </div>
