@@ -1835,7 +1835,7 @@ export default function Index() {
             <p className="text-muted-foreground mt-4">Очный приём и дистанционная работа в Воронеже</p>
           </div>
 
-          <div className="grid sm:grid-cols-3 gap-5" style={{ maxWidth: 900, margin: '0 auto' }}>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5" style={{ maxWidth: 1200, margin: '0 auto' }}>
             {[
               {
                 name: "ВОККДЦ",
@@ -1870,6 +1870,17 @@ export default function Index() {
                 priceLink: "https://univerexpert.ru/courses/",
                 mapLink: "https://yandex.ru/maps/?text=Воронеж+Фридриха+Энгельса+58А",
               },
+              {
+                name: 'Клиника "Эвкалипт"',
+                full: 'Клиника семейного здоровья "Эвкалипт"',
+                address: "г. Воронеж, ул. Путиловская, 19а",
+                dept: "МРТ кабинет",
+                type: "Очно и дистанционно — описание МРТ-исследований",
+                phone: "8 800 350-21-03",
+                phoneName: "",
+                priceLink: "",
+                mapLink: "https://yandex.ru/maps/?text=Воронеж+Путиловская+19а",
+              },
             ].map(loc => (
               <div key={loc.name} className="glass-card p-6 flex flex-col gap-3">
                 <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-1" style={{ background: 'rgba(0,229,255,0.1)', border: '1px solid rgba(0,229,255,0.2)' }}>
@@ -1892,14 +1903,16 @@ export default function Index() {
                   <a href={loc.mapLink} target="_blank" rel="noopener noreferrer" className="text-xs px-3 py-1.5 rounded-lg flex items-center gap-1 transition-all" style={{ border: '1px solid rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.7)' }}>
                     <Icon name="Map" size={11} /> На карте
                   </a>
-                  <span className="relative group/tip">
-                    <a href={loc.priceLink} target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full flex items-center justify-center transition-all neon-btn" style={{ minWidth: '2rem' }}>
-                      <Icon name="Info" size={14} />
-                    </a>
-                    <span className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 whitespace-nowrap rounded-lg px-2.5 py-1 text-xs font-medium opacity-0 group-hover/tip:opacity-100 transition-opacity duration-200 z-50" style={{ background: 'rgba(14,18,28,0.97)', border: '1px solid rgba(0,229,255,0.25)', color: 'rgba(0,229,255,0.9)' }}>
-                      Прейскурант {loc.name}
+                  {loc.priceLink && (
+                    <span className="relative group/tip">
+                      <a href={loc.priceLink} target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full flex items-center justify-center transition-all neon-btn" style={{ minWidth: '2rem' }}>
+                        <Icon name="Info" size={14} />
+                      </a>
+                      <span className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 whitespace-nowrap rounded-lg px-2.5 py-1 text-xs font-medium opacity-0 group-hover/tip:opacity-100 transition-opacity duration-200 z-50" style={{ background: 'rgba(14,18,28,0.97)', border: '1px solid rgba(0,229,255,0.25)', color: 'rgba(0,229,255,0.9)' }}>
+                        Прейскурант {loc.name}
+                      </span>
                     </span>
-                  </span>
+                  )}
                 </div>
               </div>
             ))}
