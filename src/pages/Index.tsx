@@ -1872,13 +1872,13 @@ export default function Index() {
               },
               {
                 name: 'Клиника "Эвкалипт"',
-                full: 'Клиника семейного здоровья "Эвкалипт"',
+                full: 'Центр клинической медицины "Эвкалипт"',
                 address: "г. Воронеж, ул. Путиловская, 19а",
                 dept: "МРТ кабинет",
                 type: "Очно и дистанционно — описание МРТ-исследований",
                 phone: "8 800 350-21-03",
                 phoneName: "",
-                priceLink: "",
+                priceLink: "https://www.evkaliptmed.ru/content/uploads/2026/03/Prays-dlya-sayta-16.03.2026.pdf",
                 mapLink: "https://yandex.ru/maps/?text=Воронеж+Путиловская+19а",
               },
             ].map(loc => (
