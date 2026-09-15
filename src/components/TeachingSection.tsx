@@ -140,8 +140,8 @@ export default function TeachingSection() {
       {/* Teaching block */}
       <section id="teaching" className="py-24 relative">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <div className="section-tag">Преподавание</div>
+          <div className="mb-16">
+            <div className="section-tag section-tag-orange">Преподавание</div>
             <h2 style={{ fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 600 }}>
               Авторские курсы
             </h2>

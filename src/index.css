@@ -284,6 +284,16 @@
   margin-bottom: 16px;
 }
 
+.section-tag-orange {
+  font-size: calc(1rem + 2px);
+  color: rgba(255, 170, 50, 0.97);
+  border-color: rgba(255, 140, 0, 0.4);
+  box-shadow: 0 0 18px rgba(255, 140, 0, 0.5);
+  text-shadow:
+    0 0 8px rgba(255, 140, 0, 0.9),
+    0 0 20px rgba(255, 110, 0, 0.6);
+}
+
 /* ========== SCROLLBAR ========== */
 ::-webkit-scrollbar {
   width: 6px;

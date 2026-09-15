@@ -1493,7 +1493,7 @@ export default function Index() {
             </div>
 
             <div>
-              <div className="section-tag" style={{ fontSize: 'calc(1rem + 2px)', color: 'rgba(255,170,50,0.97)', border: '1px solid rgba(255,140,0,0.4)', boxShadow: '0 0 18px rgba(255,140,0,0.5)', textShadow: '0 0 8px rgba(255,140,0,0.9), 0 0 20px rgba(255,110,0,0.6)' }}>О специалисте</div>
+              <div className="section-tag section-tag-orange">О специалисте</div>
               <h2 className="mt-2" style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', fontWeight: 600 }}>
                 <span className="neon-text">Попов</span><br />
                 <span style={{ color: '#EBF3F9' }}>Алексей Юрьевич</span>
@@ -1567,12 +1567,12 @@ export default function Index() {
       <section id="services" className="py-24 relative">
         <div className="orb w-80 h-80 top-0 left-1/2 -translate-x-1/2 opacity-10" style={{ background: 'radial-gradient(circle, rgba(0,229,255,0.5) 0%, transparent 70%)' }} />
         <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <div className="section-tag" style={{ fontSize: 'calc(1rem + 2px)', color: 'rgba(255,170,50,0.97)', border: '1px solid rgba(255,140,0,0.4)', boxShadow: '0 0 18px rgba(255,140,0,0.5)', textShadow: '0 0 8px rgba(255,140,0,0.9), 0 0 20px rgba(255,110,0,0.6)' }}>Направления работы</div>
+          <div className="mb-16">
+            <div className="section-tag section-tag-orange">Направления работы</div>
             <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 600 }}>
               Чем я занимаюсь
             </h2>
-            <p className="text-muted-foreground mt-4 max-w-lg mx-auto">
+            <p className="text-muted-foreground mt-4 max-w-lg">
               Рентген, КТ и МРТ мышечно-скелетной системы — очно и дистанционно
             </p>
           </div>
@@ -1612,7 +1612,7 @@ export default function Index() {
           {/* УСЛУГИ BLOCK */}
           <div id="services-block" className="mt-16">
             <div className="flex items-center gap-3 mb-8">
-              <div className="section-tag">Услуги</div>
+              <div className="section-tag section-tag-orange">Услуги</div>
             </div>
             <div className="grid sm:grid-cols-3 gap-5">
               {/* Наставничество */}
@@ -1682,7 +1682,7 @@ export default function Index() {
             {/* Левая часть — контент */}
             <div className="flex flex-col justify-center flex-1 min-w-0">
               <div className="flex items-center gap-3 mb-3">
-                <div className="section-tag" style={{ fontSize: 'calc(1rem + 2px)', color: 'rgba(255,170,50,0.97)', border: '1px solid rgba(255,140,0,0.4)', boxShadow: '0 0 18px rgba(255,140,0,0.5)', textShadow: '0 0 8px rgba(255,140,0,0.9), 0 0 20px rgba(255,110,0,0.6)' }}>Материалы</div>
+                <div className="section-tag section-tag-orange">Материалы</div>
               </div>
               <p className="text-muted-foreground text-sm mb-8">Полезные прикладные материалы для врачей-рентгенологов</p>
               <div className="flex flex-col gap-3">
@@ -1826,8 +1826,8 @@ export default function Index() {
       {/* PRICES / WHERE */}
       <section id="prices" className="py-24 relative">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <div className="section-tag" style={{ fontSize: 'calc(1rem + 2px)', color: 'rgba(255,170,50,0.97)', border: '1px solid rgba(255,140,0,0.4)', boxShadow: '0 0 18px rgba(255,140,0,0.5)', textShadow: '0 0 8px rgba(255,140,0,0.9), 0 0 20px rgba(255,110,0,0.6)' }}>Места работы</div>
+          <div className="mb-16">
+            <div className="section-tag section-tag-orange">Места работы</div>
             <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 600 }}>
               Где меня найти
             </h2>
@@ -1922,8 +1922,8 @@ export default function Index() {
       {/* REVIEWS */}
       <section id="reviews" className="py-24 relative" style={{ background: 'rgba(0,229,255,0.02)' }}>
         <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <div className="section-tag" style={{ fontSize: 'calc(1rem + 2px)', color: 'rgba(255,170,50,0.97)', border: '1px solid rgba(255,140,0,0.4)', boxShadow: '0 0 18px rgba(255,140,0,0.5)', textShadow: '0 0 8px rgba(255,140,0,0.9), 0 0 20px rgba(255,110,0,0.6)' }}>Отзывы</div>
+          <div className="mb-16">
+            <div className="section-tag section-tag-orange">Отзывы</div>
             <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 600 }}>
               Что говорят пациенты
             </h2>
@@ -2004,8 +2004,8 @@ export default function Index() {
       <section id="booking" className="py-24 relative">
         <div className="orb w-96 h-96 bottom-0 right-0 opacity-10" style={{ background: 'radial-gradient(circle, rgba(179,102,255,0.5) 0%, transparent 70%)' }} />
         <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-10">
-            <div className="section-tag" style={{ fontSize: 'calc(1rem + 2px)', color: 'rgba(255,170,50,0.97)', border: '1px solid rgba(255,140,0,0.4)', boxShadow: '0 0 18px rgba(255,140,0,0.5)', textShadow: '0 0 8px rgba(255,140,0,0.9), 0 0 20px rgba(255,110,0,0.6)' }}>Онлайн-запись</div>
+          <div className="mb-10">
+            <div className="section-tag section-tag-orange">Онлайн-запись</div>
             <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 600 }}>
               Запись на консультацию
             </h2>
@@ -2292,8 +2292,8 @@ export default function Index() {
       {/* ЛИЧНЫЙ КАБИНЕТ */}
       <section id="cabinet" className="py-24 relative">
         <div className="max-w-3xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <div className="section-tag">Личный кабинет</div>
+          <div className="mb-12">
+            <div className="section-tag section-tag-orange">Личный кабинет</div>
             <h2 className="mt-4 text-3xl font-semibold">Мои записи и вопросы</h2>
             <p className="text-muted-foreground mt-3">Введите номер телефона, указанный при записи</p>
           </div>
@@ -2728,8 +2728,8 @@ export default function Index() {
       {/* CONTACTS */}
       <section id="contacts" className="py-24 relative" style={{ background: 'rgba(0,229,255,0.02)' }}>
         <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <div className="section-tag">Контакты</div>
+          <div className="mb-16">
+            <div className="section-tag section-tag-orange">Контакты</div>
             <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 600 }}>
               Связаться со мной
             </h2>
