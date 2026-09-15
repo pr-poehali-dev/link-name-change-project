@@ -1812,6 +1812,17 @@ export default function Index() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5" style={{ maxWidth: 1200, margin: '0 auto' }}>
             {[
               {
+                name: 'Клиника "Эвкалипт"',
+                full: 'Центр клинической медицины "Эвкалипт"',
+                address: "г. Воронеж, ул. Путиловская, 19а",
+                dept: "МРТ кабинет",
+                type: "Очно и дистанционно — описание МРТ-исследований",
+                phone: "8 800 350-21-03",
+                phoneName: "",
+                priceLink: "https://www.evkaliptmed.ru/content/uploads/2026/03/Prays-dlya-sayta-16.03.2026.pdf",
+                mapLink: "https://yandex.ru/maps/?text=Воронеж+Путиловская+19а",
+              },
+              {
                 name: "ВОККДЦ",
                 full: "Воронежский областной консультативно-диагностический центр",
                 address: "г. Воронеж, Площадь Ленина, 5а, корп. А",
@@ -1843,17 +1854,6 @@ export default function Index() {
                 phoneName: "",
                 priceLink: "https://univerexpert.ru/courses/",
                 mapLink: "https://yandex.ru/maps/?text=Воронеж+Фридриха+Энгельса+58А",
-              },
-              {
-                name: 'Клиника "Эвкалипт"',
-                full: 'Центр клинической медицины "Эвкалипт"',
-                address: "г. Воронеж, ул. Путиловская, 19а",
-                dept: "МРТ кабинет",
-                type: "Очно и дистанционно — описание МРТ-исследований",
-                phone: "8 800 350-21-03",
-                phoneName: "",
-                priceLink: "https://www.evkaliptmed.ru/content/uploads/2026/03/Prays-dlya-sayta-16.03.2026.pdf",
-                mapLink: "https://yandex.ru/maps/?text=Воронеж+Путиловская+19а",
               },
             ].map(loc => (
               <div key={loc.name} className="glass-card p-6 flex flex-col gap-3">
