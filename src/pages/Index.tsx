@@ -1648,7 +1648,7 @@ export default function Index() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-sm font-bold neon-text hover:underline flex items-center gap-1"
-                >Купить <Icon name="ArrowRight" size={12} /></a>
+                >Записаться <Icon name="ArrowRight" size={12} /></a>
               </div>
 
             </div>
