@@ -1624,14 +1624,12 @@ export default function Index() {
                 </div>
                 <h3 className="font-semibold text-lg mb-2">Наставничество</h3>
                 <p className="text-muted-foreground text-sm leading-relaxed mb-4">Формирование правильных профессиональных навыков у начинающих врачей-рентгенологов.</p>
-                <button
-                  type="button"
+                <a
+                  href="https://radiologyart.getcourse.ru/showcase?trainingId=935840128"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-sm font-bold neon-text hover:underline flex items-center gap-1"
-                  onClick={() => {
-                    document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth' });
-                    setTimeout(() => { setServiceType('mentoring'); }, 600);
-                  }}
-                >Записаться <Icon name="ArrowRight" size={12} /></button>
+                >Записаться <Icon name="ArrowRight" size={12} /></a>
               </div>
 
               {/* Информационная консультация */}
