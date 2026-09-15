@@ -2735,28 +2735,14 @@ export default function Index() {
             </h2>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
-            {[
-              { icon: "Mail", title: "Email", value: "brainmodel@yandex.ru", href: "mailto:brainmodel@yandex.ru" },
-              { icon: "Clock", title: "Часы приёма", value: "9:00 — 16:00", href: "" },
-              { icon: "Phone", title: "ВОККДЦ", value: "+7 (473) 272-02-05", href: "tel:+74732720205" },
-              { icon: "Phone", title: "Smart Clinic", value: "+7 473 211-80-82", href: "tel:+74732118082" },
-            ].map(c => (
-              <div key={c.title} className="glass-card p-6 text-center">
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-4" style={{ background: 'rgba(0,229,255,0.1)', border: '1px solid rgba(0,229,255,0.2)' }}>
-                  <Icon name={c.icon} size={22} className="neon-text" />
-                </div>
-                <div className="text-xs text-muted-foreground uppercase tracking-wider mb-2">{c.title}</div>
-                {c.href ? (
-                  <a href={c.href} className="font-medium text-sm leading-relaxed hover:text-primary transition-colors whitespace-pre-line">{c.value}</a>
-                ) : (
-                  <div className="font-medium text-sm leading-relaxed whitespace-pre-line">{c.value}</div>
-                )}
-              </div>
-            ))}
-          </div>
-
           <div className="flex flex-wrap justify-center gap-4">
+            <a href="mailto:brainmodel@yandex.ru"
+              className="glass-card px-6 py-3 flex items-center gap-3 hover:-translate-y-0.5 transition-all"
+              onMouseEnter={e => (e.currentTarget.style.borderColor = 'rgba(0,229,255,0.4)')}
+              onMouseLeave={e => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)')}>
+              <Icon name="Mail" size={18} className="neon-text" />
+              <span className="font-medium text-sm">brainmodel@yandex.ru</span>
+            </a>
             <a href="https://t.me/brainmodel76" target="_blank" rel="noopener noreferrer"
               className="glass-card px-6 py-3 flex items-center gap-3 hover:-translate-y-0.5 transition-all"
               onMouseEnter={e => (e.currentTarget.style.borderColor = 'rgba(0,229,255,0.4)')}
