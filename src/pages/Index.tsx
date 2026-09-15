@@ -1481,12 +1481,95 @@ export default function Index() {
         </div>
       </section>
 
+      {/* ABOUT */}
+      <section id="about" className="py-24 relative" style={{ background: 'rgba(0,229,255,0.02)' }}>
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            <div className="relative">
+              <img src={MRI_IMG} alt="Оборудование" className="rounded-2xl w-full object-cover" style={{ aspectRatio: '4/3' }} />
+              <div className="absolute -bottom-6 -right-6 glass-card-neon p-5">
+                <div className="text-3xl font-bold neon-text">к.м.н.</div>
+                <div className="text-sm text-muted-foreground mt-1">кандидат мед. наук</div>
+              </div>
+            </div>
+
+            <div>
+              <div className="section-tag" style={{ fontSize: 'calc(1rem + 2px)', color: 'rgba(255,170,50,0.97)', border: '1px solid rgba(255,140,0,0.4)', boxShadow: '0 0 18px rgba(255,140,0,0.5)', textShadow: '0 0 8px rgba(255,140,0,0.9), 0 0 20px rgba(255,110,0,0.6)' }}>О специалисте</div>
+              <h2 className="mt-2" style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', fontWeight: 600 }}>
+                <span className="neon-text">Попов</span><br />
+                <span style={{ color: '#EBF3F9' }}>Алексей Юрьевич</span>
+              </h2>
+              <p className="text-muted-foreground mt-5 leading-relaxed">
+                Врач-рентгенолог высшей категории, кандидат медицинских наук, член-корреспондент Академии военных наук. Окончил Саратовский ГМУ им. Разумовского. Основной опыт — военный госпиталь, включая заведование отделением.
+              </p>
+              <p className="text-muted-foreground mt-3 leading-relaxed">
+                Специализируюсь на сложных случаях травматологической патологии и заболеваниях мышечно-скелетной системы, включая педиатрическую патологию, онкологию,{' '}
+                спортивную травму и патологию{' '}
+                <a href="https://univerexpert.ru/courses/56/" target="_blank" rel="noopener noreferrer" className="neon-text hover:underline">височно-нижнечелюстных суставов</a>.{' '}
+                Доцент кафедры лучевой диагностики АНО ДПО «ИПКМК». Автор и соавтор более 70 печатных работ, включая 5 монографий.
+              </p>
+              <p className="text-muted-foreground mt-3 leading-relaxed">
+                Член экспертного совета{' '}
+                <a href="https://vrachimrt.ru/" target="_blank" rel="noopener noreferrer" className="neon-text hover:underline">СРО</a>{' '}
+                «Ассоциация врачей МРТ- и КТ-диагностики». Член группы аудита врачей-рентгенологов. Модератор сайта{' '}
+                <a href="https://radiomed.ru/" target="_blank" rel="noopener noreferrer" className="neon-text hover:underline">Radiomed</a>{' '}
+                с 2010 года. Ведущий телеграм+ Макс-канала{' '}
+                <a href="https://max.ru/se13287388_biz" target="_blank" rel="noopener noreferrer" className="neon-text hover:underline">D2D Trauma Expert</a>.{' '}
+                Модератор (редактор) каналов Школы D2D Expert. Лектор школы{' '}
+                <a href="https://vk.com/practicalradiology" target="_blank" rel="noopener noreferrer" className="neon-text hover:underline">Практическая радиология</a>.{' '}
+                Автор/соавтор 9{' '}
+                <a href="https://univerexpert.ru/courses/" target="_blank" rel="noopener noreferrer" className="neon-text hover:underline">курсов</a>{' '}
+                повышения квалификации для врачей-рентгенологов и курса профессиональной переподготовки по специальности «Рентгенология».
+              </p>
+
+              <div className="mt-8 grid grid-cols-2 gap-4">
+                {[
+                  { icon: "GraduationCap", text: "Саратовский ГМУ им. Разумовского" },
+                  { icon: "Award", text: "Врач высшей категории, к.м.н." },
+                  { icon: "Shield", text: "Член-корр. Академии военных наук" },
+                  { icon: "BookOpen", text: "70+ научных публикаций, 5 монографий" },
+                ].map(item => (
+                  <div key={item.text} className="flex items-start gap-3">
+                    <div className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 mt-0.5" style={{ background: 'rgba(0,229,255,0.1)' }}>
+                      <Icon name={item.icon} size={14} className="neon-text" />
+                    </div>
+                    <span className="text-sm text-muted-foreground leading-snug">{item.text}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div
+                className="mt-6 rounded-2xl px-6 py-5"
+                style={{
+                  background: 'rgba(255,255,255,0.03)',
+                  border: '1px solid rgba(255,140,0,0.35)',
+                  boxShadow: '0 0 30px 8px rgba(255,130,0,0.18), 0 0 70px 16px rgba(255,100,0,0.08)',
+                }}
+              >
+                <p
+                  className="leading-snug text-center"
+                  style={{
+                    fontFamily: "'Exo 2', 'Exo', sans-serif",
+                    fontSize: '1.35rem',
+                    color: 'rgba(255,170,50,0.97)',
+                    textShadow: '0 0 8px rgba(255,140,0,0.9), 0 0 20px rgba(255,110,0,0.6), 0 0 40px rgba(255,80,0,0.3)',
+                    letterSpacing: '0.01em',
+                  }}
+                >
+                  Помогу найти верный ответ там, где сложно, — и пациенту, и врачу
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* SERVICES */}
       <section id="services" className="py-24 relative">
         <div className="orb w-80 h-80 top-0 left-1/2 -translate-x-1/2 opacity-10" style={{ background: 'radial-gradient(circle, rgba(0,229,255,0.5) 0%, transparent 70%)' }} />
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
-            <div className="section-tag">Направления работы</div>
+            <div className="section-tag" style={{ fontSize: 'calc(1rem + 2px)', color: 'rgba(255,170,50,0.97)', border: '1px solid rgba(255,140,0,0.4)', boxShadow: '0 0 18px rgba(255,140,0,0.5)', textShadow: '0 0 8px rgba(255,140,0,0.9), 0 0 20px rgba(255,110,0,0.6)' }}>Направления работы</div>
             <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 600 }}>
               Чем я занимаюсь
             </h2>
@@ -1738,89 +1821,6 @@ export default function Index() {
         </div>
       )}
 
-      {/* ABOUT */}
-      <section id="about" className="py-24 relative" style={{ background: 'rgba(0,229,255,0.02)' }}>
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
-            <div className="relative">
-              <img src={MRI_IMG} alt="Оборудование" className="rounded-2xl w-full object-cover" style={{ aspectRatio: '4/3' }} />
-              <div className="absolute -bottom-6 -right-6 glass-card-neon p-5">
-                <div className="text-3xl font-bold neon-text">к.м.н.</div>
-                <div className="text-sm text-muted-foreground mt-1">кандидат мед. наук</div>
-              </div>
-            </div>
-
-            <div>
-              <div className="section-tag">О специалисте</div>
-              <h2 className="mt-2" style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', fontWeight: 600 }}>
-                <span className="neon-text">Попов</span><br />
-                <span style={{ color: '#EBF3F9' }}>Алексей Юрьевич</span>
-              </h2>
-              <p className="text-muted-foreground mt-5 leading-relaxed">
-                Врач-рентгенолог высшей категории, кандидат медицинских наук, член-корреспондент Академии военных наук. Окончил Саратовский ГМУ им. Разумовского. Основной опыт — военный госпиталь, включая заведование отделением.
-              </p>
-              <p className="text-muted-foreground mt-3 leading-relaxed">
-                Специализируюсь на сложных случаях травматологической патологии и заболеваниях мышечно-скелетной системы, включая педиатрическую патологию, онкологию,{' '}
-                спортивную травму и патологию{' '}
-                <a href="https://univerexpert.ru/courses/56/" target="_blank" rel="noopener noreferrer" className="neon-text hover:underline">височно-нижнечелюстных суставов</a>.{' '}
-                Доцент кафедры лучевой диагностики АНО ДПО «ИПКМК». Автор и соавтор более 70 печатных работ, включая 5 монографий.
-              </p>
-              <p className="text-muted-foreground mt-3 leading-relaxed">
-                Член экспертного совета{' '}
-                <a href="https://vrachimrt.ru/" target="_blank" rel="noopener noreferrer" className="neon-text hover:underline">СРО</a>{' '}
-                «Ассоциация врачей МРТ- и КТ-диагностики». Член группы аудита врачей-рентгенологов. Модератор сайта{' '}
-                <a href="https://radiomed.ru/" target="_blank" rel="noopener noreferrer" className="neon-text hover:underline">Radiomed</a>{' '}
-                с 2010 года. Ведущий телеграм+ Макс-канала{' '}
-                <a href="https://max.ru/se13287388_biz" target="_blank" rel="noopener noreferrer" className="neon-text hover:underline">D2D Trauma Expert</a>.{' '}
-                Модератор (редактор) каналов Школы D2D Expert. Лектор школы{' '}
-                <a href="https://vk.com/practicalradiology" target="_blank" rel="noopener noreferrer" className="neon-text hover:underline">Практическая радиология</a>.{' '}
-                Автор/соавтор 9{' '}
-                <a href="https://univerexpert.ru/courses/" target="_blank" rel="noopener noreferrer" className="neon-text hover:underline">курсов</a>{' '}
-                повышения квалификации для врачей-рентгенологов и курса профессиональной переподготовки по специальности «Рентгенология».
-              </p>
-
-              <div className="mt-8 grid grid-cols-2 gap-4">
-                {[
-                  { icon: "GraduationCap", text: "Саратовский ГМУ им. Разумовского" },
-                  { icon: "Award", text: "Врач высшей категории, к.м.н." },
-                  { icon: "Shield", text: "Член-корр. Академии военных наук" },
-                  { icon: "BookOpen", text: "70+ научных публикаций, 5 монографий" },
-                ].map(item => (
-                  <div key={item.text} className="flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 mt-0.5" style={{ background: 'rgba(0,229,255,0.1)' }}>
-                      <Icon name={item.icon} size={14} className="neon-text" />
-                    </div>
-                    <span className="text-sm text-muted-foreground leading-snug">{item.text}</span>
-                  </div>
-                ))}
-              </div>
-
-              <div
-                className="mt-6 rounded-2xl px-6 py-5"
-                style={{
-                  background: 'rgba(255,255,255,0.03)',
-                  border: '1px solid rgba(255,140,0,0.35)',
-                  boxShadow: '0 0 30px 8px rgba(255,130,0,0.18), 0 0 70px 16px rgba(255,100,0,0.08)',
-                }}
-              >
-                <p
-                  className="leading-snug text-center"
-                  style={{
-                    fontFamily: "'Exo 2', 'Exo', sans-serif",
-                    fontSize: '1.35rem',
-                    color: 'rgba(255,170,50,0.97)',
-                    textShadow: '0 0 8px rgba(255,140,0,0.9), 0 0 20px rgba(255,110,0,0.6), 0 0 40px rgba(255,80,0,0.3)',
-                    letterSpacing: '0.01em',
-                  }}
-                >
-                  Помогу найти верный ответ там, где сложно, — и пациенту, и врачу
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* TEACHING SLIDER + SECTION */}
       <TeachingSection />
 
@@ -1828,7 +1828,7 @@ export default function Index() {
       <section id="prices" className="py-24 relative">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
-            <div className="section-tag">Места работы</div>
+            <div className="section-tag" style={{ fontSize: 'calc(1rem + 2px)', color: 'rgba(255,170,50,0.97)', border: '1px solid rgba(255,140,0,0.4)', boxShadow: '0 0 18px rgba(255,140,0,0.5)', textShadow: '0 0 8px rgba(255,140,0,0.9), 0 0 20px rgba(255,110,0,0.6)' }}>Места работы</div>
             <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 600 }}>
               Где меня найти
             </h2>
@@ -1924,7 +1924,7 @@ export default function Index() {
       <section id="reviews" className="py-24 relative" style={{ background: 'rgba(0,229,255,0.02)' }}>
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
-            <div className="section-tag">Отзывы</div>
+            <div className="section-tag" style={{ fontSize: 'calc(1rem + 2px)', color: 'rgba(255,170,50,0.97)', border: '1px solid rgba(255,140,0,0.4)', boxShadow: '0 0 18px rgba(255,140,0,0.5)', textShadow: '0 0 8px rgba(255,140,0,0.9), 0 0 20px rgba(255,110,0,0.6)' }}>Отзывы</div>
             <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 600 }}>
               Что говорят пациенты
             </h2>
@@ -2006,7 +2006,7 @@ export default function Index() {
         <div className="orb w-96 h-96 bottom-0 right-0 opacity-10" style={{ background: 'radial-gradient(circle, rgba(179,102,255,0.5) 0%, transparent 70%)' }} />
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-10">
-            <div className="section-tag">Онлайн-запись</div>
+            <div className="section-tag" style={{ fontSize: 'calc(1rem + 2px)', color: 'rgba(255,170,50,0.97)', border: '1px solid rgba(255,140,0,0.4)', boxShadow: '0 0 18px rgba(255,140,0,0.5)', textShadow: '0 0 8px rgba(255,140,0,0.9), 0 0 20px rgba(255,110,0,0.6)' }}>Онлайн-запись</div>
             <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 600 }}>
               Запись на консультацию
             </h2>
