@@ -1922,9 +1922,9 @@ export default function Index() {
       {/* REVIEWS */}
       <section id="reviews" className="py-24 relative" style={{ background: 'rgba(0,229,255,0.02)' }}>
         <div className="max-w-6xl mx-auto px-6">
-          <div className="mb-16">
+          <div className="mb-16 text-center">
             <div className="section-tag section-tag-orange">Отзывы</div>
-            <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 600 }}>
+            <h2 style={{ fontSize: 'clamp(1.5rem, 3vw, 2.25rem)', fontWeight: 600 }}>
               Что говорят пациенты
             </h2>
           </div>
