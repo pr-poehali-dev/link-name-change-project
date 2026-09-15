@@ -2010,7 +2010,6 @@ export default function Index() {
           {/* SERVICE TYPE SELECTOR */}
           <div className="flex flex-wrap justify-center gap-4 mb-10">
             {([
-              { key: 'consultation' as const, label: 'Консультация', icon: 'MessageCircle', desc: 'Разбор снимков и диагностика' },
               { key: 'mentoring' as const, label: 'Наставничество', icon: 'GraduationCap', desc: 'Обучение и профессиональный рост' },
               { key: 'info-consult' as const, label: 'Информационная консультация', icon: 'BookOpen', desc: 'Ваши вопросы – мои ответы (теория и практика МРТ)' },
             ]).map(s => (
