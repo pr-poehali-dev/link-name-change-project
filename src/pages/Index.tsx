@@ -1063,12 +1063,11 @@ const REVIEWS = [
 ];
 
 const NAV_ITEMS = [
-  { label: "Услуги", href: "#services" },
   { label: "О враче", href: "#about" },
-
+  { label: "Услуги", href: "#services" },
+  { label: "Материалы", href: "#materials" },
   { label: "Где принимаю", href: "#prices" },
   { label: "Отзывы", href: "#reviews" },
-  { label: "Материалы", href: "#materials" },
   { label: "Кабинет", href: "#cabinet" },
   { label: "Контакты", href: "#contacts" },
 ];
