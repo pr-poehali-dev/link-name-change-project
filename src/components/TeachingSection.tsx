@@ -156,14 +156,14 @@ export default function TeachingSection() {
               50%       { opacity: 0.35; text-shadow: none; }
             }
           `}</style>
-          <div className="grid md:grid-cols-2 gap-5">
+          <div className="grid md:grid-cols-2 gap-3">
             {COURSES.map((c) => (
               <a
                 key={c.url}
                 href={c.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative block rounded-2xl border p-6 transition-all duration-300 hover:scale-[1.02]"
+                className="group relative block rounded-xl border px-4 py-3 transition-all duration-300 hover:scale-[1.02]"
                 style={{
                   background: "rgba(255,255,255,0.03)",
                   borderColor: "rgba(255,255,255,0.08)",
@@ -190,18 +190,18 @@ export default function TeachingSection() {
                     Новый
                   </span>
                 )}
-                <div className="flex items-start gap-4">
+                <div className="flex items-center gap-3">
                   <div
-                    className="shrink-0 w-10 h-10 rounded-full flex items-center justify-center mt-0.5"
+                    className="shrink-0 w-7 h-7 rounded-full flex items-center justify-center"
                     style={{
                       background: "rgba(0,229,255,0.1)",
                       boxShadow: "0 0 10px rgba(0,229,255,0.25)",
                     }}
                   >
-                    <Icon name="BookOpen" size={18} style={{ color: "var(--neon, #00e5ff)" }} />
+                    <Icon name="BookOpen" size={14} style={{ color: "var(--neon, #00e5ff)" }} />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 mb-1 flex-wrap">
+                    <div className="flex items-center gap-2 mb-0.5 flex-wrap">
                       <span
                         className="text-xs px-2 py-0.5 rounded-full"
                         style={{
@@ -226,7 +226,7 @@ export default function TeachingSection() {
                     </p>
                   </div>
                   <svg
-                    className="shrink-0 mt-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                    className="shrink-0 opacity-0 group-hover:opacity-100 transition-opacity"
                     width="16"
                     height="16"
                     viewBox="0 0 24 24"
