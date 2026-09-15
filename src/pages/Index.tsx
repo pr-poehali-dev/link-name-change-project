@@ -1642,7 +1642,7 @@ export default function Index() {
                 <h3 className="font-semibold text-lg mb-2">Информационная консультация</h3>
                 <p className="text-muted-foreground text-sm leading-relaxed mb-4">Решение насущных вопросов теории и МРТ практики для врачей-рентгенологов.</p>
                 <a
-                  href="https://radiologyart.getcourse.ru/pl/teach/training/view-simple?trainingId=935840128"
+                  href="https://radiologyart.getcourse.ru/showcase?trainingId=935840128"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-sm font-bold neon-text hover:underline flex items-center gap-1"
