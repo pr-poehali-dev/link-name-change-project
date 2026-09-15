@@ -1105,7 +1105,11 @@ function Calendar({ selected, onSelect, fullDays }: { selected: Date | null; onS
   const isToday = (d: Date) => d.toDateString() === today.toDateString();
   const isPast = (d: Date) => d < new Date(today.getFullYear(), today.getMonth(), today.getDate());
   const isSelected = (d: Date) => selected?.toDateString() === d.toDateString();
-  const isFull = (d: Date) => fullDays.has(toIso(d));
+  const todayStart = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+  const blockUntil = new Date(todayStart);
+  blockUntil.setDate(blockUntil.getDate() + 10);
+  const isWithinBlockRange = (d: Date) => d >= todayStart && d <= blockUntil;
+  const isFull = (d: Date) => fullDays.has(toIso(d)) || isWithinBlockRange(d);
 
   return (
     <div>
