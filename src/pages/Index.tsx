@@ -1614,7 +1614,7 @@ export default function Index() {
             <div className="flex items-center gap-3 mb-8">
               <div className="section-tag section-tag-orange">Услуги</div>
             </div>
-            <div className="grid sm:grid-cols-3 gap-5">
+            <div className="grid sm:grid-cols-2 gap-5">
               {/* Наставничество */}
               <div className="glass-card p-6 group transition-all duration-300 hover:-translate-y-1"
                 onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.borderColor = 'rgba(0,229,255,0.3)'; (e.currentTarget as HTMLDivElement).style.boxShadow = '0 0 30px rgba(0,229,255,0.08)'; }}
@@ -1651,24 +1651,6 @@ export default function Index() {
                 >Купить <Icon name="ArrowRight" size={12} /></a>
               </div>
 
-              {/* Второе мнение */}
-              <div className="glass-card p-6 group transition-all duration-300 hover:-translate-y-1"
-                onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.borderColor = 'rgba(0,229,255,0.3)'; (e.currentTarget as HTMLDivElement).style.boxShadow = '0 0 30px rgba(0,229,255,0.08)'; }}
-                onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.borderColor = 'rgba(255,255,255,0.08)'; (e.currentTarget as HTMLDivElement).style.boxShadow = 'none'; }}>
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-all group-hover:scale-110" style={{ background: 'rgba(0,229,255,0.1)', border: '1px solid rgba(0,229,255,0.2)' }}>
-                  <Icon name="MessageSquare" size={22} className="neon-text" />
-                </div>
-                <h3 className="font-semibold text-lg mb-2">Второе мнение</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed mb-4">Независимая экспертная оценка сложных случаев: травматология, онкология, педиатрическая патология, спортивная травма.</p>
-                <button
-                  type="button"
-                  className="text-sm font-bold neon-text hover:underline flex items-center gap-1"
-                  onClick={() => {
-                    document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth' });
-                    setTimeout(() => { setServiceType('consultation'); }, 600);
-                  }}
-                >Записаться <Icon name="ArrowRight" size={12} /></button>
-              </div>
             </div>
           </div>
 
