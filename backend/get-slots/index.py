@@ -52,7 +52,7 @@ def handler(event: dict, context) -> dict:
     if now_msk.minute > 0 or now_msk.second > 0:
         rounded_now += timedelta(hours=1)
 
-    today = rounded_now.date()
+    today = rounded_now.date() + timedelta(days=10)
     nearest_date = None
     nearest_time = None
 
