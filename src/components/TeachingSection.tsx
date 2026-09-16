@@ -88,6 +88,12 @@ const COURSES = [
     url: "https://practicalradiology.ru/curs_mrt_systavov",
     type: "Повышение квалификации",
   },
+  {
+    role: "Соавтор, разделы",
+    title: "Базовый курс по МРТ- и КТ-диагностике позвоночника и спинного мозга",
+    url: "https://practicalradiology.ru/curs_mrt_kt_pozvonochnik",
+    type: "Повышение квалификации",
+  },
 ];
 
 export default function TeachingSection() {
