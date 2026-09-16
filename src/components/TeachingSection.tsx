@@ -82,6 +82,12 @@ const COURSES = [
     type: "Повышение квалификации",
     isNew: true,
   },
+  {
+    role: "Соавтор",
+    title: "Базовый курс по МРТ суставов",
+    url: "https://practicalradiology.ru/curs_mrt_systavov",
+    type: "Повышение квалификации",
+  },
 ];
 
 export default function TeachingSection() {
