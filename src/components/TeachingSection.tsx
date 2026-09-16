@@ -10,16 +10,38 @@ const SLIDES = [
 
 const COURSES = [
   {
-    role: "Соавтор, раздел",
-    title: "Курс профессиональной переподготовки по специальности «Рентгенология» (очный)",
-    url: "https://univerexpert.ru/groups/2/",
-    type: "Переподготовка",
-  },
-  {
     role: "Автор",
     title: "Углубленный практический курс по МРТ суставов «5×5 – Пять суставов × пять интересных патологий»",
     url: "https://lk.practicalradiology.ru/5x5",
     type: "Авторский курс",
+    isNew: true,
+  },
+  {
+    role: "Автор",
+    title: "Курс повышения квалификации «МРТ-диагностика височно-нижнечелюстных суставов»",
+    url: "https://univerexpert.ru/courses/56/",
+    type: "Повышение квалификации",
+    isNew: true,
+  },
+  {
+    role: "Соавтор",
+    title: "Базовый курс по МРТ суставов",
+    url: "https://practicalradiology.ru/curs_mrt_systavov",
+    type: "Повышение квалификации",
+    isNew: true,
+  },
+  {
+    role: "Соавтор, разделы",
+    title: "Базовый курс по МРТ- и КТ-диагностике позвоночника и спинного мозга",
+    url: "https://practicalradiology.ru/curs_mrt_kt_pozvonochnik",
+    type: "Повышение квалификации",
+    isNew: true,
+  },
+  {
+    role: "Соавтор, раздел",
+    title: "Курс профессиональной переподготовки по специальности «Рентгенология» (очный)",
+    url: "https://univerexpert.ru/groups/2/",
+    type: "Переподготовка",
   },
   {
     role: "Автор",
@@ -73,25 +95,6 @@ const COURSES = [
     role: "Соавтор, раздел",
     title: "Курс повышения квалификации «КТ-диагностика заболеваний органов брюшной полости, забрюшинного пространства и желудочно-кишечного тракта»",
     url: "https://univerexpert.ru/courses/26/",
-    type: "Повышение квалификации",
-  },
-  {
-    role: "Автор",
-    title: "Курс повышения квалификации «МРТ-диагностика височно-нижнечелюстных суставов»",
-    url: "https://univerexpert.ru/courses/56/",
-    type: "Повышение квалификации",
-    isNew: true,
-  },
-  {
-    role: "Соавтор",
-    title: "Базовый курс по МРТ суставов",
-    url: "https://practicalradiology.ru/curs_mrt_systavov",
-    type: "Повышение квалификации",
-  },
-  {
-    role: "Соавтор, разделы",
-    title: "Базовый курс по МРТ- и КТ-диагностике позвоночника и спинного мозга",
-    url: "https://practicalradiology.ru/curs_mrt_kt_pozvonochnik",
     type: "Повышение квалификации",
   },
 ];
