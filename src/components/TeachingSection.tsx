@@ -40,8 +40,9 @@ const COURSES = [
   {
     role: "Соавтор, раздел",
     title: "Курс профессиональной переподготовки по специальности «Рентгенология» (очный)",
-    url: "https://univerexpert.ru/groups/2/",
+    url: "",
     type: "Переподготовка",
+    isModal: true,
   },
   {
     role: "Автор",
@@ -101,6 +102,7 @@ const COURSES = [
 
 export default function TeachingSection() {
   const [current, setCurrent] = useState(0);
+  const [showRetrainModal, setShowRetrainModal] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -172,13 +174,16 @@ export default function TeachingSection() {
             }
           `}</style>
           <div className="grid md:grid-cols-2 gap-3">
-            {COURSES.map((c) => (
-              <a
-                key={c.url}
-                href={c.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative block rounded-xl border px-4 py-3 transition-all duration-300 hover:scale-[1.02]"
+            {COURSES.map((c) => {
+              const isModal = 'isModal' in c && c.isModal;
+              const Tag = isModal ? "div" : "a";
+              return (
+              <Tag
+                key={c.title}
+                {...(isModal
+                  ? { onClick: () => setShowRetrainModal(true), role: "button", tabIndex: 0 }
+                  : { href: c.url, target: "_blank", rel: "noopener noreferrer" })}
+                className="group relative block rounded-xl border px-4 py-3 transition-all duration-300 hover:scale-[1.02] cursor-pointer"
                 style={{
                   background: "rgba(255,255,255,0.03)",
                   borderColor: "rgba(255,255,255,0.08)",
@@ -254,12 +259,73 @@ export default function TeachingSection() {
                     <polyline points="15 3 21 3 21 9" />
                     <line x1="10" y1="14" x2="21" y2="3" />
                   </svg>
+                  {isModal && (
+                    <svg
+                      className="shrink-0"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="var(--neon, #00e5ff)"
+                      strokeWidth="1.6"
+                      style={{ filter: "drop-shadow(0 0 4px rgba(0,229,255,0.6))" }}
+                    >
+                      <circle cx="12" cy="12" r="9.5" />
+                      <line x1="8.5" y1="10" x2="8.5" y2="10.3" strokeLinecap="round" strokeWidth="2.2" />
+                      <line x1="15.5" y1="10" x2="15.5" y2="10.3" strokeLinecap="round" strokeWidth="2.2" />
+                      <line x1="8.5" y1="15" x2="15.5" y2="15" strokeLinecap="round" />
+                    </svg>
+                  )}
                 </div>
-              </a>
-            ))}
+              </Tag>
+              );
+            })}
           </div>
         </div>
       </section>
+
+      {/* RETRAIN INFO MODAL */}
+      {showRetrainModal && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+          style={{ background: "rgba(0,0,0,0.8)", backdropFilter: "blur(8px)" }}
+          onClick={() => setShowRetrainModal(false)}
+        >
+          <div
+            className="relative w-full max-w-md rounded-2xl p-6"
+            style={{ background: "rgba(14,18,28,0.98)", border: "1px solid rgba(0,229,255,0.2)" }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setShowRetrainModal(false)}
+              className="absolute top-4 right-4 w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-primary transition-colors"
+              style={{ background: "rgba(255,255,255,0.05)" }}
+            >
+              <Icon name="X" size={16} />
+            </button>
+            <div className="flex items-start gap-4 pr-6">
+              <svg
+                className="shrink-0 mt-1"
+                width="36"
+                height="36"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="var(--neon, #00e5ff)"
+                strokeWidth="1.4"
+                style={{ filter: "drop-shadow(0 0 6px rgba(0,229,255,0.6))" }}
+              >
+                <circle cx="12" cy="12" r="9.5" />
+                <line x1="8.5" y1="10" x2="8.5" y2="10.3" strokeLinecap="round" strokeWidth="2" />
+                <line x1="15.5" y1="10" x2="15.5" y2="10.3" strokeLinecap="round" strokeWidth="2" />
+                <line x1="8.5" y1="15" x2="15.5" y2="15" strokeLinecap="round" />
+              </svg>
+              <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.85)" }}>
+                Как жаль! В настоящий момент очное преподавание в институте Эксперт осталось в прошлом... Но жизнь не стоит на месте. В 2027 году здесь появится актуальная ссылка на дистанционный курс в новом формате!
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
